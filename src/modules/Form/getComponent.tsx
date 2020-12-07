@@ -1,0 +1,65 @@
+import React from 'react';
+import { ComponentProps, Components, Field } from 'react-metaforms';
+import FormCheckboxList from '../CheckboxList/FormCheckboxList';
+import { Submit } from '../inputs/Button';
+import Checkbox from '../inputs/Checkbox';
+import Group from '../inputs/Group';
+import Input from '../inputs/Input';
+import NumberInput from '../inputs/NumberInput';
+import Select from '../inputs/Select';
+import Textarea from '../inputs/Textarea';
+import ButtonGroup from '../Layout/ButtonGroup';
+import FormTags from '../Tags/FormTags';
+import ImageUpload from '../Upload/ImageUpload';
+import DatePicker, { DateTimePicker } from './components/DatePicker';
+
+export const getComponent = <T extends Field>(parentGetComponent?: Components<T>) => (componentProps: ComponentProps<T>) => {
+  if (parentGetComponent) {
+    const found = parentGetComponent(componentProps);
+    if (found) {
+      return found;
+    }
+  }
+
+  const { name, component, ref, actions, groupChildren } = componentProps;
+  // todo: fix this
+  // @ts-ignore
+  const props: any = { ...component, ...actions, name };
+
+  switch (component.type) {
+    case 'number':
+      return <NumberInput key={props.name} {...props} ref={ref} />;
+    case 'text':
+    case 'password':
+      return <Input key={props.name} {...props} ref={ref} />;
+    case 'select':
+      return <Select key={props.name} {...props} ref={ref} />;
+    case 'textarea':
+      return <Textarea key={props.name} {...props} ref={ref} />;
+    case 'checkbox':
+      return <Checkbox key={props.name} {...props} />;
+    case 'tags':
+    case 'string-tags':
+      return <FormTags key={props.name} {...props} />;
+    case 'submit':
+      return <Submit key={props.name} {...props} />;
+    case 'date':
+      return <DatePicker key={props.name} {...props} value={props.value * 1000} />;
+    case 'image':
+      return <ImageUpload key={props.name} {...props} multiple={true} />;
+    case 'datetime-local':
+      return <DateTimePicker key={props.name} {...props} />;
+    case 'button-group':
+      return <ButtonGroup key={props.name}>{groupChildren}</ButtonGroup>;
+    case 'multiselect':
+      return <FormCheckboxList key={props.name} {...props} labels={{ search: 'Hledat', empty: 'Žádný záznam' }} />;
+    case 'group':
+      return (
+        <Group key={props.name} legend={component.legend} hidden={component.hidden}>
+          {groupChildren}
+        </Group>
+      );
+    default:
+      return;
+  }
+};

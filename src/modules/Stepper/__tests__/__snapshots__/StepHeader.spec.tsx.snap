@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<StepHeader /> should display active step header 1`] = `
+<StepHeader
+  isActive={true}
+  isCompleted={false}
+  title="test title"
+>
+  <styled.div>
+    <div
+      className="sc-gKsewC kqoIZF"
+    >
+      <styled.div
+        isActive={true}
+        isCompleted={false}
+      >
+        <div
+          className="sc-eCssSg eDaBRG"
+        />
+      </styled.div>
+      <styled.div
+        isActive={true}
+      >
+        <div
+          className="sc-jSgupP hNzAnX"
+        >
+          test title
+        </div>
+      </styled.div>
+    </div>
+  </styled.div>
+</StepHeader>
+`;
+
+exports[`<StepHeader /> should display inactive step header 1`] = `
+<StepHeader
+  isActive={false}
+  isCompleted={false}
+  title="second test title"
+>
+  <styled.div>
+    <div
+      className="sc-gKsewC kqoIZF"
+    >
+      <styled.div
+        isActive={false}
+        isCompleted={false}
+      >
+        <div
+          className="sc-eCssSg cWmJWq"
+        />
+      </styled.div>
+      <styled.div
+        isActive={false}
+      >
+        <div
+          className="sc-jSgupP hxUljB"
+        >
+          second test title
+        </div>
+      </styled.div>
+    </div>
+  </styled.div>
+</StepHeader>
+`;

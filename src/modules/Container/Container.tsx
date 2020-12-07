@@ -1,0 +1,98 @@
+import React, { ReactNode } from 'react';
+import styled, { css } from 'styled-components';
+import Flex from '../Layout/Flex';
+
+export const SContainer = styled.div<IContainerProps>`
+  margin: auto;
+  position: relative;
+  padding: 0 2em;
+
+  ${({ isCentered }) =>
+    isCentered &&
+    css`
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    `}
+
+  ${({ size }) =>
+    size === 'xs' &&
+    css`
+      max-width: 360px;
+    `};
+  ${({ size }) =>
+    size === 'sm' &&
+    css`
+      max-width: 476px;
+    `};
+  ${({ size }) =>
+    size === 'md' &&
+    css`
+      max-width: 720px;
+    `};
+  ${({ size }) =>
+    size === 'lg' &&
+    css`
+      max-width: 960px;
+    `};
+  ${({ size }) =>
+    size === 'xl' &&
+    css`
+      max-width: 1700px;
+    `};
+`;
+
+export const SActions = styled(Flex)`
+  align-items: center;
+  margin-left: auto;
+
+  & > *:not(:first-child) {
+    margin-left: 10px;
+  }
+`;
+
+export const STitle = styled.h1`
+  margin-top: 1em;
+  font-size: 1.3em;
+`;
+
+const StickyWrapper = styled.div`
+  position: sticky;
+  top: 0;
+  background-color: inherit;
+`;
+
+export interface IContainerProps {
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  actions?: ReactNode[];
+  isSticky?: boolean;
+  isCentered?: boolean;
+  title?: string;
+}
+
+const Container: React.FC<IContainerProps> = ({ children, size, actions, isSticky, isCentered, title }) => {
+  return (
+    <SContainer size={size} isCentered={isCentered}>
+      {!isSticky && (
+        <Flex horizontal={true}>
+          {title && <STitle>{title}</STitle>}
+          {actions && <SActions horizontal={true}>{actions}</SActions>}
+        </Flex>
+      )}
+      <div>
+        {isSticky && (
+          <StickyWrapper>
+            <Flex horizontal={true}>
+              {title && <STitle>{title}</STitle>}
+              {actions && <SActions horizontal={true}>{actions}</SActions>}
+            </Flex>
+          </StickyWrapper>
+        )}
+        {children}
+      </div>
+    </SContainer>
+  );
+};
+
+export default Container;

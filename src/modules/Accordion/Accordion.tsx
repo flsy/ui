@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
-const AccordionWrapper = styled.div`
+interface IProps {
+  className?: string;
+  children: ReactNode;
+}
+
+const Accordion = ({ className, children }: IProps) => <div className={className}>{children}</div>;
+
+export default styled(Accordion)`
   margin: 0 auto;
 `;
-
-const Accordion: React.FC = ({ children }) => <AccordionWrapper>{children}</AccordionWrapper>;
-
-export default Accordion;

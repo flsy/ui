@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
-import { Button, Container } from '../../index';
+import { Button } from '../../index';
 import { borderRadius, Colours } from '../../mainStyles';
 import DownIcon from '../Icon/DownIcon';
 import UpIcon from '../Icon/UpIcon';
@@ -9,12 +9,11 @@ interface IProps {
   isOpen: boolean;
   title: string;
   onOpen: () => void;
+  className?: string;
   onClose?: () => void;
+  children?: ReactNode;
 }
 
-const PanelWrapper = styled.div`
-  margin: 8px 4px;
-`;
 const Header = styled.div<{ isOpen: boolean }>`
   background-color: ${Colours.background};
   border: 1px solid ${Colours.border};
@@ -32,16 +31,22 @@ const Header = styled.div<{ isOpen: boolean }>`
     `}
 `;
 
-const AccordionPanel: React.FC<IProps> = ({ title, isOpen, onClose, onOpen, children }) => {
-  return (
-    <PanelWrapper>
-      <Header isOpen={isOpen}>
-        <Button text={title} link={true} onClick={onOpen} disabled={isOpen} />
-        {onClose && <Button text="" link={true} onClick={isOpen ? onClose : onOpen} iconRight={isOpen ? <UpIcon /> : <DownIcon />} />}
-      </Header>
-      {isOpen && <Container>{children}</Container>}
-    </PanelWrapper>
-  );
-};
+const Content = styled.div`
+  padding: 1em;
+  margin: auto;
+  border: 1px solid ${Colours.border};
+`;
 
-export default AccordionPanel;
+const AccordionPanel = ({ className, title, isOpen, onClose, onOpen, children }: IProps) => (
+  <div className={className}>
+    <Header isOpen={isOpen}>
+      <Button text={title} link={true} onClick={isOpen ? onClose : onOpen} />
+      {onClose && <Button text="" link={true} onClick={isOpen ? onClose : onOpen} iconRight={isOpen ? <UpIcon /> : <DownIcon />} />}
+    </Header>
+    {isOpen && <Content>{children}</Content>}
+  </div>
+);
+
+export default styled(AccordionPanel)`
+  margin: 8px 4px;
+`;

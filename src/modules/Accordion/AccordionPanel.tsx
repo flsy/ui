@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 import { Button } from '../../index';
-import { borderRadius, Colours } from '../../mainStyles';
 import DownIcon from '../Icon/DownIcon';
 import UpIcon from '../Icon/UpIcon';
 
@@ -15,12 +14,12 @@ interface IProps {
 }
 
 const Header = styled.div<{ isOpen: boolean }>`
-  background-color: ${Colours.background};
-  border: 1px solid ${Colours.border};
+  background-color: ${({ theme }) => theme.colors.background};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.borderRadius};
   padding: 8px;
   display: flex;
   justify-content: space-between;
-  border-radius: ${borderRadius};
 
   ${({ isOpen }) =>
     isOpen &&
@@ -34,7 +33,7 @@ const Header = styled.div<{ isOpen: boolean }>`
 const Content = styled.div`
   padding: 1em;
   margin: auto;
-  border: 1px solid ${Colours.border};
+  border: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
 const AccordionPanel = ({ className, title, isOpen, onClose, onOpen, children }: IProps) => (

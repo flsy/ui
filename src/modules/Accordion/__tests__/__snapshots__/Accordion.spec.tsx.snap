@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Accordion /> should render 1`] = `
+<Accordion
+  className="sc-bdfBwQ dNJOoc"
+>
+  <Styled(AccordionPanel)
+    isOpen={true}
+    onOpen={[Function]}
+    title="Panel title"
+  >
+    Panel content
+  </Styled(AccordionPanel)>
+</Accordion>
+`;

@@ -1,7 +1,7 @@
-import { storiesOf } from '@storybook/react';
+import { withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import styled from 'styled-components';
-import { Accordion, Container } from '../../index';
+import { Accordion } from '../../index';
 import AccordionPanel from './AccordionPanel';
 
 const AccordionContent = ({ openId, setOpenId }) => (
@@ -18,14 +18,12 @@ const AccordionContent = ({ openId, setOpenId }) => (
   </>
 );
 
-const AccordionPreview = () => {
+export const Basic = () => {
   const [openId, setOpenId] = React.useState(0);
   return (
-    <Container size="xl">
-      <Accordion>
-        <AccordionContent openId={openId} setOpenId={setOpenId} />
-      </Accordion>
-    </Container>
+    <Accordion>
+      <AccordionContent openId={openId} setOpenId={setOpenId} />
+    </Accordion>
   );
 };
 
@@ -33,17 +31,16 @@ const StyledAccordion = styled(Accordion)`
   color: red;
 `;
 
-const StyledAccordionPreview = () => {
+export const Styled = () => {
   const [openId, setOpenId] = React.useState(0);
   return (
-    <Container size="xl">
-      <StyledAccordion>
-        <AccordionContent openId={openId} setOpenId={setOpenId} />
-      </StyledAccordion>
-    </Container>
+    <StyledAccordion>
+      <AccordionContent openId={openId} setOpenId={setOpenId} />
+    </StyledAccordion>
   );
 };
 
-storiesOf('Accordion', module)
-  .add('basic usage', () => <AccordionPreview />)
-  .add('styled', () => <StyledAccordionPreview />);
+export default {
+  title: 'Components/Accordion',
+  decorators: [withKnobs],
+};

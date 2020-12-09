@@ -1,4 +1,4 @@
-export const pad = (n: number) => (n < 10 ? `0${n}` : n);
+export const pad = (n: number): string | number => (n < 10 ? `0${n}` : n);
 
 export const notEmpty = <T>(value: T | null | undefined): value is T => value !== null && value !== undefined;
 

@@ -32,7 +32,7 @@ export enum Colours {
 export const trainsitionTime = '0.2s';
 export const borderRadius = '2px';
 
-export const calcSize = (size: string, numeric?: boolean, base = 8) => {
+export const calcSize = (size: string, numeric?: boolean, base = 8): number | string => {
   switch (size) {
     case 'xs':
       return numeric ? base : `${base}px`;

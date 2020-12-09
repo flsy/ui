@@ -1,3 +1,4 @@
+export { GlobalStyle } from './mainStyles';
 export { default as Accordion } from './modules/Accordion/Accordion';
 export { default as Badge } from './modules/Badge/Badge';
 export { default as Button } from './modules/Button/Button';
@@ -19,6 +20,7 @@ export { default as ImageModal } from './modules/ImageModal/ImageModal';
 export { Submit } from './modules/inputs/Button';
 export { default as Checkbox } from './modules/inputs/Checkbox';
 export { default as Input } from './modules/inputs/Input';
+export { default as VariableList } from './modules/inputs/VariableList';
 export { default as Label } from './modules/Label/Label';
 export { default as Centered } from './modules/Layout/Centered';
 export { default as Flex } from './modules/Layout/Flex';

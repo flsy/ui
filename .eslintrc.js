@@ -35,6 +35,7 @@ module.exports = {
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': 'error',
     'jest/no-jasmine-globals': 1,
+    'import/extensions': 0,
     'prettier/prettier': [
       'error',
       {

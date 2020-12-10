@@ -1,6 +1,8 @@
 /* eslint-disable max-len */
 
-export const eventMock = {
+import { IData } from './DescriptionList';
+
+export const eventMock: IData = {
   externalUid: {
     value: 'xxx',
     type: 'string',
@@ -45,7 +47,7 @@ export const eventMock = {
       attachmentSortOrder: { type: 'number', value: 1 },
       attachmentUid: { type: 'string', value: '28c6eaac-8538-11e7-bb31-be2e44b06b44' },
       description: { type: 'string', value: 'Fotografie obličeje kontrolované osoby' },
-      type: { type: 'string', value: 'image/jpeg' },
+      type: { type: 'string', value: 'image/jpeg' }, // TODO - blbe typove, ptze prop je type coz koliduje s "type": 'string' | 'number',....
       blob: {
         type: 'base64',
         value:

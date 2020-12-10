@@ -1,22 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Span } from '../Typography/Typography';
+import { ILine, IProps } from './interfaces';
 // eslint-disable-next-line import/no-cycle
-import { renderValue } from './renderValue';
-
-export interface ILine {
-  value: string | boolean | number | null;
-  type: 'boolean' | 'base64' | 'date' | 'json' | 'string' | 'number' | 'xml';
-}
-
-export type IDataValue = ILine | IData | IData[];
-export type IData = { [key: string]: IDataValue };
-
-interface IProps {
-  data: IData;
-  prevKey?: string;
-  index?: number;
-}
+import { isNull, renderValue } from './renderValue';
 
 const Dl = styled.dl`
   margin: 0 0 0 10px;
@@ -32,20 +19,31 @@ const Dd = styled.dd`
   word-wrap: break-word;
 `;
 
-const createUniqueKey = (type: string, keyData: Array<number | string | undefined>) => `${type}-${keyData.filter(Boolean).join('-')}`;
+const createUniqueKey = (type: string, keyData: Array<number | string>) => `${type}-${keyData.filter(Boolean).join('-')}`;
+
+const render = (data: any, dataKey: ILine, name: any) => {
+  if (isNull(dataKey)) {
+    return '';
+  }
+  return data.value || renderValue(dataKey, name);
+};
 
 const DescriptionList = ({ data, prevKey, index }: IProps) => {
   return (
     <Dl>
-      {Object.entries(data).map(
-        ([key, value]) =>
+      {Object.keys(data ?? {}).map(
+        (key) =>
           key !== '__typename' && (
+            // @ts-ignore
             <div key={createUniqueKey('div', [prevKey, index, key])}>
+              {/* @ts-ignore */}
               <Dt key={createUniqueKey('key', [prevKey, index, key])} data-test-id={createUniqueKey('description-list', [prevKey, index, key, 'key'])}>
-                <Span>{key}:</Span>
+                <Span>{key}: </Span>
               </Dt>
+              {/* @ts-ignore */}
               <Dd key={createUniqueKey('value', [prevKey, index, key])} data-test-id={createUniqueKey('description-list', [prevKey, index, key, 'value'])}>
-                {renderValue(key, value)}
+                {/* @ts-ignore */}
+                {render(data, data[key], key)}
               </Dd>
             </div>
           ),

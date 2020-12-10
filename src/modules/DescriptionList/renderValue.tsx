@@ -1,38 +1,36 @@
-import React from 'react';
+import DownOutlined from '@ant-design/icons/DownOutlined';
+import UpOutlined from '@ant-design/icons/UpOutlined';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Colours } from '../../mainStyles';
+import { toDateTimeString } from '../../utils/utils';
+import Button from '../Button/Button';
 import { Span } from '../Typography/Typography';
 // eslint-disable-next-line import/no-cycle
-import DescriptionList, { IData, IDataValue, ILine } from './DescriptionList';
-import { toDateTimeString } from '../../utils/utils';
-import { RawData } from './RawData';
+import DescriptionList from './DescriptionList';
+import { ILine } from './interfaces';
 
 const Img = styled.img`
   display: block;
   max-width: 1024px;
 `;
 
+const JsonData = styled.pre`
+  background-color: ${Colours.background};
+  padding: 24px;
+  color: ${Colours.font};
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+`;
+
 export const isNull = (value: any): value is null => typeof value === 'object' && !value;
 const isObject = (v: any) => v?.constructor === Object && !isNull(v.value) && !v.value;
-const hasProp = (object: object, prop: string) => Object.prototype.hasOwnProperty.call(object, prop);
-const isIData = (value: IDataValue): value is IData => isObject(value);
-const isIDataArray = (value: IDataValue): value is IData[] => Array.isArray(value);
-export const isILine = (value: IDataValue): value is ILine => !isIDataArray(value) && !isIData(value) && hasProp(value, 'value') && typeof value.value === 'string';
-
 const renderImage = (img: string, name?: string) => {
   return <Img src={`data:image/jpeg;base64, ${img}`} alt={name || undefined} />;
 };
 
-export const renderValue = (key: string, value: IDataValue) => {
-  if (isIData(value)) {
-    return <DescriptionList data={value} prevKey={key} />;
-  }
-
-  if (isIDataArray(value)) {
-    // eslint-disable-next-line react/no-array-index-key
-    return value.map((obj, index) => <DescriptionList key={`${index}-${key}`} data={obj} prevKey={key} index={index} />);
-  }
-
+export const renderValue = (value: ILine, name?: any) => {
+  const [showRawData, setShowRawData] = useState<boolean>(false);
   if (isNull(value)) {
     return;
   }
@@ -41,17 +39,38 @@ export const renderValue = (key: string, value: IDataValue) => {
     return;
   }
 
-  switch (value.type) {
-    case 'boolean':
-      return <Span colour={Colours.grey}>{value.value ? 'true' : 'false'}</Span>;
-    case 'base64':
-      return renderImage(`${value.value}`, key);
-    case 'date':
-      return <Span colour={Colours.grey}>{toDateTimeString(new Date(parseInt(`${value.value}`, 10) * 1000))}</Span>;
-    case 'xml':
-    case 'json':
-      return <RawData rawData={value.value} />;
-    default:
-      return <Span colour={Colours.grey}>{value.value}</Span>;
+  if (value.type === 'boolean') {
+    return <Span colour={Colours.grey}>{value.value ? 'true' : 'false'}</Span>;
   }
+
+  if (value.type === 'base64') {
+    return renderImage(value.value, name);
+  }
+  if (value.type === 'date') {
+    return <Span colour={Colours.grey}>{toDateTimeString(new Date(value.value * 1000))}</Span>;
+  }
+
+  if (value.type === 'xml') {
+    return (
+      <>
+        <Button
+          iconLeft={showRawData ? <UpOutlined /> : <DownOutlined />}
+          text={showRawData ? 'Skrýt raw data' : 'Zobrazit raw data'}
+          onClick={() => setShowRawData(!showRawData)}
+        />
+        {showRawData && <JsonData>{value.value}</JsonData>}
+      </>
+    );
+  }
+
+  if (isObject(value)) {
+    return <DescriptionList data={value} prevKey={name} />;
+  }
+
+  if (Array.isArray(value)) {
+    // eslint-disable-next-line react/no-array-index-key
+    return value.map((obj, index) => <DescriptionList key={`${index}-${name}`} data={obj} prevKey={name} index={index} />);
+  }
+
+  return <Span colour={Colours.grey}>{value.value}</Span>;
 };

@@ -29,4 +29,8 @@ const ButtonGroup = (props: IProps) => {
   return <Styled {...props}>{props.children}</Styled>;
 };
 
+ButtonGroup.defaultProps = {
+  isCentered: false,
+};
+
 export default ButtonGroup;

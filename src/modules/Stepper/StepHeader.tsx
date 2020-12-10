@@ -74,14 +74,14 @@ const Wrapper = styled.div<{ active?: boolean }>`
   }
 `;
 
-interface Props {
+interface IProps {
   title: string;
   isActive: boolean;
   isCompleted: boolean;
   onClick?: () => void;
 }
 
-const StepHeader = ({ isActive, isCompleted, title, onClick }: Props) => (
+const StepHeader = ({ isActive, isCompleted, title, onClick }: IProps) => (
   <Wrapper>
     <Circle isActive={isActive} isCompleted={isCompleted} />
     {onClick ? (
@@ -93,5 +93,9 @@ const StepHeader = ({ isActive, isCompleted, title, onClick }: Props) => (
     )}
   </Wrapper>
 );
+
+StepHeader.defaultProps = {
+  onClick: undefined,
+};
 
 export default StepHeader;

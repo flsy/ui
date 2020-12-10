@@ -43,4 +43,8 @@ const DatePicker = ({ value, onChange, withTimePicker }: IProps) => {
   );
 };
 
+DatePicker.defaultProps = {
+  withTimePicker: false,
+};
+
 export default DatePicker;

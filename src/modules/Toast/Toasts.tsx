@@ -26,6 +26,10 @@ const Toast = ({ children, appearance, description, autoDismissTimeout }: IToast
   </SToast>
 );
 
+Toast.defaultProps = {
+  description: undefined,
+};
+
 const Toasts = ({ children, ...props }: ToastContainerProps) => (
   <DefaultToastContainer {...props}>
     <SToasts>{children}</SToasts>

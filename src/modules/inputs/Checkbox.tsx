@@ -93,6 +93,15 @@ export const CheckBox = React.forwardRef(({ name, label, defaultChecked, onChang
   </SCheckBox>
 ));
 
+CheckBox.defaultProps = {
+  label: undefined,
+  defaultChecked: undefined,
+  checked: undefined,
+  errorMessage: undefined,
+  isRequired: false,
+  onChange: undefined,
+};
+
 const FormCheckBox = ({ updateAndValidate, validation, value, ...props }: FormCheckBoxProps) => (
   <InputWrapper>
     <CheckBox {...props} isRequired={isFieldRequired(validation)} defaultChecked={value || false} onChange={(checked) => updateAndValidate(props.name, checked)} />

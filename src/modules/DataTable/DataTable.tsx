@@ -83,4 +83,21 @@ const DataTable = <TRow extends {}>({
   );
 };
 
+DataTable.defaultProps = {
+  data: [],
+  columns: {},
+  labels: {
+    empty: 'No data',
+  },
+  rowType: undefined,
+  onRowSelect: undefined,
+  isRowSelected: undefined,
+  isKeyboardSelect: false,
+  expandedRowRender: undefined,
+  isLoading: false,
+  render: undefined,
+  onLoadMore: undefined,
+  onColumnsChange: undefined,
+};
+
 export default DataTable;

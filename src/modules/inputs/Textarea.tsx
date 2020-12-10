@@ -34,4 +34,8 @@ const Textarea = React.forwardRef((props: IProps, ref: React.Ref<HTMLTextAreaEle
   );
 });
 
+Textarea.defaultProps = {
+  disabled: false,
+};
+
 export default Textarea;

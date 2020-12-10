@@ -43,4 +43,13 @@ const NumberInput = React.forwardRef((props: NumberProps, ref: React.Ref<HTMLInp
   );
 });
 
+NumberInput.defaultProps = {
+  disabled: false,
+  inputMode: 'decimal',
+  onFocus: undefined,
+  onBlur: undefined,
+  min: undefined,
+  max: undefined,
+};
+
 export default NumberInput;

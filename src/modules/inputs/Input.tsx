@@ -40,4 +40,11 @@ const Input = React.forwardRef((props: IProps, ref: React.Ref<HTMLInputElement>)
   );
 });
 
+Input.defaultProps = {
+  disabled: false,
+  inputMode: 'text',
+  onFocus: undefined,
+  onBlur: undefined,
+};
+
 export default Input;

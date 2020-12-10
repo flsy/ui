@@ -33,4 +33,9 @@ const Group = ({ legend, hidden, children }: IProps) => {
   return <div>{hidden ? null : children}</div>;
 };
 
+Group.defaultProps = {
+  legend: undefined,
+  hidden: false,
+};
+
 export default Group;

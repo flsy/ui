@@ -49,4 +49,9 @@ interface IProps {
 }
 
 const Pulse = ({ isAnimated }: IProps) => <SPulse isAnimated={isAnimated} />;
+
+Pulse.defaultProps = {
+  isAnimated: false,
+};
+
 export default Pulse;

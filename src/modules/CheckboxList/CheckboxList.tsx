@@ -55,4 +55,9 @@ const CheckboxList = ({ options, values = [], onChange, labels, name }: ICheckbo
   );
 };
 
+CheckboxList.defaultProps = {
+  values: [],
+  options: [],
+};
+
 export default CheckboxList;

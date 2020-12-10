@@ -37,4 +37,9 @@ const LoaderOverlay = ({ children, size, text, isLoading }: IProps) => {
   );
 };
 
+LoaderOverlay.defaultProps = {
+  size: 'md',
+  isLoading: false,
+};
+
 export default LoaderOverlay;

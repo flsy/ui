@@ -46,6 +46,12 @@ const AccordionPanel = ({ className, title, isOpen, onClose, onOpen, children }:
   </div>
 );
 
+AccordionPanel.defaultProps = {
+  className: undefined,
+  onClose: undefined,
+  children: undefined,
+};
+
 export default styled(AccordionPanel)`
   margin: 8px 4px;
 `;

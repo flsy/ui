@@ -30,6 +30,14 @@ export const Submit = ({ fullWidth, ...props }: ISubmitProps) => (
   </SSubmit>
 );
 
+Submit.defaultProps = {
+  fullWidth: false,
+  onClick: undefined,
+  name: undefined,
+  label: undefined,
+  disabled: false,
+};
+
 export const Button: React.FC<IButtonProps> = (props) => {
   return <UIButton text={props.value} {...props} type="button" onClick={props.onClick} />;
 };

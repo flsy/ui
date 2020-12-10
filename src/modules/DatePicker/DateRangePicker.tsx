@@ -81,4 +81,8 @@ const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, with
   );
 };
 
+DateRangePicker.defaultProps = {
+  withTimePicker: false,
+};
+
 export default DateRangePicker;

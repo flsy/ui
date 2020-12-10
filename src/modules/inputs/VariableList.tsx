@@ -29,7 +29,6 @@ const Textarea = styled(TextareaStyled)`
 
 interface IProps extends FieldProps<string> {
   disabled?: boolean;
-  type: 'variable-list';
   variables: { name: string; description: string }[];
 }
 
@@ -64,5 +63,9 @@ const VariableList = React.forwardRef((props: IProps, ref: React.Ref<HTMLTextAre
     </InputWrapper>
   );
 });
+
+VariableList.defaultProps = {
+  disabled: false,
+};
 
 export default VariableList;

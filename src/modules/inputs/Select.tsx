@@ -14,8 +14,6 @@ interface IProps<Value> extends FieldProps<Value> {
     value: Value;
     label?: string;
   }[];
-  onFocus?: (event: React.FocusEvent<HTMLSelectElement>) => void;
-  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 const Select = React.forwardRef(<Value extends string>(props: IProps<Value>, ref: React.Ref<HTMLSelectElement>) => {
   return (
@@ -42,5 +40,9 @@ const Select = React.forwardRef(<Value extends string>(props: IProps<Value>, ref
     </InputWrapper>
   );
 });
+
+Select.defaultProps = {
+  disabled: false,
+};
 
 export default Select;

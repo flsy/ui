@@ -83,4 +83,10 @@ const ListItem = ({ to, children, onClick, isActive }: IListItemProps) => {
   );
 };
 
+ListItem.defaultProps = {
+  to: undefined,
+  onClick: undefined,
+  isActive: false,
+};
+
 export default ListItem;

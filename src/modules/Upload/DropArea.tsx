@@ -89,4 +89,8 @@ const DropArea = (props: DropAreaProps) => {
   );
 };
 
+DropArea.defaultProps = {
+  multiple: false,
+};
+
 export default DropArea;

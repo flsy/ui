@@ -47,4 +47,11 @@ const ButtonIcon = ({ icon, onClick, id, name, primary, size }: IButtonIconProps
   </ButtonIconWrapper>
 );
 
+ButtonIcon.defaultProps = {
+  id: undefined,
+  name: undefined,
+  primary: false,
+  size: 'md',
+};
+
 export default ButtonIcon;

@@ -82,6 +82,7 @@ const LoadingAnimation = ({ size, inverted }: IProps) => (
 
 LoadingAnimation.defaultProps = {
   size: 'md',
+  inverted: false,
 };
 
 export default LoadingAnimation;

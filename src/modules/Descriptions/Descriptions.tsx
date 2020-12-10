@@ -53,6 +53,12 @@ const DescriptionsItem = ({ id, label, children }: IDescriptionsItemProps) => (
   </STrItem>
 );
 
+DescriptionsItem.defaultProps = {
+  id: undefined,
+  label: undefined,
+  children: undefined,
+};
+
 interface IDescriptionsTitleProps {
   id?: string;
   label: string;
@@ -63,6 +69,10 @@ const DescriptionsTitle = ({ id, label }: IDescriptionsTitleProps) => (
     <th colSpan={2}>{label}</th>
   </STrTitle>
 );
+
+DescriptionsTitle.defaultProps = {
+  id: undefined,
+};
 
 interface IDescriptionsProps {
   id?: string;
@@ -79,6 +89,11 @@ const Descriptions = ({ id, title, children }: IDescriptionsProps) => (
     </Container>
   </SDescriptions>
 );
+
+Descriptions.defaultProps = {
+  id: undefined,
+  title: undefined,
+};
 
 Descriptions.Title = DescriptionsTitle;
 Descriptions.Item = DescriptionsItem;

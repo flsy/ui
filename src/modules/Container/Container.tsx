@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 import Flex from '../Layout/Flex';
+import { Colours } from '../../mainStyles';
 
 export const SContainer = styled.div<IContainerProps>`
   margin: auto;
@@ -60,7 +61,7 @@ export const STitle = styled.h1`
 const StickyWrapper = styled.div`
   position: sticky;
   top: 0;
-  background-color: inherit;
+  background-color: ${Colours.background};
 `;
 
 export interface IContainerProps {

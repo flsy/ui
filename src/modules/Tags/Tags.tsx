@@ -53,6 +53,12 @@ const Tag = ({ label, isLoading, description }: ITagProps) => {
   return <STag>{description ? <Tooltip text={description}>{label}</Tooltip> : label}</STag>;
 };
 
+Tag.defaultProps = {
+  label: undefined,
+  isLoading: false,
+  description: undefined,
+};
+
 interface ITagsProps {
   children: ReactNode;
 }

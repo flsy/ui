@@ -132,6 +132,12 @@ const Button = ({ children, onClick, isActive, icon, badge }: IButtonProps) => {
   );
 };
 
+Button.defaultProps = {
+  isActive: false,
+  icon: undefined,
+  badge: undefined,
+};
+
 const Title = ({ children }: { children: string }) => <STitle>{children}</STitle>;
 const Divider = ({ children }: { children: string }) => <SDivider>{children}</SDivider>;
 
@@ -146,6 +152,10 @@ const Navigation = ({ logo, children }: INavigationProps) => (
     <>{children}</>
   </SNavigation>
 );
+
+Navigation.defaultProps = {
+  logo: undefined,
+};
 
 Navigation.Divider = Divider;
 Navigation.Link = Link;

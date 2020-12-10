@@ -20,4 +20,10 @@ interface IProps {
   isFilled?: boolean;
 }
 const FilterIcon = ({ isFilled, isActive }: IProps) => (isFilled ? <Filled $isActive={!!isActive} /> : <Outlined $isActive={!!isActive} />);
+
+FilterIcon.defaultProps = {
+  isActive: false,
+  isFilled: false,
+};
+
 export default FilterIcon;

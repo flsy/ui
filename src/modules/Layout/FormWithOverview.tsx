@@ -32,4 +32,8 @@ const FormWithOverview = ({ title, actions, children, overview }: IProps) => (
   </SContainer>
 );
 
+FormWithOverview.defaultProps = {
+  overview: undefined,
+};
+
 export default FormWithOverview;

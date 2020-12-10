@@ -36,4 +36,9 @@ const Loader = ({ text, size, isFullScreen }: IProps) => {
   );
 };
 
+Loader.defaultProps = {
+  size: 'md',
+  isFullScreen: false,
+};
+
 export default Loader;

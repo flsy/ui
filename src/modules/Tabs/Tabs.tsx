@@ -59,6 +59,10 @@ const Tabs = ({ children, selected, onSelect }: ITabsProps) => {
   );
 };
 
-Tabs.Tab = Tab;
+Tabs.defaultProps = {
+  selected: undefined,
+  onSelect: undefined,
+};
 
+Tabs.Tab = Tab;
 export default Tabs;

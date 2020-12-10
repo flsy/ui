@@ -28,13 +28,18 @@ const ImageModal = ({ src, previewWidth, alt }: IImagePreview) => {
   return (
     <>
       <ImageModalWrapper>
-        <Image src={`data:image/jpeg;base64,${src}`} width={previewWidth || 150} onClick={() => setIsOpen(true)} alt={alt} />
+        <Image src={`data:image/jpeg;base64,${src}`} width={previewWidth} onClick={() => setIsOpen(true)} alt={alt} />
       </ImageModalWrapper>
       <Modal isOpen={isOpen} close={() => setIsOpen(false)}>
         <Image src={src} alt={alt} />
       </Modal>
     </>
   );
+};
+
+ImageModal.defaultProps = {
+  previewWidth: 150,
+  alt: undefined,
 };
 
 export default ImageModal;

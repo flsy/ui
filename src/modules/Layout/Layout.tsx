@@ -67,4 +67,9 @@ const Layout = ({ navigation, children, version, environment }: ILayoutProps) =>
   );
 };
 
+Layout.defaultProps = {
+  version: undefined,
+  environment: undefined,
+};
+
 export default Layout;

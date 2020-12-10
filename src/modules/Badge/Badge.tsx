@@ -34,4 +34,9 @@ const Badge = ({ children, value }: IProps) => (
   </Wrapper>
 );
 
+Badge.defaultProps = {
+  children: undefined,
+  value: undefined,
+};
+
 export default Badge;

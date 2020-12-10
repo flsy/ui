@@ -28,19 +28,31 @@ const Form = <Form extends Field>({ title, messageType, message, form, onSubmit,
   return (
     <FormWrapper>
       {title && <h2>{title}</h2>}
-      {message && <Message type={messageType || 'info'} text={message} open={true} />}
+      {message && <Message type={messageType} text={message} open={true} />}
       {isLoading ? (
-        <Loader text={labels?.loading || 'Formulář se načítá'} />
+        <Loader text={labels?.loading} />
       ) : (
         <MetaForm<Form>
           onSubmit={onSubmit}
-          form={form || ({} as Form)} // todo: disabled when loading ?
+          form={form} // todo: disabled when loading ?
           onFormChange={onFormChange}
           components={getComponent(components)}
         />
       )}
     </FormWrapper>
   );
+};
+
+Form.defaultProps = {
+  components: {},
+  form: {},
+  title: undefined,
+  message: undefined,
+  messageType: 'info',
+  isLoading: false,
+  labels: {
+    loading: 'Loading form...',
+  },
 };
 
 export default Form;

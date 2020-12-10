@@ -34,4 +34,10 @@ const Downloader = ({ fileContent, fileName, mimeType, text, hasIcon }: IProps) 
     </SLink>
   );
 };
+
+Downloader.defaultProps = {
+  mimeType: undefined,
+  hasIcon: false,
+};
+
 export default Downloader;

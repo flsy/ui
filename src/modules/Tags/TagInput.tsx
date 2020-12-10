@@ -21,7 +21,7 @@ interface ITagsProps {
   onCreateClick?: () => void;
 }
 
-const TagInput = ({ label, name, values = [], options = [], onChange, errorMessage, onCreateClick }: ITagsProps) => {
+const TagInput = ({ label, name, values, options, onChange, errorMessage, onCreateClick }: ITagsProps) => {
   const selectedOptions = options.filter((o) => values.includes(o.value));
 
   return (
@@ -36,6 +36,14 @@ const TagInput = ({ label, name, values = [], options = [], onChange, errorMessa
       {errorMessage && <ErrorMessage name={name} message={errorMessage} />}
     </InputWrapper>
   );
+};
+
+TagInput.defaultProps = {
+  label: undefined,
+  errorMessage: undefined,
+  values: [],
+  options: [],
+  onCreateClick: undefined,
 };
 
 export default TagInput;

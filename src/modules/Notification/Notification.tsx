@@ -36,4 +36,9 @@ const Notification = ({ onClick, createdAt, message }: IProps) => (
   </SNotification>
 );
 
+Notification.defaultProps = {
+  createdAt: undefined,
+  message: undefined,
+};
+
 export default Notification;

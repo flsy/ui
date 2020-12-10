@@ -11,3 +11,7 @@ const Accordion = ({ className, children }: IProps) => <div className={className
 export default styled(Accordion)`
   margin: 0 auto;
 `;
+
+Accordion.defaultProps = {
+  className: undefined,
+};

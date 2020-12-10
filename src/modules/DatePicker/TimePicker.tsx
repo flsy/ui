@@ -70,4 +70,8 @@ const TimePicker = ({ value, onChange, label }: IProps) => {
   );
 };
 
+TimePicker.defaultProps = {
+  label: undefined,
+};
+
 export default TimePicker;

@@ -53,6 +53,10 @@ const SelectYearAndMonth = ({ year, setYear, month, setMonth, className }: IProp
   </div>
 );
 
+SelectYearAndMonth.defaultProps = {
+  className: undefined,
+};
+
 export default styled(SelectYearAndMonth)`
   ${selectYearAndMonthCss}
 `;

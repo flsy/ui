@@ -70,4 +70,8 @@ const Stepper = ({ children, currentStep, isLoading }: IStepperProps) => {
   );
 };
 
+Stepper.defaultProps = {
+  isLoading: false,
+};
+
 export default Stepper;

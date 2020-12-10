@@ -14,6 +14,8 @@ const SToasts = styled.div`
 `;
 
 interface IToastProps extends ToastProps {
+  // TODO: react-toast-notifications doesn't support custom props in default props (event though in reality it is passed)
+  // eslint-disable-next-line react/require-default-props
   description?: string;
   children: ReactNode;
 }
@@ -25,10 +27,6 @@ const Toast = ({ children, appearance, description, autoDismissTimeout }: IToast
     </Message>
   </SToast>
 );
-
-Toast.defaultProps = {
-  description: undefined,
-};
 
 const Toasts = ({ children, ...props }: ToastContainerProps) => (
   <DefaultToastContainer {...props}>

@@ -54,4 +54,9 @@ const DescriptionList = ({ data, prevKey, index }: IProps) => {
   );
 };
 
+DescriptionList.defaultProps = {
+  prevKey: undefined,
+  index: undefined,
+};
+
 export default DescriptionList;

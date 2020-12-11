@@ -17,26 +17,26 @@ const Circle = styled.div<{ hasChild: boolean }>`
   `}
 `;
 
-const Wrapper = styled.div`
-  position: relative;
-  display: inline-block;
-`;
-
 interface IProps {
+  className?: string;
   children?: ReactChild;
   value?: number;
 }
 
-const Badge = ({ children, value }: IProps) => (
-  <Wrapper>
+export const Badge = ({ className, children, value }: IProps): JSX.Element => (
+  <div className={className}>
     {children}
     {value ? <Circle hasChild={!!children}>{value}</Circle> : null}
-  </Wrapper>
+  </div>
 );
 
 Badge.defaultProps = {
+  className: undefined,
   children: undefined,
   value: undefined,
 };
 
-export default Badge;
+export default styled(Badge)`
+  position: relative;
+  display: inline-block;
+`;

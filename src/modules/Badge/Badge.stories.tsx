@@ -1,16 +1,21 @@
-import { storiesOf } from '@storybook/react';
 import React from 'react';
+import { withKnobs } from '@storybook/addon-knobs';
 import { Button } from '../../index';
 import Badge from './Badge';
 
-storiesOf('Badge', module)
-  .add('badge', () => (
-    <>
-      Hello <Badge value={10} />
-    </>
-  ))
-  .add('button badge', () => (
-    <Badge value={10}>
-      <Button text="Abc" />
-    </Badge>
-  ));
+export const Basic = (): JSX.Element => (
+  <>
+    Notifications <Badge value={10} />
+  </>
+);
+
+export const ButtonBadge = (): JSX.Element => (
+  <Badge value={10}>
+    <Button text="Abc" />
+  </Badge>
+);
+
+export default {
+  title: 'Components/Badge',
+  decorators: [withKnobs],
+};

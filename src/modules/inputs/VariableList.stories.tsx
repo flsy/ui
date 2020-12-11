@@ -41,7 +41,7 @@ const VariableListStory = () => {
 
       <Container size="md">
         <h2>VariableList in a form</h2>
-        <Form
+        <Form<any>
           form={fields}
           onFormChange={setFields}
           onSubmit={console.log}

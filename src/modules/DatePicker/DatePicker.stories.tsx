@@ -44,7 +44,7 @@ const DatePickerStory = () => {
       <p>{toISOStringDateTime(date)}</p>
 
       <h3>DatePicker in Form</h3>
-      <Form title="Datepicker example" form={fields} onFormChange={(f) => setFields(f)} onSubmit={({ formData }) => onSubmit(formData)} />
+      <Form<any> title="Datepicker example" form={fields} onFormChange={(f) => setFields(f)} onSubmit={({ formData }) => onSubmit(formData)} />
       <pre>{JSON.stringify(submitted, null, 2)}</pre>
     </>
   );

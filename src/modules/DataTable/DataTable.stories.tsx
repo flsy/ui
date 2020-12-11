@@ -54,8 +54,18 @@ const columns = {
     },
   },
   attachments: {
-    type: 'imageList',
-    label: 'Attachment content',
+    alt: {
+      type: 'string',
+      label: 'Alt',
+    },
+    key: {
+      type: 'string',
+      label: 'Key',
+    },
+    image: {
+      type: 'image',
+      label: 'Some image',
+    },
   },
   isPublished: {
     type: 'boolean',

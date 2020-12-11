@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { Container } from '../../index';
-import { DataTableStory } from '../DataTable/DataTable.stories';
+import { Basic } from '../DataTable/DataTable.stories';
 import Navigation from '../Navigation/Navigation';
 import Layout from './Layout';
 
@@ -24,7 +24,7 @@ const LayoutStory = () => {
         }
       >
         <Container title="List">
-          <DataTableStory />
+          <Basic />
         </Container>
       </Layout>
     </MemoryRouter>

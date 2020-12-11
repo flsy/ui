@@ -9,6 +9,7 @@ interface ISubmitProps {
   type: 'submit';
   label?: string;
   disabled?: boolean;
+  size?: 'xs' | 'sm' | 'md' | 'lg';
 }
 
 const SSubmit = styled.div<{ fullWidth?: boolean }>`
@@ -36,6 +37,7 @@ Submit.defaultProps = {
   name: undefined,
   label: undefined,
   disabled: false,
+  size: 'md',
 };
 
 export const Button: React.FC<IButtonProps> = (props) => {

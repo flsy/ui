@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect } from 'react';
+import { Columns, IMetaTableProps, MetaTable } from 'metatable';
 import useKeyPress, { KeyboardKey } from '../../utils/useKeyPress';
 import { defaultsToArray, defaultsToObject } from '../../utils/utils';
-import { Columns, IMetaTableProps, MetaTable } from '../MetaTable';
 import { DataTableContext } from './context';
 import HeadTr from './HeadTr';
 import { AllTypes } from './interfaces';

@@ -1,6 +1,6 @@
 import React, { Children, useContext } from 'react';
 import styled from 'styled-components';
-import { ITbody } from '../MetaTable';
+import { ITbody } from 'metatable';
 import { DataTableContext } from './context';
 import { STd } from './Td';
 import { STr } from './Tr';

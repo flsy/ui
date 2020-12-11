@@ -24,7 +24,7 @@ const form = {
 
 const FormCheckboxStory = () => {
   const [fields, setFields] = useState(form);
-  return <Form onSubmit={({ formData }) => console.log(formData)} form={fields} onFormChange={(f) => setFields(f)} />;
+  return <Form<any> onSubmit={({ formData }) => console.log(formData)} form={fields} onFormChange={(f) => setFields(f)} />;
 };
 
 storiesOf('Checkbox list', module)

@@ -14,7 +14,7 @@
     "prepare": "yarn build",
     "prepublishOnly": "yarn build",
     "postversion": "git push && git push --tags",
-    "lint": "eslint . --ext ts,tsx --max-warnings=178",
+    "lint": "eslint . --ext ts,tsx --max-warnings=172",
     "test": "jest"
   },
   "dependencies": {
@@ -24,6 +24,7 @@
     "core-js": "^3.8.1",
     "metacharts": "^0.0.8",
     "metaforms": "^1.0.3",
+    "metatable": "^1.2.1",
     "react-is": "^17.0.1",
     "react-metaforms": "^3.0.5",
     "react-router-dom": "^5.2.0",

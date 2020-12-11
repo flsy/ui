@@ -77,7 +77,7 @@ const NotificationGuideStory = () => {
       <h2>Nove notifikacni pravidlo</h2>
       <Accordion>
         <AccordionPanel isOpen={openId === 0} title={state.name ? `1. ${state.name}` : '1. Nazev notifikace'} onOpen={() => setOpenId(0)} onClose={() => setOpenId(1)}>
-          <Form
+          <Form<any>
             title="Nazev notifikace"
             form={fields3}
             onFormChange={(form) => onFields3Change(form)}
@@ -88,7 +88,7 @@ const NotificationGuideStory = () => {
           />
         </AccordionPanel>
         <AccordionPanel isOpen={openId === 1} title="2. Detaily hledanych objektu" onOpen={() => setOpenId(1)} onClose={() => setOpenId(2)}>
-          <Form
+          <Form<any>
             title="Detaily hledanych objektu"
             form={fields}
             onSubmit={({ formData }) => {

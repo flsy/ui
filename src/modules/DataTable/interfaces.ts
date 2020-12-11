@@ -1,6 +1,6 @@
-import { IHeadTr as IMetaHeadTr, ITh as IMetaTh, ITr as IMetaTr } from '../MetaTable';
+import { IHeadTr as IMetaHeadTr, ITh as IMetaTh, ITr as IMetaTr } from 'metatable';
 
-export type AllTypes = 'string' | 'number' | 'boolean' | 'timestamp' | 'imageList';
+export type AllTypes = 'string' | 'number' | 'boolean' | 'timestamp' | 'image';
 
 export type ITh = IMetaTh<AllTypes>;
 export type ITr = IMetaTr<any>;

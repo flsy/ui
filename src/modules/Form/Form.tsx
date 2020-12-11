@@ -10,7 +10,7 @@ interface IProps<F extends Field> {
   onSubmit: FormProps<F>['onSubmit'];
   onFormChange: FormProps<F>['onFormChange'];
   components?: FormProps<F>['components'];
-
+  className?: string;
   title?: string;
   message?: string;
   messageType?: 'info' | 'error' | 'warning';
@@ -20,13 +20,9 @@ interface IProps<F extends Field> {
   };
 }
 
-export const FormWrapper = styled.div`
-  margin: 8px;
-`;
-
-const Form = <Form extends Field>({ title, messageType, message, form, onSubmit, onFormChange, isLoading, components, labels }: IProps<Form>) => {
+const Form = <Form extends Field>({ className, title, messageType, message, form, onSubmit, onFormChange, isLoading, components, labels }: IProps<Form>) => {
   return (
-    <FormWrapper>
+    <div className={className}>
       {title && <h2>{title}</h2>}
       {message && <Message type={messageType} text={message} open={true} />}
       {isLoading ? (
@@ -39,11 +35,12 @@ const Form = <Form extends Field>({ title, messageType, message, form, onSubmit,
           components={getComponent(components)}
         />
       )}
-    </FormWrapper>
+    </div>
   );
 };
 
 Form.defaultProps = {
+  className: undefined,
   components: undefined,
   form: {},
   title: undefined,
@@ -55,4 +52,4 @@ Form.defaultProps = {
   },
 };
 
-export default Form;
+export default styled(Form)``;

@@ -11,6 +11,6 @@ storiesOf('Badge', module)
   ))
   .add('button badge', () => (
     <Badge value={10}>
-      <Button>Abc</Button>
+      <Button text="Abc" />
     </Badge>
   ));

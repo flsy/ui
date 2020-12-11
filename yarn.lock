@@ -1682,6 +1682,7 @@ __metadata:
     jest-styled-components: ^7.0.3
     metacharts: ^0.0.8
     metaforms: ^1.0.3
+    metatable: ^1.1.4
     prettier: ^2.2.1
     prettier-plugin-organize-imports: ^1.1.1
     react: ^16.14.0
@@ -10922,12 +10923,26 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"metaforms@npm:^1.0.3":
+"metaforms@npm:^1.0.2, metaforms@npm:^1.0.3":
   version: 1.0.3
   resolution: "metaforms@npm:1.0.3"
   dependencies:
     fputils: ^1.0.12
   checksum: 9bb91c78bbea8ca57a415037f0d4aef0938ee8b2ba52fdea9ef621853160299dd5bbb41ba358d784875aacf1c2e5e046651401b91ddc81f16cde6033fce0948c
+  languageName: node
+  linkType: hard
+
+"metatable@npm:^1.1.4":
+  version: 1.1.4
+  resolution: "metatable@npm:1.1.4"
+  dependencies:
+    metaforms: ^1.0.2
+    ramda: ^0.27.1
+    typescript: ^4.0.3
+  peerDependencies:
+    react: ^16.13.1
+    react-dom: ^16.13.1
+  checksum: 8e2fc0d3b8ba19194efefd0484954b0b68ed2aa263bea20d4d6be66f4e51283b6f838c4d706e6fe53c6fa5818f94eda22316d135d80593c4a67ab520ccc8c8ce
   languageName: node
   linkType: hard
 
@@ -12680,6 +12695,13 @@ fsevents@~2.1.2:
   version: 0.21.0
   resolution: "ramda@npm:0.21.0"
   checksum: 55aafeed7e42871dfac86dbfdb5b91668629b454ca50249361e75f084ca7bc9272b5734ef7c0f66cd2b41ff531f8a2c8874f8797f685d512307211829dce9834
+  languageName: node
+  linkType: hard
+
+"ramda@npm:^0.27.1":
+  version: 0.27.1
+  resolution: "ramda@npm:0.27.1"
+  checksum: 9aa4655dffdca66f8ba2ceabebe51996d6c75f6a2fb901a150885ace22c5950c211dd589868780b7a91c1443771702634d4370e7572d8c63c60e4b4f61aa57a9
   languageName: node
   linkType: hard
 
@@ -15172,7 +15194,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-typescript@^4.1.2:
+"typescript@^4.0.3, typescript@^4.1.2":
   version: 4.1.2
   resolution: "typescript@npm:4.1.2"
   bin:
@@ -15182,7 +15204,7 @@ typescript@^4.1.2:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.1.2#builtin<compat/typescript>":
+"typescript@patch:typescript@^4.0.3#builtin<compat/typescript>, typescript@patch:typescript@^4.1.2#builtin<compat/typescript>":
   version: 4.1.2
   resolution: "typescript@patch:typescript@npm%3A4.1.2#builtin<compat/typescript>::version=4.1.2&hash=cc6730"
   bin:

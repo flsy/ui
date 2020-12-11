@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ITd } from 'metatable';
 import { Colours } from '../../mainStyles';
 import BoolIcon from '../Icon/BoolIcon';
-import { IImageTd, ITd } from '../MetaTable';
 import Tags from '../Tags/Tags';
 import ImageModal from '../ImageModal/ImageModal';
 

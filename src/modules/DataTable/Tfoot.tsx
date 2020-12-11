@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { ITfoot } from 'metatable';
 import Button from '../Button/Button';
-import { ITfoot } from '../MetaTable';
 import { DataTableContext } from './context';
 
 const SContent = styled.div`

@@ -2,11 +2,11 @@ import { css } from 'styled-components';
 import { Colours } from '../../mainStyles';
 import { Transient } from '../../types';
 
-export interface IActiveProps {
+export type ActiveProps = Transient<{
   isActive?: boolean;
-}
+}>;
 
-export const ActiveStyle = css<Transient<IActiveProps>>`
+export const ActiveStyle = css<ActiveProps>`
   ${({ $isActive }) =>
     $isActive &&
     `

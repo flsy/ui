@@ -1,5 +1,5 @@
 import { createContext, ReactNode } from 'react';
-import { Columns } from '../MetaTable';
+import { Columns } from 'metatable';
 
 export const DataTableContext = createContext<{
   rowType?: (row: any) => 'primary' | 'warning' | undefined;
@@ -8,7 +8,7 @@ export const DataTableContext = createContext<{
   isKeyboardSelect?: boolean;
   expandedRowRender?: (row: any) => ReactNode;
   onLoadMore?: () => void;
-  columnsChanged?: (column: Columns<any>) => void;
+  columnsChanged?: (columns: Columns<any>) => void;
   labels?: {
     empty?: string;
     loading?: string;

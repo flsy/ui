@@ -1,6 +1,6 @@
 import { mount } from 'enzyme';
 import React from 'react';
-import { Column, Columns } from '../../MetaTable';
+import { Column, Columns } from 'metatable';
 import DataTable from '../DataTable';
 import { AllTypes } from '../interfaces';
 

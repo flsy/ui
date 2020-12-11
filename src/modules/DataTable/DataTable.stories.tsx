@@ -1,22 +1,9 @@
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
 import React, { useState } from 'react';
-import { Column, Columns } from '../MetaTable';
+import { action } from '@storybook/addon-actions';
 import DataTable from './DataTable';
-import { AllTypes } from './interfaces';
 
-export interface IColumns extends Columns<AllTypes> {
-  id: Column<'number'>;
-  createdAt: Column<'timestamp'>;
-  createdBy: {
-    name: Column<'string'>;
-  };
-  attachments: Column<'imageList'>;
-  isPublished: Column<'boolean'>;
-  content: Column<'string'>;
-}
-
-export const columns: IColumns = {
+const columns = {
   id: {
     type: 'number',
     label: 'Id',
@@ -24,18 +11,46 @@ export const columns: IColumns = {
     sortForm: {
       id: {
         type: 'sort',
-        value: 'ASC',
       },
     },
   },
-  createdAt: {
+  createdAtFormatted: {
     type: 'timestamp',
     label: 'CreatedAt',
+    sortForm: {
+      createdAt: {
+        type: 'sort',
+        value: 'ASC',
+      },
+    },
   },
   createdBy: {
     name: {
       type: 'string',
       label: 'CreatedBy',
+      sortForm: {
+        createdBy: {
+          type: 'group',
+          fields: {
+            name: {
+              type: 'sort',
+            },
+          },
+        },
+      },
+      filterForm: {
+        name: {
+          label: 'Name',
+          type: 'text',
+          value: null,
+          placeholder: 'name placeholder',
+          errorMessage: null,
+        },
+        submit: {
+          type: 'submit',
+          label: 'Uložit',
+        },
+      },
     },
   },
   attachments: {
@@ -52,7 +67,6 @@ export const columns: IColumns = {
     sortForm: {
       content: {
         type: 'sort',
-        value: 'ASC',
       },
     },
     filterForm: {
@@ -75,6 +89,7 @@ const data = [...Array(50)].map((_, i) => ({
   id: i,
   content: 'some content',
   createdAt: 1593520437,
+  createdAtFormatted: '1.1.2001',
   createdBy: { id: 1, name: 'Joe' },
   isPublished: true,
   attachments: [
@@ -95,37 +110,25 @@ const data = [...Array(50)].map((_, i) => ({
   ],
 }));
 
-export const DataTableStory = () => {
+export const Basic = () => {
   const [selected, setSelected] = useState<number>();
-  return (
-    <DataTable
-      columns={columns}
-      data={data}
-      onRowSelect={(row) => (row.id === selected ? setSelected(undefined) : setSelected(row.id))}
-      isRowSelected={(row) => selected === row.id}
-      isKeyboardSelect={boolean('keyboard selection', true)}
-      isLoading={boolean('loading', false)}
-      {...(boolean('row expanding', false)
-        ? {
-            expandedRowRender: (row) => (row.id % 2 ? <div>yo</div> : undefined),
-          }
-        : {})}
-    />
-  );
-};
+  const [colState, setColState] = useState<any>(columns);
 
-const NoDataStory = () => {
-  const [selected, setSelected] = useState<number>();
   return (
     <DataTable
-      columns={boolean('no columns', true) ? {} : columns}
-      data={boolean('no data', true) ? [] : data}
+      columns={boolean('no columns', false) ? {} : colState}
+      data={boolean('no data', false) ? [] : data}
       labels={{
         empty: text('empty label', ''),
       }}
       isLoading={boolean('loading', false)}
       onRowSelect={(row) => (row.id === selected ? setSelected(undefined) : setSelected(row.id))}
       isRowSelected={(row) => selected === row.id}
+      isKeyboardSelect={boolean('keyboard selection', true)}
+      onColumnsChange={(c) => {
+        setColState(c);
+        action('columns changed')(c);
+      }}
       {...(boolean('row expanding', false)
         ? {
             expandedRowRender: (row) => (row.id % 2 ? <div>yo</div> : undefined),
@@ -135,7 +138,7 @@ const NoDataStory = () => {
   );
 };
 
-storiesOf('Data table', module)
-  .addDecorator(withKnobs)
-  .add('basic usage', () => <DataTableStory />)
-  .add('no data', () => <NoDataStory />);
+export default {
+  title: 'Components/DataTable',
+  decorators: [withKnobs],
+};

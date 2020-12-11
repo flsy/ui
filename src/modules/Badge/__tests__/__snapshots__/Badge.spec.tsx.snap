@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Badge /> should render with styles 1`] = `
+.c0 {
+  position: relative;
+  display: inline-block;
+}
+
+<Badge
+  className="c0"
+  value={1}
+/>
+`;

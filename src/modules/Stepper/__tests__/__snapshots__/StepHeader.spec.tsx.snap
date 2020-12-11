@@ -1,6 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<StepHeader /> should display active step header 1`] = `
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 100%;
+  text-align: center;
+  box-shadow: 0 0 0 3px #fff;
+  color: #fff;
+  background: #ccc;
+  border: 1px solid #ccc;
+  background: #08979c;
+  border: 1px solid #08979c;
+}
+
+.c2::before {
+  counter-increment: stepCount;
+  content: counter(stepCount);
+}
+
+.c2::after {
+  content: ' ';
+  position: absolute;
+  display: block;
+  top: 4px;
+  right: 50%;
+  left: 50%;
+  height: 100%;
+  width: 1px;
+  -webkit-transform: scale(1,2);
+  -ms-transform: scale(1,2);
+  transform: scale(1,2);
+  -webkit-transform-origin: 50% -100%;
+  -ms-transform-origin: 50% -100%;
+  transform-origin: 50% -100%;
+  background-color: rgba(0,0,0,0.25);
+}
+
+.c3 .sc-hKgILt {
+  color: rgba(0,0,0,.85);
+  font-weight: 300;
+  line-height: 1.5em;
+  font-weight: 500;
+}
+
+.c0 {
+  display: grid;
+  grid-template-columns: 1.5em auto;
+  grid-column-gap: 1em;
+  margin-bottom: 1.5em;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0:last-child .c1:after {
+  display: none;
+}
+
 <StepHeader
   isActive={true}
   isCompleted={false}
@@ -8,21 +79,21 @@ exports[`<StepHeader /> should display active step header 1`] = `
 >
   <styled.div>
     <div
-      className="sc-iBPRYJ kNAqXI"
+      className="c0"
     >
       <styled.div
         isActive={true}
         isCompleted={false}
       >
         <div
-          className="sc-jSgupP jntliL"
+          className="c1 c2"
         />
       </styled.div>
       <styled.div
         isActive={true}
       >
         <div
-          className="sc-gKsewC fSHfCq"
+          className="c3"
         >
           test title
         </div>
@@ -33,6 +104,74 @@ exports[`<StepHeader /> should display active step header 1`] = `
 `;
 
 exports[`<StepHeader /> should display inactive step header 1`] = `
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 100%;
+  text-align: center;
+  box-shadow: 0 0 0 3px #fff;
+  color: #fff;
+  background: #ccc;
+  border: 1px solid #ccc;
+}
+
+.c2::before {
+  counter-increment: stepCount;
+  content: counter(stepCount);
+}
+
+.c2::after {
+  content: ' ';
+  position: absolute;
+  display: block;
+  top: 4px;
+  right: 50%;
+  left: 50%;
+  height: 100%;
+  width: 1px;
+  -webkit-transform: scale(1,2);
+  -ms-transform: scale(1,2);
+  transform: scale(1,2);
+  -webkit-transform-origin: 50% -100%;
+  -ms-transform-origin: 50% -100%;
+  transform-origin: 50% -100%;
+  background-color: rgba(0,0,0,0.25);
+}
+
+.c3 .sc-hKgILt {
+  color: rgba(0,0,0,.85);
+  font-weight: 300;
+  line-height: 1.5em;
+}
+
+.c0 {
+  display: grid;
+  grid-template-columns: 1.5em auto;
+  grid-column-gap: 1em;
+  margin-bottom: 1.5em;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0:last-child .c1:after {
+  display: none;
+}
+
 <StepHeader
   isActive={false}
   isCompleted={false}
@@ -40,21 +179,21 @@ exports[`<StepHeader /> should display inactive step header 1`] = `
 >
   <styled.div>
     <div
-      className="sc-iBPRYJ kNAqXI"
+      className="c0"
     >
       <styled.div
         isActive={false}
         isCompleted={false}
       >
         <div
-          className="sc-jSgupP fJGOSP"
+          className="c1 c2"
         />
       </styled.div>
       <styled.div
         isActive={false}
       >
         <div
-          className="sc-gKsewC hmpTsI"
+          className="c3"
         >
           second test title
         </div>

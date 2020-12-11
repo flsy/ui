@@ -1,8 +1,9 @@
 export { ThemeProvider } from 'styled-components';
 export { default as createTheme } from './createTheme';
 export { GlobalStyle } from './mainStyles';
-export { default as Accordion } from './modules/Accordion/Accordion';
-export { default as Badge } from './modules/Badge/Badge';
+
+export * from './modules/Accordion';
+export * from './modules/Badge';
 export { default as Button } from './modules/Button/Button';
 export { default as ButtonIcon } from './modules/Button/ButtonIcon';
 export { default as LinkButton } from './modules/Button/LinkButton';

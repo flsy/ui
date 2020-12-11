@@ -43,6 +43,7 @@ const MetaTable = <TColumns extends Columns<TTypes>, TRow, TTypes>({ data, rende
   const rowKey = (row: TRow): string => `${view(lensPath(keyColumnPath))(row)}`;
   const colKey = (columnPath: string[]): string => columnPath.join('-');
   const cellKey = (columnPath: string[], row: TRow): string => `${colKey(columnPath)}-${rowKey(row)}`;
+  const cellType = (columnPath: string[]) => view(lensPath([...columnPath, 'type']))(columns);
 
   return (
     <Table>
@@ -57,7 +58,7 @@ const MetaTable = <TColumns extends Columns<TTypes>, TRow, TTypes>({ data, rende
         {data.map((row) => (
           <Tr key={rowKey(row)} row={row}>
             {displayedColumnPaths.map((columnPath) => {
-              return <Td key={cellKey(columnPath, row)} value={getCellValue(columnPath)(row)} />;
+              return <Td key={cellKey(columnPath, row)} value={getCellValue(columnPath, cellType(columnPath))(row)} type={cellType(columnPath)} />;
             })}
           </Tr>
         ))}

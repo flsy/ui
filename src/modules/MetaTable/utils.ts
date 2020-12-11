@@ -1,10 +1,14 @@
-import { lensPath, set, view } from '../../utils/lens';
+import { Column, Columns, IImageTd, OneOrMany } from './interfaces';
 import { defaultsToArray, head, prop } from '../../utils/utils';
-import { Column, Columns, OneOrMany } from './interfaces';
+import { lensPath, set, view } from '../../utils/lens';
 
-export const getCellValue = <TRow>(bits: string[]) => (object: TRow): OneOrMany<any> => {
+export const getCellValue = <TRow>(bits: string[], cellType?: string) => (object: TRow): OneOrMany<any> => {
   const [property, ...rest] = bits;
   const value = prop(property, object);
+
+  if (cellType === 'imageList') {
+    return value;
+  }
   if (Array.isArray(value)) {
     return value.map((v) => getCellValue(rest)(v));
   }
@@ -14,7 +18,7 @@ export const getCellValue = <TRow>(bits: string[]) => (object: TRow): OneOrMany<
   return value;
 };
 
-export const renderValue = (value: OneOrMany<string | number | boolean>): string => {
+export const renderValue = (value: OneOrMany<string | number | boolean | IImageTd>): string => {
   if (Array.isArray(value)) {
     return value.join(', ');
   }

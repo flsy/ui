@@ -23,7 +23,7 @@ interface IProps {
   value?: number;
 }
 
-export const Badge = ({ className, children, value }: IProps) => (
+export const Badge = ({ className, children, value }: IProps): JSX.Element => (
   <div className={className}>
     {children}
     {value ? <Circle hasChild={!!children}>{value}</Circle> : null}

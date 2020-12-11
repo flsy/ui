@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Accordion } from '../../index';
 import AccordionPanel from './AccordionPanel';
 
-const AccordionContent = ({ openId, setOpenId }) => (
+const AccordionContent = ({ openId, setOpenId }): JSX.Element => (
   <>
     <AccordionPanel isOpen={openId === 0} title="Step 1" onOpen={() => setOpenId(0)} onClose={() => setOpenId()}>
       first content
@@ -18,7 +18,7 @@ const AccordionContent = ({ openId, setOpenId }) => (
   </>
 );
 
-export const Basic = () => {
+export const Basic = (): JSX.Element => {
   const [openId, setOpenId] = React.useState(0);
   return (
     <Accordion>
@@ -31,7 +31,7 @@ const StyledAccordion = styled(Accordion)`
   color: red;
 `;
 
-export const Styled = () => {
+export const Styled = (): JSX.Element => {
   const [openId, setOpenId] = React.useState(0);
   return (
     <StyledAccordion>

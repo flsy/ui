@@ -1682,7 +1682,7 @@ __metadata:
     jest-styled-components: ^7.0.3
     metacharts: ^0.0.8
     metaforms: ^1.0.3
-    metatable: ^1.2.0
+    metatable: ^1.2.1
     prettier: ^2.2.1
     prettier-plugin-organize-imports: ^1.1.1
     react: ^16.14.0
@@ -10932,9 +10932,9 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"metatable@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "metatable@npm:1.2.0"
+"metatable@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "metatable@npm:1.2.1"
   dependencies:
     metaforms: ^1.0.2
     ramda: ^0.27.1
@@ -10942,7 +10942,7 @@ fsevents@~2.1.2:
   peerDependencies:
     react: ^16.13.1
     react-dom: ^16.13.1
-  checksum: 08ca20cb6828d159867c921d8eed02bdeb2b51cabcc9d19a5ada6271d52bd37e46b4441cfa6658ced423a493755ea6b35a73f33109896fd983241f786b914438
+  checksum: f28d40013f2ec12700a4f86ef27a78c50a45b903bb13af767772cea43f5c7fe3b773169d6315d213db0fe69cfc4080225aeed67269ee70f180c4ba0273ed0475
   languageName: node
   linkType: hard
 

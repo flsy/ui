@@ -19,7 +19,7 @@ const renderValue = (value: unknown | unknown[], type: AllTypes): React.ReactNod
   }
 
   if (Array.isArray(value) && type === 'image') {
-    return value.map((v) => v.image && <ImageModal src={`data:image/jpeg;base64,${v.image}`} alt={v.alt} key={v.key} />);
+    return value.map((v) => v.src && <ImageModal previewWidth={80} src={v.src} alt={v.alt} key={v.key} />);
   }
 
   if (Array.isArray(value)) {

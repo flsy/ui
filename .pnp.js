@@ -75,7 +75,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-styled-components", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:7.0.3"],
             ["metacharts", "npm:0.0.8"],
             ["metaforms", "npm:1.0.3"],
-            ["metatable", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.2.0"],
+            ["metatable", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.2.1"],
             ["prettier", "npm:2.2.1"],
             ["prettier-plugin-organize-imports", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.1.1"],
             ["react", "npm:16.14.0"],
@@ -3022,7 +3022,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-styled-components", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:7.0.3"],
             ["metacharts", "npm:0.0.8"],
             ["metaforms", "npm:1.0.3"],
-            ["metatable", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.2.0"],
+            ["metatable", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.2.1"],
             ["prettier", "npm:2.2.1"],
             ["prettier-plugin-organize-imports", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.1.1"],
             ["react", "npm:16.14.0"],
@@ -13942,17 +13942,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["metatable", [
-        ["npm:1.2.0", {
-          "packageLocation": "./.yarn/cache/metatable-npm-1.2.0-b51a327d61-08ca20cb68.zip/node_modules/metatable/",
+        ["npm:1.2.1", {
+          "packageLocation": "./.yarn/cache/metatable-npm-1.2.1-dd18775aa1-f28d40013f.zip/node_modules/metatable/",
           "packageDependencies": [
-            ["metatable", "npm:1.2.0"]
+            ["metatable", "npm:1.2.1"]
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.2.0", {
-          "packageLocation": "./.yarn/$$virtual/metatable-virtual-ce140149ef/0/cache/metatable-npm-1.2.0-b51a327d61-08ca20cb68.zip/node_modules/metatable/",
+        ["virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.2.1", {
+          "packageLocation": "./.yarn/$$virtual/metatable-virtual-94c2ae9f27/0/cache/metatable-npm-1.2.1-dd18775aa1-f28d40013f.zip/node_modules/metatable/",
           "packageDependencies": [
-            ["metatable", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.2.0"],
+            ["metatable", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.2.1"],
             ["@types/react", "npm:16.14.2"],
             ["@types/react-dom", "npm:16.9.10"],
             ["metaforms", "npm:1.0.3"],

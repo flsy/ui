@@ -44,7 +44,7 @@ const Form = <Form extends Field>({ title, messageType, message, form, onSubmit,
 };
 
 Form.defaultProps = {
-  components: {},
+  components: undefined,
   form: {},
   title: undefined,
   message: undefined,

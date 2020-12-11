@@ -28,7 +28,7 @@ const ImageModal = ({ src, previewWidth, alt }: IImagePreview) => {
   return (
     <>
       <ImageModalWrapper>
-        <Image src={`data:image/jpeg;base64,${src}`} width={previewWidth} onClick={() => setIsOpen(true)} alt={alt} />
+        <Image src={src} width={previewWidth} onClick={() => setIsOpen(true)} alt={alt} />
       </ImageModalWrapper>
       <Modal isOpen={isOpen} close={() => setIsOpen(false)}>
         <Image src={src} alt={alt} />

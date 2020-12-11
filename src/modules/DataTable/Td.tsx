@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Colours } from '../../mainStyles';
 import BoolIcon from '../Icon/BoolIcon';
-import { ITd } from '../MetaTable';
+import { IImageTd, ITd } from '../MetaTable';
 import Tags from '../Tags/Tags';
+import ImageModal from '../ImageModal/ImageModal';
 
 export const STd = styled.td`
   padding: 4px 14px;
@@ -11,7 +12,14 @@ export const STd = styled.td`
   height: 2.6em;
 `;
 
-const renderValue = (value: any | any[]): React.ReactNode => {
+const renderValue = (value: any | any[], type: string): React.ReactNode => {
+  if (typeof value === 'boolean') {
+    return <BoolIcon value={value} />;
+  }
+  if (Array.isArray(value) && type === 'imageList') {
+    return value.map((v: IImageTd) => v.image && <ImageModal src={`data:image/jpeg;base64,${v.image}`} alt={v.alt} key={v.key} />);
+  }
+
   if (Array.isArray(value)) {
     return (
       <Tags>
@@ -21,16 +29,11 @@ const renderValue = (value: any | any[]): React.ReactNode => {
       </Tags>
     );
   }
-
-  if (typeof value === 'boolean') {
-    return <BoolIcon value={value} />;
-  }
-
   return <>{value}</>;
 };
 
-const Td: ITd = ({ value }) => {
-  return <STd>{renderValue(value)}</STd>;
+const Td: ITd = ({ value, type }) => {
+  return <STd>{renderValue(value, type)}</STd>;
 };
 
 export default Td;

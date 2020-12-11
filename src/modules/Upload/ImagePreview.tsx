@@ -14,7 +14,7 @@ const ImageWrapper = styled.div`
   margin: 4px 0;
 `;
 
-const Image = styled.img`
+export const Image = styled.img`
   width: 100%;
   opacity: 1;
   display: block;

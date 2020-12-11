@@ -1,6 +1,6 @@
 import { IHeadTr as IMetaHeadTr, ITh as IMetaTh, ITr as IMetaTr } from '../MetaTable';
 
-export type AllTypes = 'string' | 'number' | 'boolean' | 'timestamp';
+export type AllTypes = 'string' | 'number' | 'boolean' | 'timestamp' | 'imageList';
 
 export type ITh = IMetaTh<AllTypes>;
 export type ITr = IMetaTr<any>;

@@ -10,7 +10,7 @@ const imgBase64 =
 const ImageModalStory = () => {
   return (
     <Container>
-      <ImageModal src={imgBase64} previewWidth={200} alt="alt" />
+      <ImageModal src={`data:image/jpeg;base64,${imgBase64}`} previewWidth={200} alt="alt" />
     </Container>
   );
 };

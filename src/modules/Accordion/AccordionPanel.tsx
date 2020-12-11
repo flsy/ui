@@ -14,6 +14,8 @@ interface IProps {
 }
 
 const Header = styled.div<{ isOpen: boolean }>`
+  cursor: pointer;
+  user-select: none;
   background-color: ${({ theme }) => theme.colors.background};
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.borderRadius};
@@ -36,11 +38,15 @@ const Content = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
+const SmallButton = styled(Button)`
+  font-size: 10px;
+`;
+
 const AccordionPanel = ({ className, title, isOpen, onClose, onOpen, children }: IProps) => (
   <div className={className}>
-    <Header isOpen={isOpen}>
-      <Button text={title} link={true} onClick={isOpen ? onClose : onOpen} />
-      {onClose && <Button text="" link={true} onClick={isOpen ? onClose : onOpen} iconRight={isOpen ? <UpIcon /> : <DownIcon />} />}
+    <Header isOpen={isOpen} onClick={isOpen ? onClose : onOpen}>
+      {title}
+      {onClose && <SmallButton text="" link={true} onClick={isOpen ? onClose : onOpen} iconRight={isOpen ? <UpIcon /> : <DownIcon />} />}
     </Header>
     {isOpen && <Content>{children}</Content>}
   </div>

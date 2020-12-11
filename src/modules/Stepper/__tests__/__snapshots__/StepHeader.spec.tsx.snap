@@ -8,21 +8,21 @@ exports[`<StepHeader /> should display active step header 1`] = `
 >
   <styled.div>
     <div
-      className="sc-gKsewC kqoIZF"
+      className="sc-iBPRYJ kNAqXI"
     >
       <styled.div
         isActive={true}
         isCompleted={false}
       >
         <div
-          className="sc-eCssSg eDaBRG"
+          className="sc-jSgupP jntliL"
         />
       </styled.div>
       <styled.div
         isActive={true}
       >
         <div
-          className="sc-jSgupP hNzAnX"
+          className="sc-gKsewC fSHfCq"
         >
           test title
         </div>
@@ -40,21 +40,21 @@ exports[`<StepHeader /> should display inactive step header 1`] = `
 >
   <styled.div>
     <div
-      className="sc-gKsewC kqoIZF"
+      className="sc-iBPRYJ kNAqXI"
     >
       <styled.div
         isActive={false}
         isCompleted={false}
       >
         <div
-          className="sc-eCssSg cWmJWq"
+          className="sc-jSgupP fJGOSP"
         />
       </styled.div>
       <styled.div
         isActive={false}
       >
         <div
-          className="sc-jSgupP hxUljB"
+          className="sc-gKsewC hmpTsI"
         >
           second test title
         </div>

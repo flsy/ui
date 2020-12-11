@@ -4,6 +4,7 @@ import { borderRadius, calcSize, Colours, trainsitionTime } from '../../mainStyl
 import LoadingAnimation from '../Loader/LoadingAnimation';
 
 export interface IButtonProps {
+  className?: string;
   primary?: boolean;
   link?: boolean;
   disabled?: boolean;
@@ -148,10 +149,28 @@ export const ButtonWrapper = styled.button<IButtonProps>`
     `}
 `;
 
-const Button = ({ bordered, isLoading, onClick, id, name, value, text, disabled, type, primary, link, size, iconLeft: iconLeftDefault, iconRight, error }: IButtonProps) => {
+const Button = ({
+  className,
+  bordered,
+  isLoading,
+  onClick,
+  id,
+  name,
+  value,
+  text,
+  disabled,
+  type,
+  primary,
+  link,
+  size,
+  iconLeft: iconLeftDefault,
+  iconRight,
+  error,
+}: IButtonProps) => {
   const iconLeft = isLoading ? <LoadingAnimation size="xs" inverted={primary || error} /> : iconLeftDefault;
   return (
     <ButtonWrapper
+      className={className}
       id={id}
       name={name}
       type={type || 'button'}
@@ -179,6 +198,7 @@ const Button = ({ bordered, isLoading, onClick, id, name, value, text, disabled,
 Button.defaultProps = {
   size: 'md',
   bordered: true,
+  className: undefined,
 };
 
-export default Button;
+export default styled(Button)``;

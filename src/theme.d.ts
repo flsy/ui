@@ -4,6 +4,7 @@ import { ColorPalette } from './createTheme';
 declare module 'styled-components' {
   export interface DefaultTheme {
     borderRadius: string;
+    isDark: boolean;
     colors: {
       text: string;
       border: string;

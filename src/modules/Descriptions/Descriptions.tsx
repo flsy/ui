@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import { Colours } from '../../mainStyles';
-import Container, { SContainer, STitle } from '../Container/Container';
+import Container, { STitle } from '../Container/Container';
 
 const SDescriptions = styled.div`
   width: 100%;
 
-  ${SContainer} {
+  ${Container} {
     margin: 0;
     padding: 0;
   }

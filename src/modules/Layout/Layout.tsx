@@ -13,14 +13,14 @@ const SLayout = styled.div`
 `;
 
 const SContent = styled.div`
-  background: #fff;
   grid-row: 2 / 3;
   grid-column: 3 / 3;
   overflow: auto;
 `;
 
+// TODO: better color definition for dark theme
 const SNavigation = styled.div`
-  background: #fff;
+  background: ${({ theme }) => (theme.isDark ? '#000' : '#fff')};
   border-right: 1px solid ${Colours.smidgenGrey};
   grid-row: 1 / 4;
   height: 100%;

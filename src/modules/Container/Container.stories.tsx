@@ -1,15 +1,15 @@
 import { select, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
+import styled from 'styled-components';
 import { Container } from '../../index';
 import LinkButton from '../Button/LinkButton';
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 
-const ContainerStories = () => <Container size={select<any>('Size', sizes, 'md', 'Sizes')}>Content {select<any>('Size', sizes, 'md', 'Sizes')}</Container>;
+export const Basic = () => <Container size={select<any>('Size', sizes, 'md', 'Sizes')}>Content {select<any>('Size', sizes, 'md', 'Sizes')}</Container>;
 
-const ContainerWithMenu = () => (
+export const WithActions = () => (
   <MemoryRouter>
     <Container size="md" title="Fancy container" actions={[<LinkButton primary={true} to="/a" text="Create" />, <LinkButton to="/b" text="About" />]}>
       Content
@@ -17,8 +17,19 @@ const ContainerWithMenu = () => (
   </MemoryRouter>
 );
 
-storiesOf('Container', module)
-  .addDecorator(withKnobs)
-  .add('default', () => <ContainerStories />)
-  .add('full width', () => <Container>Content</Container>)
-  .add('with menu', () => <ContainerWithMenu />);
+const CustomContainer = styled(Container)`
+  background: #abeae9;
+`;
+
+export const CustomBackground = () => (
+  <MemoryRouter>
+    <CustomContainer size="md" title="Fancy container" actions={[<LinkButton primary={true} to="/a" text="Create" />, <LinkButton to="/b" text="About" />]}>
+      Content
+    </CustomContainer>
+  </MemoryRouter>
+);
+
+export default {
+  title: 'Components/Container',
+  decorators: [withKnobs],
+};

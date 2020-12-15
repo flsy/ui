@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import { IContainerProps, SActions, SContainer, STitle } from '../Container/Container';
+import Container, { IContainerProps, SActions, STitle } from '../Container/Container';
 import Flex from './Flex';
 import Spacer from './Spacer';
 
@@ -19,7 +19,7 @@ const SChildren = styled.div<{ hasOverview: boolean }>`
 `;
 
 const FormWithOverview = ({ title, actions, children, overview }: IProps) => (
-  <SContainer size="lg">
+  <Container size="lg">
     <Spacer />
     <Flex horizontal={true}>
       {title && <STitle>{title}</STitle>}
@@ -29,7 +29,7 @@ const FormWithOverview = ({ title, actions, children, overview }: IProps) => (
       <div>{children}</div>
       {overview && <div>{overview}</div>}
     </SChildren>
-  </SContainer>
+  </Container>
 );
 
 FormWithOverview.defaultProps = {

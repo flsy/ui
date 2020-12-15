@@ -4,10 +4,6 @@ import styled, { css } from 'styled-components';
 import { Colours } from '../../mainStyles';
 import { Transient } from '../../types';
 
-export const SNavigation = styled.div`
-  background-color: #fff;
-`;
-
 const SLogo = styled.div`
   justify-content: center;
   width: 100%;
@@ -147,10 +143,10 @@ interface INavigationProps {
 }
 
 const Navigation = ({ logo, children }: INavigationProps) => (
-  <SNavigation>
+  <div>
     {logo && <SLogo>{logo}</SLogo>}
     <>{children}</>
-  </SNavigation>
+  </div>
 );
 
 Navigation.defaultProps = {

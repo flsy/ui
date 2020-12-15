@@ -1,4 +1,4 @@
-## [Unreleased]
+# 0.2.0
 
 - Removed Chevron, Label, Typography, Tags
 
@@ -8,15 +8,15 @@
 - Removed property hasIcon
 - Added property icon accepting ReactNode
 
-## Tags
+### Tags
 - Removed Tags wrapper, exported just Tag
 - Added type property for colorful tags
 
-## Container
+### Container
 - Added white background
 - Exported styled component
 
-## Layout
+### Layout
 - Removed background
 
 # 0.1.0

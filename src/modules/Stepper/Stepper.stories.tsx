@@ -1,12 +1,11 @@
 import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { IOption } from '../Tags/interfaces';
 import FormStep from '../Wizard/FormStep';
 import Step from './Step';
 import Stepper from './Stepper';
 
-const mockOptions: IOption[] = [
+const mockOptions = [
   {
     value: 1,
     label: 'Terminal 1',

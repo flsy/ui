@@ -37,7 +37,6 @@ const createTheme = (config: ThemeConfig): DefaultTheme => ({
   borderRadius: '2px',
   colors: {
     border: isDark(config) ? 'rgba(255,255,255,.85)' : '#dbdbdb',
-    background: isDark(config) ? '#001529' : '#fafafa',
     main: getColorPalette(config.main),
     text: isDark(config) ? '#fdfdfd' : 'rgba(0,0,0,.85)',
     info: getColorPalette(Colors.info),
@@ -46,6 +45,7 @@ const createTheme = (config: ThemeConfig): DefaultTheme => ({
     warning: getColorPalette(Colors.warning),
   },
   background: {
+    default: isDark(config) ? '#001529' : '#fafafa',
     success: Color(Colors.success).lighten(0.3).alpha(0.3).rgb().toString(),
     info: Color(Colors.info).lighten(0.3).alpha(0.3).rgb().toString(),
     warning: Color(Colors.warning).lighten(0.3).alpha(0.3).rgb().toString(),

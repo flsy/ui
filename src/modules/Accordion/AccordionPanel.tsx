@@ -16,7 +16,7 @@ interface IProps {
 const Header = styled.div<{ isOpen: boolean }>`
   cursor: pointer;
   user-select: none;
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.background.default};
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.borderRadius};
   padding: 8px;

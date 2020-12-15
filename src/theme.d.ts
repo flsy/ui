@@ -7,7 +7,6 @@ declare module 'styled-components' {
     colors: {
       text: string;
       border: string;
-      background: string;
       main: ColorPalette;
       info: ColorPalette;
       error: ColorPalette;
@@ -15,6 +14,7 @@ declare module 'styled-components' {
       warning: ColorPalette;
     };
     background: {
+      default: string;
       success: string;
       warning: string;
       error: string;

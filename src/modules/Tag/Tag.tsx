@@ -27,7 +27,7 @@ const tagStyles = css<ITagProps>`
     if (type === 'default') {
       return `
         color: ${theme.colors.text};
-        background-color: ${theme.colors.background};
+        background-color: ${theme.background.default};
         border: 1px solid  ${theme.colors.border};
       `;
     }

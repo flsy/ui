@@ -2,7 +2,7 @@ import { isRequired } from 'metaforms';
 import React from 'react';
 import { FieldProps } from 'react-metaforms';
 import styled from 'styled-components';
-import { defaultsTo } from '../../utils/utils';
+import { defaultTo } from 'ramda';
 import { ErrorMessage, Inputs, InputWrapper, Label } from './sharedStyles';
 
 export const InputStyled = styled.input`
@@ -26,7 +26,7 @@ const Input = React.forwardRef((props: IProps, ref: React.Ref<HTMLInputElement>)
         type={props.type}
         name={props.name}
         placeholder={props.placeholder}
-        value={defaultsTo(props.value, '')}
+        value={defaultTo('', props.value)}
         disabled={props.disabled}
         onChange={(e) => props.update(props.name, e.target.value)}
         onBlur={(e) => (props.onBlur ? props.onBlur(e) : props.validate(props.name))}

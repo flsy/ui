@@ -50,6 +50,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/enzyme", "npm:3.10.8"],
             ["@types/jest", "npm:26.0.18"],
             ["@types/node", "npm:14.14.11"],
+            ["@types/ramda", "npm:0.27.33"],
             ["@types/react", "npm:16.14.2"],
             ["@types/react-dom", "npm:16.9.10"],
             ["@types/react-router-dom", "npm:5.1.6"],
@@ -78,6 +79,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["metatable", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.2.1"],
             ["prettier", "npm:2.2.1"],
             ["prettier-plugin-organize-imports", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.1.1"],
+            ["ramda", "npm:0.27.1"],
             ["react", "npm:16.14.0"],
             ["react-dom", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:16.14.0"],
             ["react-is", "npm:17.0.1"],
@@ -2997,6 +2999,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/enzyme", "npm:3.10.8"],
             ["@types/jest", "npm:26.0.18"],
             ["@types/node", "npm:14.14.11"],
+            ["@types/ramda", "npm:0.27.33"],
             ["@types/react", "npm:16.14.2"],
             ["@types/react-dom", "npm:16.9.10"],
             ["@types/react-router-dom", "npm:5.1.6"],
@@ -3025,6 +3028,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["metatable", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.2.1"],
             ["prettier", "npm:2.2.1"],
             ["prettier-plugin-organize-imports", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.1.1"],
+            ["ramda", "npm:0.27.1"],
             ["react", "npm:16.14.0"],
             ["react-dom", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:16.14.0"],
             ["react-is", "npm:17.0.1"],
@@ -4564,6 +4568,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-qs-npm-6.9.5-98e83ee762-afe4721a80.zip/node_modules/@types/qs/",
           "packageDependencies": [
             ["@types/qs", "npm:6.9.5"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/ramda", [
+        ["npm:0.27.33", {
+          "packageLocation": "./.yarn/cache/@types-ramda-npm-0.27.33-b361186033-a4c89059f2.zip/node_modules/@types/ramda/",
+          "packageDependencies": [
+            ["@types/ramda", "npm:0.27.33"],
+            ["ts-toolbelt", "npm:6.15.5"]
           ],
           "linkType": "HARD",
         }]
@@ -18962,6 +18976,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "packagePeers": [
             "typescript"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["ts-toolbelt", [
+        ["npm:6.15.5", {
+          "packageLocation": "./.yarn/cache/ts-toolbelt-npm-6.15.5-e42f89942f-d2f585ee34.zip/node_modules/ts-toolbelt/",
+          "packageDependencies": [
+            ["ts-toolbelt", "npm:6.15.5"]
           ],
           "linkType": "HARD",
         }]

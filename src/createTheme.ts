@@ -35,6 +35,7 @@ enum Colors {
 
 const createTheme = (config: ThemeConfig): DefaultTheme => ({
   borderRadius: '2px',
+  isDark: isDark(config),
   colors: {
     border: isDark(config) ? 'rgba(255,255,255,.85)' : '#dbdbdb',
     main: getColorPalette(config.main),

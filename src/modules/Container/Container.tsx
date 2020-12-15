@@ -3,10 +3,11 @@ import styled, { css } from 'styled-components';
 import Flex from '../Layout/Flex';
 import { Colours } from '../../mainStyles';
 
-export const SContainer = styled.div<IContainerProps>`
+const containerStyles = css<IContainerProps>`
   margin: auto;
   position: relative;
-  padding: 0 2em;
+  padding: 1em;
+  background: #fff;
 
   ${({ isCentered }) =>
     isCentered &&
@@ -16,7 +17,6 @@ export const SContainer = styled.div<IContainerProps>`
       left: 50%;
       transform: translate(-50%, -50%);
     `}
-
   ${({ size }) =>
     size === 'xs' &&
     css`
@@ -54,7 +54,7 @@ export const SActions = styled(Flex)`
 `;
 
 export const STitle = styled.h1`
-  margin-top: 1em;
+  margin: 0;
   font-size: 1.3em;
 `;
 
@@ -70,30 +70,31 @@ export interface IContainerProps {
   isSticky?: boolean;
   isCentered?: boolean;
   title?: string;
+  className?: string;
 }
 
-const Container: React.FC<IContainerProps> = ({ children, size, actions, isSticky, isCentered, title }) => {
-  return (
-    <SContainer size={size} isCentered={isCentered}>
-      {!isSticky && (
-        <Flex horizontal={true}>
-          {title && <STitle>{title}</STitle>}
-          {actions && <SActions horizontal={true}>{actions}</SActions>}
-        </Flex>
+const Container: React.FC<IContainerProps> = ({ className, children, actions, isSticky, title }) => (
+  <div className={className}>
+    {!isSticky && (
+      <Flex horizontal={true}>
+        {title && <STitle>{title}</STitle>}
+        {actions && <SActions horizontal={true}>{actions}</SActions>}
+      </Flex>
+    )}
+    <div>
+      {isSticky && (
+        <StickyWrapper>
+          <Flex horizontal={true}>
+            {title && <STitle>{title}</STitle>}
+            {actions && <SActions horizontal={true}>{actions}</SActions>}
+          </Flex>
+        </StickyWrapper>
       )}
-      <div>
-        {isSticky && (
-          <StickyWrapper>
-            <Flex horizontal={true}>
-              {title && <STitle>{title}</STitle>}
-              {actions && <SActions horizontal={true}>{actions}</SActions>}
-            </Flex>
-          </StickyWrapper>
-        )}
-        {children}
-      </div>
-    </SContainer>
-  );
-};
+      {children}
+    </div>
+  </div>
+);
 
-export default Container;
+export default styled(Container)`
+  ${containerStyles}
+`;

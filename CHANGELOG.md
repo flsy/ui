@@ -12,4 +12,11 @@
 - Removed Tags wrapper, exported just Tag
 - Added type property for colorful tags
 
+## Container
+- Added white background
+- Exported styled component
+
+## Layout
+- Removed background
+
 # 0.1.0

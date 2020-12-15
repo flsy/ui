@@ -5,7 +5,7 @@ import { Colours } from '../../mainStyles';
 import getColorByType from '../../utils/getColorByType';
 import hexToRgb from '../../utils/hexToRgb';
 import ButtonIcon from '../Button/ButtonIcon';
-import { ColorTypes, ColouredWrapper } from '../ColouredWrapper/ColouredWrapper';
+import { ColorTypes, ColouredWrapper } from '../../components/ColouredWrapper';
 import Flex from '../Layout/Flex';
 
 interface IProps {

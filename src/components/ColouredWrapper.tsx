@@ -1,12 +1,11 @@
 import styled, { css } from 'styled-components';
-import { borderRadius } from '../../mainStyles';
-import getColorByType from '../../utils/getColorByType';
-import hexToRgb from '../../utils/hexToRgb';
+import getColorByType from '../utils/getColorByType';
+import hexToRgb from '../utils/hexToRgb';
 
 export type ColorTypes = 'info' | 'warning' | 'error' | 'success';
 
 export const ColouredWrapper = styled.div<{ type?: ColorTypes }>`
-  border-radius: ${borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius};
   border: 1px solid;
 
   ${({ type }) => {

@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { Column, unsetAllSortFormValues } from 'metatable';
 import { Field } from 'metaforms';
 import { compose } from 'metacharts/lib/utils';
+import { lensPath, pipe, set, view } from 'ramda';
 import { Colours } from '../../mainStyles';
-import { lensPath, set, view } from '../../utils/lens';
 import Form from '../Form/Form';
 import FilterIcon from '../Icon/FilterIcon';
 import { Submit } from '../inputs/Button';
@@ -64,14 +64,14 @@ const Th: ITh = ({ columns, columnPath }) => {
 
   const handleFilter = (form: object) => {
     if (columnsChanged) {
-      columnsChanged(set(lensPath([...columnPath, 'filterForm']))(form)(columns));
+      columnsChanged(set(lensPath([...columnPath, 'filterForm']), form, columns));
       setIsOpen(false);
     }
   };
 
   const handleSort = (form: Field) => {
     if (columnsChanged) {
-      columnsChanged(compose(set(lensPath([...columnPath, 'sortForm']))(form), unsetAllSortFormValues)(columns));
+      columnsChanged(pipe(unsetAllSortFormValues, set(lensPath([...columnPath, 'sortForm']), form))(columns));
     }
   };
 

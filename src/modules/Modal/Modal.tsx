@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from '../Button/Button';
 import Flex from '../Layout/Flex';
-import { P } from '../Typography/Typography';
 
 interface IProps {
   title?: string;
@@ -80,7 +79,7 @@ const Modal: React.FC<IProps> = ({ children, isOpen, close, title, text, onSubmi
         <CloseButton close={close} />
         <Title>{title && title}</Title>
         <Body>
-          {text && <P>{text}</P>}
+          {text && <p>{text}</p>}
           {children}
         </Body>
         {actions && (

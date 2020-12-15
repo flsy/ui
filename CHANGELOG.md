@@ -1,12 +1,15 @@
 ## [Unreleased]
 
+- Removed Chevron, Label, Typography, Tags
+
 ### DownloadButton
 - Renamed from Downloader
 - Changed size to medium
 - Removed property hasIcon
 - Added property icon accepting ReactNode
 
-### Chevron
-- Removed
+## Tags
+- Removed Tags wrapper, exported just Tag
+- Added type property for colorful tags
 
 # 0.1.0

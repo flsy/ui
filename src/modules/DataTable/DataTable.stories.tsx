@@ -53,6 +53,12 @@ const columns = {
       },
     },
   },
+  groups: {
+    name: {
+      type: 'string',
+      label: 'Groups',
+    },
+  },
   attachments: {
     type: 'image',
     label: 'Image',
@@ -92,6 +98,16 @@ const data = [...Array(50)].map((_, i) => ({
   createdAtFormatted: '1.1.2001',
   createdBy: { id: 1, name: 'Joe' },
   isPublished: true,
+  groups: [
+    {
+      id: 1,
+      name: 'G1',
+    },
+    {
+      id: 2,
+      name: 'G2',
+    },
+  ],
   attachments: [
     {
       alt: 'some Alt #1',

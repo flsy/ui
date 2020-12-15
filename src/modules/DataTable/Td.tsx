@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { ITd } from 'metatable';
 import { Colours } from '../../mainStyles';
 import BoolIcon from '../Icon/BoolIcon';
-import Tags from '../Tags/Tags';
 import ImageModal from '../ImageModal/ImageModal';
 import { AllTypes } from './interfaces';
+import Tag from '../Tag/Tag';
 
 export const STd = styled.td`
   padding: 4px 14px;
@@ -24,11 +24,11 @@ const renderValue = (value: unknown | unknown[], type: AllTypes): React.ReactNod
 
   if (Array.isArray(value)) {
     return (
-      <Tags>
+      <div>
         {value.map((v) => (
-          <Tags.Tag key={v} label={v} />
+          <Tag key={v} label={v} />
         ))}
-      </Tags>
+      </div>
     );
   }
 

@@ -1,7 +1,6 @@
 import React, { ReactNode, useEffect } from 'react';
 import { Columns, IMetaTableProps, MetaTable } from 'metatable';
 import useKeyPress, { KeyboardKey } from '../../utils/useKeyPress';
-import { defaultsToArray, defaultsToObject } from '../../utils/utils';
 import { DataTableContext } from './context';
 import HeadTr from './HeadTr';
 import { AllTypes } from './interfaces';
@@ -78,7 +77,7 @@ const DataTable = <TRow extends {}>({
         onLoadMore,
       }}
     >
-      <MetaTable<IColumns, TRow, AllTypes> data={defaultsToArray(data)} columns={defaultsToObject(columns)} render={{ Th, Tr, Table, Td, HeadTr, Tbody, Tfoot, ...render }} />
+      <MetaTable<IColumns, TRow, AllTypes> data={data} columns={columns} render={{ Th, Tr, Table, Td, HeadTr, Tbody, Tfoot, ...render }} />
     </DataTableContext.Provider>
   );
 };

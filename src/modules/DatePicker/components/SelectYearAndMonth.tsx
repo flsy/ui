@@ -3,7 +3,6 @@ import RightOutlined from '@ant-design/icons/RightOutlined';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import Button from '../../Button/Button';
-import { Span } from '../../Typography/Typography';
 import { monthMap } from '../utils';
 
 const selectYearAndMonthCss = css`
@@ -40,13 +39,13 @@ const SelectYearAndMonth = ({ year, setYear, month, setMonth, className }: IProp
   <div className={className}>
     <div>
       <Button link={true} type="button" onClick={() => setYear(year - 1)} iconLeft={<LeftOutlined />} />
-      <Span size="xl">{year}</Span>
+      <span>{year}</span>
       <Button link={true} type="button" onClick={() => setYear(year + 1)} iconLeft={<RightOutlined />} />
     </div>
 
     <div>
       <Button link={true} type="button" onClick={() => updateMonth(month - 1, year, setMonth, setYear)} iconLeft={<LeftOutlined />} />
-      <Span size="lg">{monthMap[month]}</Span>
+      <span>{monthMap[month]}</span>
       <Button link={true} type="button" onClick={() => updateMonth(month + 1, year, setMonth, setYear)} iconLeft={<RightOutlined />} />
     </div>
     <hr />

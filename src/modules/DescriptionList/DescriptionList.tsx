@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Span } from '../Typography/Typography';
 // eslint-disable-next-line import/no-cycle
 import { renderValue } from './renderValue';
 
@@ -42,7 +41,7 @@ const DescriptionList = ({ data, prevKey, index }: IProps) => {
           key !== '__typename' && (
             <div key={createUniqueKey('div', [prevKey, index, key])}>
               <Dt key={createUniqueKey('key', [prevKey, index, key])} data-test-id={createUniqueKey('description-list', [prevKey, index, key, 'key'])}>
-                <Span>{key}:</Span>
+                <span>{key}:</span>
               </Dt>
               <Dd key={createUniqueKey('value', [prevKey, index, key])} data-test-id={createUniqueKey('description-list', [prevKey, index, key, 'value'])}>
                 {renderValue(key, value)}

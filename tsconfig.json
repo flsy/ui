@@ -17,6 +17,7 @@
   ],
   "exclude": [
     "node_modules",
-    "src/setupTests.ts"
+    "src/setupTests.ts",
+    "src/testUtils.tsx"
   ]
 }

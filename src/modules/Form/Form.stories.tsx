@@ -1,5 +1,4 @@
 import { boolean, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { IForm } from 'react-metaforms';
 import { Container, Form } from '../../index';
@@ -51,7 +50,7 @@ const form: MyForm = {
   },
 };
 
-const FormStory = () => {
+export const Basic = () => {
   const [fields, setFields] = React.useState<MyForm>(form);
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -68,6 +67,7 @@ const FormStory = () => {
   );
 };
 
-storiesOf('Form', module)
-  .addDecorator(withKnobs)
-  .add('basic usage', () => <FormStory />);
+export default {
+  title: 'Form',
+  decorators: [withKnobs],
+};

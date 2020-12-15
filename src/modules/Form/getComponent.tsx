@@ -9,9 +9,9 @@ import NumberInput from '../inputs/NumberInput';
 import Select from '../inputs/Select';
 import Textarea from '../inputs/Textarea';
 import ButtonGroup from '../Layout/ButtonGroup';
-import FormTags from '../Tags/FormTags';
 import ImageUpload from '../Upload/ImageUpload';
 import DatePicker, { DateTimePicker } from './components/DatePicker';
+import { FormTags } from './components/Tag';
 
 export const getComponent = <T extends Field>(parentGetComponent?: Components<T>) => (componentProps: ComponentProps<T>) => {
   if (parentGetComponent) {

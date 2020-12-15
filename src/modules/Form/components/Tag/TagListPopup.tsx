@@ -1,16 +1,18 @@
 import EditOutlined from '@ant-design/icons/EditOutlined';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { borderRadius, Colours } from '../../mainStyles';
-import Button from '../Button/Button';
-import CheckboxList from '../CheckboxList/CheckboxList';
-import Popup from '../Popup/Popup';
-import { IOption } from './interfaces';
+import { borderRadius, Colours } from '../../../../mainStyles';
+import Button from '../../../Button/Button';
+import CheckboxList from '../../../CheckboxList/CheckboxList';
+import Popup from '../../../Popup/Popup';
 
 export interface IAddTagProps {
   onCreateClick?: () => void;
   labels: { empty: string; addButton: string; editButton: string; search: string };
-  options: IOption[];
+  options: Array<{
+    value: number;
+    label: string;
+  }>;
   name: string;
   values: number[];
   onChange: (values: IAddTagProps['values']) => void;

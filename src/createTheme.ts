@@ -16,15 +16,22 @@ export type ColorPalette = {
 
 const getColorPalette = (color: string): ColorPalette => {
   return {
-    darker: Color(color).lighten(0.3).rgb().toString(),
-    dark: Color(color).lighten(0.1).rgb().toString(),
+    lighter: Color(color).lighten(0.3).rgb().toString(),
+    light: Color(color).lighten(0.1).rgb().toString(),
     primary: color,
-    light: Color(color).darken(0.15).rgb().toString(),
-    lighter: Color(color).darken(0.4).rgb().toString(),
+    dark: Color(color).darken(0.15).rgb().toString(),
+    darker: Color(color).darken(0.4).rgb().toString(),
   };
 };
 
 const isDark = (config: ThemeConfig) => config.theme === 'dark';
+
+enum Colors {
+  success = '#52c41a',
+  warning = '#fa8c16',
+  error = '#f5222d',
+  info = '#1890ff',
+}
 
 const createTheme = (config: ThemeConfig): DefaultTheme => ({
   borderRadius: '2px',
@@ -33,6 +40,16 @@ const createTheme = (config: ThemeConfig): DefaultTheme => ({
     background: isDark(config) ? '#001529' : '#fafafa',
     main: getColorPalette(config.main),
     text: isDark(config) ? '#fdfdfd' : 'rgba(0,0,0,.85)',
+    info: getColorPalette(Colors.info),
+    error: getColorPalette(Colors.error),
+    success: getColorPalette(Colors.success),
+    warning: getColorPalette(Colors.warning),
+  },
+  background: {
+    success: Color(Colors.success).lighten(0.3).alpha(0.3).rgb().toString(),
+    info: Color(Colors.info).lighten(0.3).alpha(0.3).rgb().toString(),
+    warning: Color(Colors.warning).lighten(0.3).alpha(0.3).rgb().toString(),
+    error: Color(Colors.error).lighten(0.3).alpha(0.3).rgb().toString(),
   },
 });
 

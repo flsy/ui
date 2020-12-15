@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { IOption } from './interfaces';
 import TagInput from './TagInput';
 
 export interface IFormTagsProps {
@@ -8,7 +7,10 @@ export interface IFormTagsProps {
   label?: string;
   value?: number[];
   values?: number[];
-  options?: IOption[];
+  options?: Array<{
+    value: number;
+    label: string;
+  }>;
   onCreateClick?: () => void;
   updateAndValidate: (name: string, value: number[]) => void;
   update: (name: string, value: number[]) => void;

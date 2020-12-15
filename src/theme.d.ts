@@ -9,6 +9,16 @@ declare module 'styled-components' {
       border: string;
       background: string;
       main: ColorPalette;
+      info: ColorPalette;
+      error: ColorPalette;
+      success: ColorPalette;
+      warning: ColorPalette;
+    };
+    background: {
+      success: string;
+      warning: string;
+      error: string;
+      info: string;
     };
   }
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Colours } from '../../mainStyles';
-import { Span } from '../Typography/Typography';
 // eslint-disable-next-line import/no-cycle
 import DescriptionList, { IData, IDataValue, ILine } from './DescriptionList';
 import { toDateTimeString } from '../../utils/utils';
@@ -10,6 +9,10 @@ import { RawData } from './RawData';
 const Img = styled.img`
   display: block;
   max-width: 1024px;
+`;
+
+const Value = styled.span`
+  color: ${Colours.grey};
 `;
 
 export const isNull = (value: any): value is null => typeof value === 'object' && !value;
@@ -45,15 +48,15 @@ export const renderValue = (key: string, value: IDataValue) => {
 
   switch (value.type) {
     case 'boolean':
-      return <Span colour={Colours.grey}>{value.value ? 'true' : 'false'}</Span>;
+      return <Value>{value.value ? 'true' : 'false'}</Value>;
     case 'base64':
       return renderImage(`${value.value}`, key);
     case 'date':
-      return <Span colour={Colours.grey}>{toDateTimeString(new Date(parseInt(`${value.value}`, 10) * 1000))}</Span>;
+      return <Value>{toDateTimeString(new Date(parseInt(`${value.value}`, 10) * 1000))}</Value>;
     case 'xml':
     case 'json':
       return <RawData rawData={value.value} />;
     default:
-      return <Span colour={Colours.grey}>{value.value}</Span>;
+      return <Value>{value.value}</Value>;
   }
 };

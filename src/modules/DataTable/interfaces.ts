@@ -1,4 +1,4 @@
-import { IHeadTr as IMetaHeadTr, ITh as IMetaTh, ITr as IMetaTr } from 'metatable';
+import { IHeadTr as IMetaHeadTr, ITh as IMetaTh, ITr as IMetaTr } from '../MetaTable/interfaces';
 
 export type AllTypes = 'string' | 'number' | 'boolean' | 'timestamp' | 'image';
 

@@ -24,7 +24,7 @@
     "core-js": "^3.8.1",
     "metacharts": "^0.0.8",
     "metaforms": "^1.0.3",
-    "metatable": "^1.2.1",
+    "metatable": "^2.0.1",
     "ramda": "^0.27.1",
     "react-is": "^17.0.1",
     "react-metaforms": "^3.0.5",

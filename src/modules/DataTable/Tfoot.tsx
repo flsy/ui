@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { ITfoot } from 'metatable';
 import Button from '../Button/Button';
 import { DataTableContext } from './context';
+import { ITfoot } from '../MetaTable/interfaces';
 
 const SContent = styled.div`
   display: flex;

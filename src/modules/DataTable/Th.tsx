@@ -3,7 +3,6 @@ import { getFormData } from 'react-metaforms';
 import styled from 'styled-components';
 import { Column, unsetAllSortFormValues } from 'metatable';
 import { Field } from 'metaforms';
-import { compose } from 'metacharts/lib/utils';
 import { lensPath, pipe, set, view } from 'ramda';
 import { Colours } from '../../mainStyles';
 import Form from '../Form/Form';
@@ -22,7 +21,7 @@ export const STh = styled.th`
   border-bottom: 1px solid ${Colours.smidgenGrey};
   border-right: 2px solid #fff;
   position: sticky;
-  top: 0em;
+  top: 0;
 `;
 
 const SContent = styled.div<{ isFilterable?: boolean }>`

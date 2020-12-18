@@ -1,5 +1,6 @@
 import React, { ReactNode, useEffect } from 'react';
-import { Columns, IMetaTableProps, MetaTable } from 'metatable';
+import { Columns } from 'metatable';
+import MetaTable, { IMetaTableProps } from '../MetaTable/MetaTable';
 import useKeyPress, { KeyboardKey } from '../../utils/useKeyPress';
 import { DataTableContext } from './context';
 import HeadTr from './HeadTr';

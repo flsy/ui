@@ -1,5 +1,7 @@
-# 0.2.0
+# Unreleased
+- Added MetaTable module
 
+# 0.2.0
 - Removed Chevron, Label, Typography, Tags
 
 ### DownloadButton

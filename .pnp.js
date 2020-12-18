@@ -76,7 +76,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-styled-components", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:7.0.3"],
             ["metacharts", "npm:0.0.8"],
             ["metaforms", "npm:1.0.3"],
-            ["metatable", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.2.1"],
+            ["metatable", "npm:2.0.1"],
             ["prettier", "npm:2.2.1"],
             ["prettier-plugin-organize-imports", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.1.1"],
             ["ramda", "npm:0.27.1"],
@@ -3025,7 +3025,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-styled-components", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:7.0.3"],
             ["metacharts", "npm:0.0.8"],
             ["metaforms", "npm:1.0.3"],
-            ["metatable", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.2.1"],
+            ["metatable", "npm:2.0.1"],
             ["prettier", "npm:2.2.1"],
             ["prettier-plugin-organize-imports", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.1.1"],
             ["ramda", "npm:0.27.1"],
@@ -13956,30 +13956,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["metatable", [
-        ["npm:1.2.1", {
-          "packageLocation": "./.yarn/cache/metatable-npm-1.2.1-dd18775aa1-f28d40013f.zip/node_modules/metatable/",
+        ["npm:2.0.1", {
+          "packageLocation": "./.yarn/cache/metatable-npm-2.0.1-4be2c4a987-f45541bae0.zip/node_modules/metatable/",
           "packageDependencies": [
-            ["metatable", "npm:1.2.1"]
-          ],
-          "linkType": "SOFT",
-        }],
-        ["virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.2.1", {
-          "packageLocation": "./.yarn/$$virtual/metatable-virtual-94c2ae9f27/0/cache/metatable-npm-1.2.1-dd18775aa1-f28d40013f.zip/node_modules/metatable/",
-          "packageDependencies": [
-            ["metatable", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.2.1"],
-            ["@types/react", "npm:16.14.2"],
-            ["@types/react-dom", "npm:16.9.10"],
+            ["metatable", "npm:2.0.1"],
             ["metaforms", "npm:1.0.3"],
             ["ramda", "npm:0.27.1"],
-            ["react", "npm:16.14.0"],
-            ["react-dom", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:16.14.0"],
             ["typescript", "patch:typescript@npm%3A4.1.2#builtin<compat/typescript>::version=4.1.2&hash=cc6730"]
-          ],
-          "packagePeers": [
-            "@types/react-dom",
-            "@types/react",
-            "react-dom",
-            "react"
           ],
           "linkType": "HARD",
         }]

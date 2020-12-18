@@ -1,9 +1,9 @@
 import React, { Children, useContext } from 'react';
 import styled from 'styled-components';
-import { ITbody } from 'metatable';
 import { DataTableContext } from './context';
 import { STd } from './Td';
 import { STr } from './Tr';
+import { ITbody } from '../MetaTable/interfaces';
 
 const SCenteredTd = styled(STd)`
   text-align: center;

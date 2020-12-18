@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ITd } from 'metatable';
 import { Colours } from '../../mainStyles';
 import BoolIcon from '../Icon/BoolIcon';
 import ImageModal from '../ImageModal/ImageModal';
 import { AllTypes } from './interfaces';
 import Tag from '../Tag/Tag';
+import { ITd } from '../MetaTable/interfaces';
 
 export const STd = styled.td`
   padding: 4px 14px;

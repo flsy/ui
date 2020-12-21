@@ -88,8 +88,7 @@ const Th: ITh = ({ columns, columnPath }) => {
                 onFormChange={setFields}
                 components={({ component, name, groupChildren, actions }) => {
                   if (component?.type === 'text') {
-                    // @ts-ignore
-                    return <TextFilter name={name} {...component} {...actions} />;
+                    return <TextFilter name={name} {...component} {...actions} value={component.value as any} />;
                   }
 
                   if (component?.type === 'submit') {

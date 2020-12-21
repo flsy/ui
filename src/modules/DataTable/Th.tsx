@@ -12,6 +12,7 @@ import Popup from '../Popup/Popup';
 import { DataTableContext } from './context';
 import { AllTypes, ITh } from './interfaces';
 import SortForm from './SortForm';
+import TextFilter from './filters/TextFilter';
 
 export const STh = styled.th`
   padding: 0;
@@ -85,7 +86,12 @@ const Th: ITh = ({ columns, columnPath }) => {
                 form={fields}
                 onSubmit={({ form }) => handleFilter(form)}
                 onFormChange={setFields}
-                components={({ component, name, groupChildren }) => {
+                components={({ component, name, groupChildren, actions }) => {
+                  if (component?.type === 'text') {
+                    // @ts-ignore
+                    return <TextFilter name={name} {...component} {...actions} />;
+                  }
+
                   if (component?.type === 'submit') {
                     return <Submit {...component} type="submit" size="xs" />;
                   }

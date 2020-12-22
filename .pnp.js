@@ -76,7 +76,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-styled-components", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:7.0.3"],
             ["metacharts", "npm:0.0.8"],
             ["metaforms", "npm:1.0.3"],
-            ["metatable", "npm:2.0.1"],
+            ["metatable", "npm:2.0.2"],
             ["prettier", "npm:2.2.1"],
             ["prettier-plugin-organize-imports", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.1.1"],
             ["ramda", "npm:0.27.1"],
@@ -3025,7 +3025,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-styled-components", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:7.0.3"],
             ["metacharts", "npm:0.0.8"],
             ["metaforms", "npm:1.0.3"],
-            ["metatable", "npm:2.0.1"],
+            ["metatable", "npm:2.0.2"],
             ["prettier", "npm:2.2.1"],
             ["prettier-plugin-organize-imports", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:1.1.1"],
             ["ramda", "npm:0.27.1"],
@@ -13956,10 +13956,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["metatable", [
-        ["npm:2.0.1", {
-          "packageLocation": "./.yarn/cache/metatable-npm-2.0.1-4be2c4a987-f45541bae0.zip/node_modules/metatable/",
+        ["npm:2.0.2", {
+          "packageLocation": "./.yarn/cache/metatable-npm-2.0.2-8974fdb28a-fe6a012bf1.zip/node_modules/metatable/",
           "packageDependencies": [
-            ["metatable", "npm:2.0.1"],
+            ["metatable", "npm:2.0.2"],
             ["metaforms", "npm:1.0.3"],
             ["ramda", "npm:0.27.1"],
             ["typescript", "patch:typescript@npm%3A4.1.2#builtin<compat/typescript>::version=4.1.2&hash=cc6730"]

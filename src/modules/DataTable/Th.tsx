@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { getFormData } from 'react-metaforms';
 import styled from 'styled-components';
-import { Column, unsetAllSortFormValues } from 'metatable';
+import { Column, getFilterFormValue, unsetAllSortFormValues } from 'metatable';
 import { Field } from 'metaforms';
 import { lensPath, pipe, set, view } from 'ramda';
 import { Colours } from '../../mainStyles';
@@ -60,7 +60,7 @@ const Th: ITh = ({ columns, columnPath }) => {
   const { columnsChanged } = useContext(DataTableContext);
 
   const isFilterable = !!column.filterForm;
-  const isFiltered = isFilterable && !!Object.values(getFormData(column.filterForm)).filter((v) => v).length;
+  const isFiltered = isFilterable && !!getFilterFormValue(column.filterForm);
 
   const handleFilter = (form: object) => {
     if (columnsChanged) {

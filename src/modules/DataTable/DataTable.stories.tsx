@@ -1,6 +1,7 @@
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
+import { getStringFilter } from 'metatable';
 import DataTable from './DataTable';
 
 const columns = {
@@ -38,19 +39,7 @@ const columns = {
           },
         },
       },
-      filterForm: {
-        name: {
-          label: 'Name',
-          type: 'text',
-          value: null,
-          placeholder: 'name placeholder',
-          errorMessage: null,
-        },
-        submit: {
-          type: 'submit',
-          label: 'Uložit',
-        },
-      },
+      filterForm: getStringFilter(['name'], undefined),
     },
   },
   groups: {

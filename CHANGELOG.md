@@ -4,8 +4,6 @@
 
 ### Button
 - removed `value` property
-- `error` property renamed to `danger`
-- removed `bordered` property
 - removed `id` property
 - removed `iconLeft` and `iconRight` properties, use `icon` property instead
 - content of a button passed as a children instead of `text` property

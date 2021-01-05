@@ -57,13 +57,14 @@ const TagListPopup = ({ labels, options, values, onChange, onCreateClick, name }
         {onCreateClick && (
           <ButtonWrapper>
             <Button
-              text={labels.addButton}
               size="xs"
               onClick={() => {
                 setIsListOpen(false);
                 onCreateClick();
               }}
-            />
+            >
+              {labels.addButton}
+            </Button>
           </ButtonWrapper>
         )}
       </Popup>

@@ -7,7 +7,7 @@ import Button from '../Button/Button';
 
 const FormWithOverviewStory = () => {
   return (
-    <FormWithOverview title="x" actions={[<Button text="Hello" />]} overview={<Container title="List">overview</Container>}>
+    <FormWithOverview title="x" actions={[<Button>Hello</Button>]} overview={<Container title="List">overview</Container>}>
       xx
     </FormWithOverview>
   );

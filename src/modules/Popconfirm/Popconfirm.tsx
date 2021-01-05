@@ -46,8 +46,12 @@ const Popconfirm = ({ children, isVisible, okText, cancelText, onCancel, onConfi
           {title}
           <Spacer size="lg" />
           <ButtonGroup>
-            <Button name="popconfirm-ok" size="xs" text={okText} onClick={onConfirm} primary={true} />
-            <Button name="popconfirm-cancel" size="xs" text={cancelText} onClick={onCancel} />
+            <Button name="popconfirm-ok" size="xs" onClick={onConfirm} primary={true}>
+              {okText}
+            </Button>
+            <Button name="popconfirm-cancel" size="xs" onClick={onCancel}>
+              {cancelText}
+            </Button>
           </ButtonGroup>
         </SPopconfirmContent>
       )}

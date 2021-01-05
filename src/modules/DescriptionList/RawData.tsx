@@ -21,7 +21,9 @@ export const RawData = ({ rawData }: IProps) => {
   const [showData, setShowData] = useState<boolean>(false);
   return (
     <>
-      <Button iconLeft={showData ? <UpOutlined /> : <DownOutlined />} text={showData ? 'Hide raw data' : 'Show raw data'} onClick={() => setShowData(!showData)} />
+      <Button icon={showData ? <UpOutlined /> : <DownOutlined />} onClick={() => setShowData(!showData)}>
+        {showData ? 'Hide raw data' : 'Show raw data'}
+      </Button>
       {showData && <CodeBlock>{rawData}</CodeBlock>}
     </>
   );

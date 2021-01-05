@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import UIButton, { ButtonWrapper, IButtonProps } from '../Button/Button';
+import UIButton, { ButtonWrapper } from '../Button/Button';
 
 interface ISubmitProps {
   fullWidth?: boolean;
@@ -27,7 +27,9 @@ const SSubmit = styled.div<{ fullWidth?: boolean }>`
 
 export const Submit = ({ fullWidth, ...props }: ISubmitProps) => (
   <SSubmit fullWidth={fullWidth}>
-    <UIButton text={props.label} {...props} type="submit" primary={true} />
+    <UIButton {...props} type="submit" primary={true}>
+      {props.label}
+    </UIButton>
   </SSubmit>
 );
 
@@ -38,8 +40,4 @@ Submit.defaultProps = {
   label: undefined,
   disabled: false,
   size: 'md',
-};
-
-export const Button: React.FC<IButtonProps> = (props) => {
-  return <UIButton text={props.value} {...props} type="button" onClick={props.onClick} />;
 };

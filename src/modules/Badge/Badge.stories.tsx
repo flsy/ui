@@ -11,7 +11,7 @@ export const Basic = (): JSX.Element => (
 
 export const ButtonBadge = (): JSX.Element => (
   <Badge value={10}>
-    <Button text="Abc" />
+    <Button>With Badge</Button>
   </Badge>
 );
 

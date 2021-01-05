@@ -1,20 +1,15 @@
-import RocketOutlined from '@ant-design/icons/RocketOutlined';
 import { action } from '@storybook/addon-actions';
-import { boolean, select, withKnobs } from '@storybook/addon-knobs';
+import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
 import { DownloadOutlined } from '@ant-design/icons';
 import { Button } from '../../index';
 import DownIcon from '../Icon/DownIcon';
-import ButtonIcon from './ButtonIcon';
-import LinkButton from './LinkButton';
 import DownloadButton from './DownloadButton';
 
 const sizes = ['xs', 'sm', 'md', 'lg'];
 
-const ButtonPreview = () => (
+export const Default = () => (
   <Button
-    text="Button"
     onClick={action('onClick')}
     primary={boolean('Primary', false, 'Type')}
     error={boolean('Error', false, 'Type')}
@@ -22,32 +17,11 @@ const ButtonPreview = () => (
     disabled={boolean('Disabled', false, 'Type')}
     link={boolean('Link', false, 'Type')}
     size={select<any>('Size', sizes, 'md', 'Sizes')}
-    iconLeft={boolean('Icon left', false, 'Extra') ? <DownIcon /> : undefined}
-    iconRight={boolean('Icon right', false, 'Extra') ? <DownIcon /> : undefined}
-  />
-);
-
-const ButtonIconPreview = () => (
-  <ButtonIcon size={select<any>('Size', sizes, 'md', 'Sizes')} primary={boolean('primary', false)} onClick={action('onClick')} icon={<RocketOutlined />} />
-);
-
-export const Default = () => <ButtonPreview />;
-
-export const Icon = () => <ButtonIconPreview />;
-
-export const Link = () => (
-  <MemoryRouter>
-    <LinkButton
-      text="hey ho"
-      to="/a"
-      primary={boolean('Primary', false, 'Type')}
-      error={boolean('Error', false, 'Type')}
-      disabled={boolean('Disabled', false, 'Type')}
-      size={select<any>('Size', sizes, 'md', 'Sizes')}
-      iconLeft={boolean('Icon left', false, 'Extra') ? <DownIcon /> : undefined}
-      iconRight={boolean('Icon right', false, 'Extra') ? <DownIcon /> : undefined}
-    />
-  </MemoryRouter>
+    icon={boolean('Icon', false, 'Extra') ? <DownIcon /> : undefined}
+    hasBorder={boolean('Border', true, 'Type')}
+  >
+    {text('content', 'Button')}
+  </Button>
 );
 
 const mockFile =

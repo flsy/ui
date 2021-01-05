@@ -86,7 +86,9 @@ const StepHeader = ({ isActive, isCompleted, title, onClick }: IProps) => (
     <Circle isActive={isActive} isCompleted={isCompleted} />
     {onClick ? (
       <Title isActive={isActive}>
-        <Button link={true} onClick={onClick} type="button" text={title} />
+        <Button link={true} onClick={onClick} type="button">
+          {title}
+        </Button>
       </Title>
     ) : (
       <Title isActive={isActive}>{title}</Title>

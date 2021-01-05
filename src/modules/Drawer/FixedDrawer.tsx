@@ -2,7 +2,7 @@ import CloseOutlined from '@ant-design/icons/CloseOutlined';
 import React, { ReactNode } from 'react';
 import { animated, useSpring } from 'react-spring';
 import styled from 'styled-components';
-import ButtonIcon from '../Button/ButtonIcon';
+import Button from '../Button/Button';
 import Flex from '../Layout/Flex';
 
 interface IDrawerProps {
@@ -51,7 +51,7 @@ const FixedDrawer: React.FC<IDrawerProps> = ({ children, content, close, height:
     <SDrawer>
       <SDrawerChildren>{children}</SDrawerChildren>
       <DrawerWrapper style={props}>
-        <DrawerHeader>{close && <ButtonIcon onClick={() => close()} icon={<CloseOutlined />} />}</DrawerHeader>
+        <DrawerHeader>{close && <Button onClick={close} icon={<CloseOutlined />} hasBorder={false} size="sm" />}</DrawerHeader>
         <DrawerContent>{content}</DrawerContent>
       </DrawerWrapper>
     </SDrawer>

@@ -38,15 +38,15 @@ interface IProps {
 const SelectYearAndMonth = ({ year, setYear, month, setMonth, className }: IProps) => (
   <div className={className}>
     <div>
-      <Button link={true} type="button" onClick={() => setYear(year - 1)} iconLeft={<LeftOutlined />} />
+      <Button link={true} type="button" onClick={() => setYear(year - 1)} icon={<LeftOutlined />} />
       <span>{year}</span>
-      <Button link={true} type="button" onClick={() => setYear(year + 1)} iconLeft={<RightOutlined />} />
+      <Button link={true} type="button" onClick={() => setYear(year + 1)} icon={<RightOutlined />} />
     </div>
 
     <div>
-      <Button link={true} type="button" onClick={() => updateMonth(month - 1, year, setMonth, setYear)} iconLeft={<LeftOutlined />} />
+      <Button link={true} type="button" onClick={() => updateMonth(month - 1, year, setMonth, setYear)} icon={<LeftOutlined />} />
       <span>{monthMap[month]}</span>
-      <Button link={true} type="button" onClick={() => updateMonth(month + 1, year, setMonth, setYear)} iconLeft={<RightOutlined />} />
+      <Button link={true} type="button" onClick={() => updateMonth(month + 1, year, setMonth, setYear)} icon={<RightOutlined />} />
     </div>
     <hr />
   </div>

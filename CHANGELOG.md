@@ -1,6 +1,20 @@
 # Unreleased
 - Added MetaTable module
 
+### Button
+- removed `value` property
+- `error` property renamed to `danger`
+- removed `bordered` property
+- removed `id` property
+- removed `iconLeft` and `iconRight` properties, use `icon` property instead
+- content of a button passed as a children instead of `text` property
+
+### LinkButton
+- renamed to `Link`
+
+## ButtonIcon
+- removed, use Button instead
+
 # 0.2.0
 - Removed Chevron, Label, Typography, Tags
 

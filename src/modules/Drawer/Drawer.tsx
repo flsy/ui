@@ -2,7 +2,7 @@ import CloseOutlined from '@ant-design/icons/CloseOutlined';
 import React, { ReactNode, useEffect, useState } from 'react';
 import { animated, useSpring, useTransition } from 'react-spring';
 import styled from 'styled-components';
-import ButtonIcon from '../Button/ButtonIcon';
+import Button from '../Button/Button';
 
 interface IDrawerProps {
   children: ReactNode;
@@ -69,7 +69,7 @@ const Drawer: React.FC<IDrawerProps> = ({ destroyOnClose, children, isOpen, onCl
       {transitions.map(({ item, key, props: overlayProps }) => item && <SOverlay key={key} onClick={() => onClose()} style={overlayProps} />)}
       <SDrawer style={props} width={width}>
         <SHeader>
-          <ButtonIcon onClick={() => onClose()} icon={<CloseOutlined />} />
+          <Button onClick={onClose} icon={<CloseOutlined />} hasBorder={false} size="sm" />
         </SHeader>
         <>{render}</>
       </SDrawer>

@@ -85,7 +85,11 @@ const Modal: React.FC<IProps> = ({ children, isOpen, close, title, text, onSubmi
         {actions && (
           <Actions>
             <Flex horizontal={true}>{actions}</Flex>
-            {!actions && onSubmit && <Button onClick={onSubmit} primary={true} text={buttonText && buttonText} />}
+            {!actions && onSubmit && (
+              <Button onClick={onSubmit} primary={true}>
+                {buttonText}
+              </Button>
+            )}
           </Actions>
         )}
       </Wrapper>

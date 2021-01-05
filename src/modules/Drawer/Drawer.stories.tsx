@@ -9,7 +9,7 @@ const FixedDrawerStory = () => {
   return (
     <>
       <Container>
-        <Button onClick={() => setIsOpen(!isOpen)} text="Open Drawer" />
+        <Button onClick={() => setIsOpen(!isOpen)}>Open Drawer</Button>
       </Container>
       {isOpen && (
         <FixedDrawer height={100} close={() => setIsOpen(false)}>
@@ -35,7 +35,7 @@ const DrawerStory = () => {
   return (
     <>
       <Container>
-        <Button onClick={() => setIsOpen(!isOpen)} text="Open Drawer" />
+        <Button onClick={() => setIsOpen(!isOpen)}>Open Drawer</Button>
       </Container>
       <Drawer destroyOnClose={boolean('destroy on close', false)} isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <Content />

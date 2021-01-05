@@ -1,5 +1,6 @@
 # Unreleased
 - Added MetaTable module
+- Added Pagination component
 
 ### Button
 - removed `value` property
@@ -12,7 +13,7 @@
 ### LinkButton
 - renamed to `Link`
 
-## ButtonIcon
+### ButtonIcon
 - removed, use Button instead
 
 # 0.2.0

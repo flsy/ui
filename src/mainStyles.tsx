@@ -32,23 +32,6 @@ export enum Colours {
 export const trainsitionTime = '0.2s';
 export const borderRadius = '2px';
 
-export const calcSize = (size: string, numeric?: boolean, base = 8): number | string => {
-  switch (size) {
-    case 'xs':
-      return numeric ? base : `${base}px`;
-    case 'sm':
-      return numeric ? base * 1.2 : `${base * 1.2}px`;
-    case 'md':
-      return numeric ? base * 2 : `${base * 2}px`;
-    case 'lg':
-      return numeric ? base * 3 : `${base * 3}px`;
-    case 'xl':
-      return numeric ? base * 4 : `${base * 4}px`;
-    default:
-      return numeric ? base : `${base}px`;
-  }
-};
-
 export const calcFontSize = (size: 'xs' | 'sm' | 'md' | 'lg' | 'xl'): string => {
   switch (size) {
     case 'xs':

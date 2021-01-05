@@ -14,8 +14,7 @@ export const Default = (): ReactNode => (
       error={boolean('Error', false, 'Type')}
       disabled={boolean('Disabled', false, 'Type')}
       size={select<any>('Size', sizes, 'md', 'Sizes')}
-      iconLeft={boolean('Icon left', false, 'Extra') ? <DownIcon /> : undefined}
-      iconRight={boolean('Icon right', false, 'Extra') ? <DownIcon /> : undefined}
+      icon={boolean('Icon', false, 'Extra') ? <DownIcon /> : undefined}
     >
       hey ho
     </Link>

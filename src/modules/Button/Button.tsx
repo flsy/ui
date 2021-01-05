@@ -19,7 +19,7 @@ export interface IButtonProps {
   hasBorder?: boolean;
 }
 
-export const ButtonWrapper = styled.button<Omit<IButtonProps, 'children'> & { hasChildren: boolean }>`
+export const ButtonWrapper = styled.button<Omit<IButtonProps, 'children'>>`
   transition: all ${trainsitionTime};
   border-radius: ${borderRadius};
   white-space: nowrap;
@@ -44,6 +44,10 @@ export const ButtonWrapper = styled.button<Omit<IButtonProps, 'children'> & { ha
 
   & > span > svg {
     font-size: 80%;
+  }
+
+  & > span + span {
+    padding-left: 0.5rem;
   }
 
   ${({ disabled }) =>
@@ -76,14 +80,6 @@ export const ButtonWrapper = styled.button<Omit<IButtonProps, 'children'> & { ha
       font-size: ${calcFontSize(size)};
       padding: 0.5em 1em;
     `}
-  
-  ${({ hasChildren }) =>
-    hasChildren &&
-    css`
-      & > span {
-        padding-right: 0.5rem;
-      }
-    `};
 
   ${({ primary, disabled }) =>
     primary &&
@@ -160,11 +156,10 @@ const Button = ({ className, isLoading, onClick, name, disabled, type, primary, 
       icon={icon}
       data-test-id={`button-${name}`}
       error={error}
-      hasChildren={!!children}
       hasBorder={hasBorder}
     >
-      {icon}
-      {children}
+      <span>{icon}</span>
+      <span>{children}</span>
     </ButtonWrapper>
   );
 };

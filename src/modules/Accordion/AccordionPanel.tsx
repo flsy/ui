@@ -38,15 +38,11 @@ const Content = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
-const SmallButton = styled(Button)`
-  font-size: 10px;
-`;
-
 const AccordionPanel = ({ className, title, isOpen, onClose, onOpen, children }: IProps) => (
   <div className={className}>
     <Header isOpen={isOpen} onClick={isOpen ? onClose : onOpen}>
       {title}
-      {onClose && <SmallButton link={true} onClick={isOpen ? onClose : onOpen} iconRight={isOpen ? <UpIcon /> : <DownIcon />} />}
+      {onClose && <Button link={true} size="xs" onClick={isOpen ? onClose : onOpen} icon={isOpen ? <UpIcon /> : <DownIcon />} />}
     </Header>
     {isOpen && <Content>{children}</Content>}
   </div>

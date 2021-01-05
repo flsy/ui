@@ -51,7 +51,7 @@ const ImagePreview = ({ base64, onRemove }: ImagePreviewProps) => (
         <ImageWrapper>
           <Image src={`data:image/jpeg;base64,${b64}`} alt="preview" />
           <ButtonWrapper>
-            <Button onClick={() => onRemove(index)} text="Odstranit" />
+            <Button onClick={() => onRemove(index)}>Odstranit</Button>
           </ButtonWrapper>
         </ImageWrapper>
       </Container>

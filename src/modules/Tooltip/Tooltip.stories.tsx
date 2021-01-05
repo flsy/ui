@@ -6,7 +6,7 @@ const TooltipStory = () => (
   <>
     <h1>Tooltip</h1>
     <Tooltip text="I am hover! some long hover text" bgColour="#ccc" colour="#fff">
-      <Button text="Hover on me" />
+      <Button>Hover over me</Button>
     </Tooltip>
   </>
 );

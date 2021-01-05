@@ -17,12 +17,19 @@ const ModalStory = () => {
         close={() => setIsOpen(!isOpen)}
         isOpen={isOpen}
         buttonText="Confirm"
-        actions={[<Button onClick={() => onSubmit()} primary={true} text="OK" />, <Button onClick={() => onSubmit()} error={true} text="Error" />]}
+        actions={[
+          <Button onClick={() => onSubmit()} primary={true}>
+            OK
+          </Button>,
+          <Button onClick={() => onSubmit()} error={true}>
+            Error
+          </Button>,
+        ]}
       >
-        <Button text="v obsahu modalu" />
+        <Button>In a modal</Button>
       </Modal>
 
-      <Button onClick={() => setIsOpen(true)} text="Open Modal" />
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
     </>
   );
 };

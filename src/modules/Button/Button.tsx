@@ -5,21 +5,18 @@ import LoadingAnimation from '../Loader/LoadingAnimation';
 
 export interface IButtonProps {
   className?: string;
+  error?: boolean;
   primary?: boolean;
   link?: boolean;
   disabled?: boolean;
-  value?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  id?: string;
   name?: string;
   type?: 'submit' | 'reset' | 'button';
-  text?: string;
   size?: 'xs' | 'sm' | 'md' | 'lg';
-  error?: boolean;
   iconLeft?: React.ReactElement;
   iconRight?: React.ReactElement;
   isLoading?: boolean;
-  bordered?: boolean;
+  children?: string;
 }
 
 const SText = styled.div<{ hasIconLeft: boolean; hasIconRight: boolean }>`
@@ -27,7 +24,7 @@ const SText = styled.div<{ hasIconLeft: boolean; hasIconRight: boolean }>`
   ${({ hasIconRight }) => hasIconRight && ` margin-right: 13px;`}
 `;
 
-export const ButtonWrapper = styled.button<IButtonProps>`
+export const ButtonWrapper = styled.button<Omit<IButtonProps, 'children'>>`
   transition: all ${trainsitionTime};
   border-radius: ${borderRadius};
   white-space: nowrap;
@@ -36,12 +33,6 @@ export const ButtonWrapper = styled.button<IButtonProps>`
   font-size: inherit;
   padding: 4px 10px;
   border: 1px solid ${Colours.grey};
-
-  ${({ bordered }) =>
-    !bordered &&
-    css`
-      border: none;
-    `}
 
   &:focus {
     outline: none;
@@ -85,7 +76,7 @@ export const ButtonWrapper = styled.button<IButtonProps>`
       color: ${Colours.background};
 
       ${!disabled &&
-      `
+      css`
         &:hover {
           color: ${Colours.background};
           background-color: ${Colours.mainHover};
@@ -120,11 +111,6 @@ export const ButtonWrapper = styled.button<IButtonProps>`
       ${({ link }) =>
     link &&
     css`
-      & a {
-        color: ${Colours.main};
-        text-decoration: none;
-      }
-
       border: none;
       background: none;
       color: ${Colours.main};
@@ -149,32 +135,13 @@ export const ButtonWrapper = styled.button<IButtonProps>`
     `}
 `;
 
-const Button = ({
-  className,
-  bordered,
-  isLoading,
-  onClick,
-  id,
-  name,
-  value,
-  text,
-  disabled,
-  type,
-  primary,
-  link,
-  size,
-  iconLeft: iconLeftDefault,
-  iconRight,
-  error,
-}: IButtonProps) => {
+const Button = ({ className, isLoading, onClick, name, disabled, type, primary, link, size, iconLeft: iconLeftDefault, iconRight, error, children }: IButtonProps) => {
   const iconLeft = isLoading ? <LoadingAnimation size="xs" inverted={primary || error} /> : iconLeftDefault;
   return (
     <ButtonWrapper
       className={className}
-      id={id}
       name={name}
       type={type || 'button'}
-      value={value}
       disabled={disabled || isLoading}
       onClick={onClick}
       primary={primary}
@@ -184,11 +151,10 @@ const Button = ({
       iconRight={iconRight}
       data-test-id={`button-${name}`}
       error={error}
-      bordered={bordered}
     >
       {iconLeft}
       <SText hasIconLeft={!!iconLeft} hasIconRight={!!iconRight}>
-        {text}
+        {children}
       </SText>
       {iconRight}
     </ButtonWrapper>

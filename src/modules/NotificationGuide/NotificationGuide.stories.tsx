@@ -160,19 +160,19 @@ const NotificationGuideStory = () => {
           <div>
             <br />
             <br />
-            <Button text="pridat dalsi kontakt" onClick={() => addContact([...contacts, 1])} />
+            <Button onClick={() => addContact([...contacts, 1])}>Add contact</Button>
           </div>
           <div>
             <br />
             <br />
             <br />
-            <Button text="Novy kontakt" />
-            <Button text="Nova skupina" />
+            <Button>New contact</Button>
+            <Button>Nova group</Button>
           </div>
           <div>
             <br />
             <br />
-            <Button text="Dalsi" onClick={() => setOpenId(4)} />
+            <Button onClick={() => setOpenId(4)}>Next</Button>
           </div>
         </AccordionPanel>
         <AccordionPanel isOpen={openId === 4} title="5. Tvar zpravy" onOpen={() => setOpenId(4)} onClose={() => setOpenId(5)}>
@@ -182,7 +182,7 @@ const NotificationGuideStory = () => {
             <input type="text" defaultValue="Vozidlo __RZ__ spatreno ..." />
             <label>email</label>
             <textarea defaultValue={`Dobry den Skupina #1\r\rVozidlo __RZ__ spatreno ...`} rows={6} />
-            <Button type="button" text="Dalsi" onClick={() => setOpenId(5)} />
+            <Button type="button" onClick={() => setOpenId(5)}>Next</Button>
           </form>
         </AccordionPanel>
         <AccordionPanel isOpen={openId === 5} title="6. Shrnuti" onOpen={() => setOpenId(5)}>
@@ -200,8 +200,8 @@ const NotificationGuideStory = () => {
             </li>
           </ul>
 
-          <Button type="button" text="Ulozit" primary={true} />
-          <Button type="button" text="Zrusit" onClick={() => setOpenId(0)} />
+          <Button type="button" primary={true}>Save</Button>
+          <Button type="button" onClick={() => setOpenId(0)}>Cancel</Button>
         </AccordionPanel>
       </Accordion>
     </div>

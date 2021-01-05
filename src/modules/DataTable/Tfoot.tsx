@@ -19,7 +19,7 @@ const Tfoot: ITfoot = ({ colSpan }) => {
         <td colSpan={colSpan}>
           {onLoadMore && (
             <SContent>
-              <Button text="Načíst více" onClick={onLoadMore} />
+              <Button onClick={onLoadMore}>Načíst více</Button>
             </SContent>
           )}
         </td>

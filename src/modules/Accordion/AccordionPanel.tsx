@@ -46,7 +46,7 @@ const AccordionPanel = ({ className, title, isOpen, onClose, onOpen, children }:
   <div className={className}>
     <Header isOpen={isOpen} onClick={isOpen ? onClose : onOpen}>
       {title}
-      {onClose && <SmallButton text="" link={true} onClick={isOpen ? onClose : onOpen} iconRight={isOpen ? <UpIcon /> : <DownIcon />} />}
+      {onClose && <SmallButton link={true} onClick={isOpen ? onClose : onOpen} iconRight={isOpen ? <UpIcon /> : <DownIcon />} />}
     </Header>
     {isOpen && <Content>{children}</Content>}
   </div>

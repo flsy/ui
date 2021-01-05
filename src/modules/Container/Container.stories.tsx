@@ -3,7 +3,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { Container } from '../../index';
-import LinkButton from '../Button/LinkButton';
+import { Link } from '../Link';
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 
@@ -11,7 +11,16 @@ export const Basic = () => <Container size={select<any>('Size', sizes, 'md', 'Si
 
 export const WithActions = () => (
   <MemoryRouter>
-    <Container size="md" title="Fancy container" actions={[<LinkButton primary={true} to="/a" text="Create" />, <LinkButton to="/b" text="About" />]}>
+    <Container
+      size="md"
+      title="Fancy container"
+      actions={[
+        <Link primary={true} to="/a">
+          Create
+        </Link>,
+        <Link to="/b">About</Link>,
+      ]}
+    >
       Content
     </Container>
   </MemoryRouter>
@@ -23,7 +32,16 @@ const CustomContainer = styled(Container)`
 
 export const CustomBackground = () => (
   <MemoryRouter>
-    <CustomContainer size="md" title="Fancy container" actions={[<LinkButton primary={true} to="/a" text="Create" />, <LinkButton to="/b" text="About" />]}>
+    <CustomContainer
+      size="md"
+      title="Fancy container"
+      actions={[
+        <Link primary={true} to="/a">
+          Create
+        </Link>,
+        <Link to="/b">About</Link>,
+      ]}
+    >
       Content
     </CustomContainer>
   </MemoryRouter>

@@ -82,7 +82,9 @@ const DropArea = (props: DropAreaProps) => {
 
   return (
     <Wrapper hovered={hovered} onDragEnter={handleDragEnter} onDrop={handleDrop} onDragLeave={handleDragLeave} onDragOver={preventDragDefault}>
-      <Button size="xs" onClick={handleClick} text="Vyberte obrázek" />
+      <Button size="xs" onClick={handleClick}>
+        Vyberte obrázek
+      </Button>
       <input ref={inputEl} onChange={handleSelectFile} type="file" accept="image/*" name={props.name} multiple={props.multiple} />
       <Modal isOpen={isModalOpen} close={() => setIsModalOpen(false)} title="Chyba při nahrávání" text="Nelze nahrát více obrázků." />
     </Wrapper>

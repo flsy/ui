@@ -1,20 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link as RRDLink } from 'react-router-dom';
 import styled from 'styled-components';
-import Button, { IButtonProps } from './Button';
+import Button, { IButtonProps } from '../Button/Button';
 
 interface IProps extends Omit<IButtonProps, 'link' | 'type' | 'onClick'> {
   to: string;
 }
 
-const SLink = styled(Link)`
+const SLink = styled(RRDLink)`
   text-decoration: none;
 `;
 
-const LinkButton = ({ to, ...buttonProps }: IProps) => (
+const Link = ({ to, ...buttonProps }: IProps) => (
   <SLink to={to} data-test-id={`link-${buttonProps.name}`}>
     <Button {...buttonProps} />
   </SLink>
 );
 
-export default LinkButton;
+export default Link;

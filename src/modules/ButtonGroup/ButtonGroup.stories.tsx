@@ -7,18 +7,18 @@ const ButtonPreview = () => (
   <div>
     <h2>One button</h2>
     <ButtonGroup>
-      <Button text="first" />
+      <Button>first</Button>
     </ButtonGroup>
     <h2>Two buttons</h2>
     <ButtonGroup isCentered={true}>
-      <Button text="first" />
-      <Button text="second" />
+      <Button>first</Button>
+      <Button>second</Button>
     </ButtonGroup>
     <h2>Three buttons</h2>
     <ButtonGroup isCentered={true}>
-      <Button text="first" />
-      <Button text="second" />
-      <Button text="third" />
+      <Button>first</Button>
+      <Button>second</Button>
+      <Button>third</Button>
     </ButtonGroup>
   </div>
 );

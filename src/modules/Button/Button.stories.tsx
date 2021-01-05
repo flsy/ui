@@ -2,19 +2,16 @@ import RocketOutlined from '@ant-design/icons/RocketOutlined';
 import { action } from '@storybook/addon-actions';
 import { boolean, select, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
 import { DownloadOutlined } from '@ant-design/icons';
 import { Button } from '../../index';
 import DownIcon from '../Icon/DownIcon';
 import ButtonIcon from './ButtonIcon';
-import LinkButton from './LinkButton';
 import DownloadButton from './DownloadButton';
 
 const sizes = ['xs', 'sm', 'md', 'lg'];
 
 const ButtonPreview = () => (
   <Button
-    text="Button"
     onClick={action('onClick')}
     primary={boolean('Primary', false, 'Type')}
     error={boolean('Error', false, 'Type')}
@@ -24,7 +21,9 @@ const ButtonPreview = () => (
     size={select<any>('Size', sizes, 'md', 'Sizes')}
     iconLeft={boolean('Icon left', false, 'Extra') ? <DownIcon /> : undefined}
     iconRight={boolean('Icon right', false, 'Extra') ? <DownIcon /> : undefined}
-  />
+  >
+    Button
+  </Button>
 );
 
 const ButtonIconPreview = () => (
@@ -34,21 +33,6 @@ const ButtonIconPreview = () => (
 export const Default = () => <ButtonPreview />;
 
 export const Icon = () => <ButtonIconPreview />;
-
-export const Link = () => (
-  <MemoryRouter>
-    <LinkButton
-      text="hey ho"
-      to="/a"
-      primary={boolean('Primary', false, 'Type')}
-      error={boolean('Error', false, 'Type')}
-      disabled={boolean('Disabled', false, 'Type')}
-      size={select<any>('Size', sizes, 'md', 'Sizes')}
-      iconLeft={boolean('Icon left', false, 'Extra') ? <DownIcon /> : undefined}
-      iconRight={boolean('Icon right', false, 'Extra') ? <DownIcon /> : undefined}
-    />
-  </MemoryRouter>
-);
 
 const mockFile =
   '{\n' +

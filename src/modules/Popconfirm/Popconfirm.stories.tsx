@@ -9,7 +9,7 @@ storiesOf('Popconfirm', module).add('basic usage', () => {
   return (
     <div style={{ marginTop: '150px', marginLeft: '150px' }}>
       <Popconfirm isVisible={isVisible} title="Opravdu smazat?" okText="Ano" cancelText="Ne" onConfirm={action('confirm')} onCancel={action('cancel')}>
-        <Button text="Smazat" onClick={() => setIsVisible(!isVisible)} />
+        <Button onClick={() => setIsVisible(!isVisible)}>Remove</Button>
       </Popconfirm>
     </div>
   );

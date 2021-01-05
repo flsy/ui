@@ -4,7 +4,7 @@ import styled, { css, keyframes } from 'styled-components';
 import { Colours } from '../../mainStyles';
 import getColorByType from '../../utils/getColorByType';
 import hexToRgb from '../../utils/hexToRgb';
-import ButtonIcon from '../Button/ButtonIcon';
+import Button from '../Button/Button';
 import { ColorTypes, ColouredWrapper } from '../../components/ColouredWrapper';
 import Flex from '../Layout/Flex';
 
@@ -70,7 +70,7 @@ const Message: React.FC<IProps> = ({ dismissTimeout, type, text, description, ch
       <MessageWrapper hasDismiss={!!dismissTimeout}>
         <MessageFlex horizontal={true}>
           {text && description && <h3>{text}</h3>}
-          {close && <ButtonIcon onClick={close} icon={<CloseOutlined />} />}
+          {close && <Button onClick={close} icon={<CloseOutlined />} hasBorder={false} size="sm" />}
         </MessageFlex>
         {text && !description && <SDescription>{text}</SDescription>}
         {description && <SDescription>{description}</SDescription>}

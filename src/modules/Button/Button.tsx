@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { borderRadius, calcSize, Colours, trainsitionTime } from '../../mainStyles';
+import { borderRadius, calcFontSize, Colours, trainsitionTime } from '../../mainStyles';
 import LoadingAnimation from '../Loader/LoadingAnimation';
 
 export interface IButtonProps {
@@ -13,29 +13,37 @@ export interface IButtonProps {
   name?: string;
   type?: 'submit' | 'reset' | 'button';
   size?: 'xs' | 'sm' | 'md' | 'lg';
-  iconLeft?: React.ReactElement;
-  iconRight?: React.ReactElement;
+  icon?: React.ReactElement;
   isLoading?: boolean;
   children?: string;
+  hasBorder?: boolean;
 }
 
-const SText = styled.div<{ hasIconLeft: boolean; hasIconRight: boolean }>`
-  ${({ hasIconLeft }) => hasIconLeft && `margin-left: 13px;`}
-  ${({ hasIconRight }) => hasIconRight && ` margin-right: 13px;`}
-`;
-
-export const ButtonWrapper = styled.button<Omit<IButtonProps, 'children'>>`
+export const ButtonWrapper = styled.button<Omit<IButtonProps, 'children'> & { hasChildren: boolean }>`
   transition: all ${trainsitionTime};
   border-radius: ${borderRadius};
   white-space: nowrap;
   cursor: pointer;
   background-color: transparent;
   font-size: inherit;
-  padding: 4px 10px;
-  border: 1px solid ${Colours.grey};
+  border: none;
+
+  padding: 0;
+  display: flex;
+  align-items: center;
+
+  ${({ hasBorder }) =>
+    hasBorder &&
+    css`
+      border: 1px solid ${Colours.grey};
+    `}
 
   &:focus {
     outline: none;
+  }
+
+  & > span > svg {
+    font-size: 80%;
   }
 
   ${({ disabled }) =>
@@ -65,8 +73,17 @@ export const ButtonWrapper = styled.button<Omit<IButtonProps, 'children'>>`
   ${({ size }) =>
     size &&
     css`
-      padding: ${+calcSize(size, true) / 2}px ${calcSize(size)};
+      font-size: ${calcFontSize(size)};
+      padding: 0.5em 1em;
     `}
+  
+  ${({ hasChildren }) =>
+    hasChildren &&
+    css`
+      & > span {
+        padding-right: 0.5rem;
+      }
+    `};
 
   ${({ primary, disabled }) =>
     primary &&
@@ -126,17 +143,10 @@ export const ButtonWrapper = styled.button<Omit<IButtonProps, 'children'>>`
         color: ${Colours.mainActive};
       }
     `}
-
-    ${({ iconRight, iconLeft }) =>
-    (iconRight || iconLeft) &&
-    css`
-      display: flex;
-      align-items: center;
-    `}
 `;
 
-const Button = ({ className, isLoading, onClick, name, disabled, type, primary, link, size, iconLeft: iconLeftDefault, iconRight, error, children }: IButtonProps) => {
-  const iconLeft = isLoading ? <LoadingAnimation size="xs" inverted={primary || error} /> : iconLeftDefault;
+const Button = ({ className, isLoading, onClick, name, disabled, type, primary, link, size, icon: iconDefault, error, children, hasBorder }: IButtonProps) => {
+  const icon = isLoading ? <LoadingAnimation size="xs" inverted={primary || error} /> : iconDefault;
   return (
     <ButtonWrapper
       className={className}
@@ -147,23 +157,21 @@ const Button = ({ className, isLoading, onClick, name, disabled, type, primary, 
       primary={primary}
       link={link}
       size={size}
-      iconLeft={iconLeft}
-      iconRight={iconRight}
+      icon={icon}
       data-test-id={`button-${name}`}
       error={error}
+      hasChildren={!!children}
+      hasBorder={hasBorder}
     >
-      {iconLeft}
-      <SText hasIconLeft={!!iconLeft} hasIconRight={!!iconRight}>
-        {children}
-      </SText>
-      {iconRight}
+      {icon}
+      {children}
     </ButtonWrapper>
   );
 };
 
 Button.defaultProps = {
   size: 'md',
-  bordered: true,
+  hasBorder: true,
   className: undefined,
 };
 

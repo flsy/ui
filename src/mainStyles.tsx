@@ -49,6 +49,21 @@ export const calcSize = (size: string, numeric?: boolean, base = 8): number | st
   }
 };
 
+export const calcFontSize = (size: 'xs' | 'sm' | 'md' | 'lg' | 'xl'): string => {
+  switch (size) {
+    case 'xs':
+      return '0.8em';
+    case 'sm':
+      return '0.9em';
+    case 'lg':
+      return '1.2em';
+    case 'xl':
+      return '1.4em';
+    default:
+      return '1em';
+  }
+};
+
 export const GlobalStyle = createGlobalStyle`
 body {
   padding: 0;

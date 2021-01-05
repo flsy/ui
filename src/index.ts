@@ -8,7 +8,6 @@ export * from './modules/Tag';
 export * from './modules/Link';
 export { default as Button } from './modules/Button/Button';
 export { default as DownloadButton } from './modules/Button/DownloadButton';
-export { default as ButtonIcon } from './modules/Button/ButtonIcon';
 export { default as ButtonGroup } from './modules/ButtonGroup/ButtonGroup';
 export { default as Charts } from './modules/Charts/Charts';
 export { ChartType } from './modules/Charts/interfaces';

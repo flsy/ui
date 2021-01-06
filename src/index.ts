@@ -6,6 +6,7 @@ export * from './modules/Accordion';
 export * from './modules/Badge';
 export * from './modules/Tag';
 export * from './modules/Link';
+export * from './modules/Pagination';
 export { default as Button } from './modules/Button/Button';
 export { default as DownloadButton } from './modules/Button/DownloadButton';
 export { default as ButtonGroup } from './modules/ButtonGroup/ButtonGroup';

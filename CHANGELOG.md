@@ -1,4 +1,4 @@
-# Unreleased
+# 0.3.0
 - Added MetaTable module
 - Added Pagination component
 

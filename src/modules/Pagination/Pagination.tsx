@@ -25,12 +25,12 @@ const PaginationButton = styled(Button)`
 `;
 
 const getPaginationConfig = (total: number, current: number) => {
-  if (total < 10) {
+  if (!total || total < 10) {
     return {
       isLeftFF: false,
       isRightFF: false,
-      leftCount: Math.min(1, current - 1),
-      rightCount: Math.min(total, total - current),
+      leftCount: Math.max(0, current - 1),
+      rightCount: Math.max(0, total - current),
     };
   }
 

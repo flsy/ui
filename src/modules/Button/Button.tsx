@@ -1,7 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { borderRadius, calcFontSize, Colours, trainsitionTime } from '../../mainStyles';
+import { calcFontSize, trainsitionTime } from '../../mainStyles';
 import LoadingAnimation from '../Loader/LoadingAnimation';
+import { Colors } from '../../createTheme';
+import { defaultButtonStyles, errorButtonStyles, linkButtonStyles, primaryButtonStyles } from './styles';
 
 export interface IButtonProps {
   className?: string;
@@ -27,22 +29,14 @@ const Text = styled.span``;
 
 export const ButtonWrapper = styled.button<Omit<IButtonProps, 'children'>>`
   transition: all ${trainsitionTime};
-  border-radius: ${borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius};
   white-space: nowrap;
   cursor: pointer;
   background-color: transparent;
   font-size: inherit;
-  border: none;
-
-  padding: 0;
   display: flex;
   align-items: center;
-
-  ${({ hasBorder }) =>
-    hasBorder &&
-    css`
-      border: 1px solid ${Colours.grey};
-    `}
+  border: 1px solid;
 
   &:focus {
     outline: none;
@@ -52,30 +46,6 @@ export const ButtonWrapper = styled.button<Omit<IButtonProps, 'children'>>`
     margin-left: 0.5em;
   }
 
-  ${({ disabled }) =>
-    disabled &&
-    css`
-      background-color: ${Colours.border};
-      color: ${Colours.disabled};
-      cursor: not-allowed;
-    `}
-
-  ${({ disabled, link }) =>
-    !disabled &&
-    !link &&
-    css`
-      &:hover {
-        transition: all ${trainsitionTime};
-        border-color: ${Colours.main};
-        color: ${Colours.main};
-      }
-
-      &:active {
-        border-color: ${Colours.mainActive};
-        color: ${Colours.mainActive};
-      }
-    `}
-
   ${({ size }) =>
     size &&
     css`
@@ -83,62 +53,28 @@ export const ButtonWrapper = styled.button<Omit<IButtonProps, 'children'>>`
       padding: 0.5em 1em;
     `}
 
-  ${({ primary, disabled }) =>
-    primary &&
+  ${({ disabled }) =>
+    disabled &&
     css`
-      border-color: ${Colours.main};
-      background-color: ${Colours.main};
-      color: ${Colours.background};
-
-      ${!disabled &&
-      css`
-        &:hover {
-          color: ${Colours.background};
-          background-color: ${Colours.mainHover};
-        }
-
-        &:active {
-          border-color: ${Colours.mainActive};
-          background-color: ${Colours.mainActive};
-        }
-      `}
+      cursor: not-allowed;
     `}
 
-  ${({ error }) =>
-    error &&
+  ${defaultButtonStyles}
+  ${({ primary }) => primary && primaryButtonStyles}
+  ${({ error }) => error && errorButtonStyles}
+  ${({ link }) => link && linkButtonStyles}
+
+  ${({ hasBorder }) =>
+    !hasBorder &&
     css`
-      border-color: ${Colours.error};
-      background-color: ${Colours.error};
-      color: ${Colours.background};
+      border-color: transparent;
 
       &:hover {
-        color: ${Colours.background};
-        border-color: ${Colours.errorHover};
-        background-color: ${Colours.errorHover};
+        border-color: transparent;
       }
 
       &:active {
-        border-color: ${Colours.errorActive};
-        background-color: ${Colours.errorActive};
-      }
-    `}
-
-      ${({ link }) =>
-    link &&
-    css`
-      border: none;
-      background: none;
-      color: ${Colours.main};
-      padding: 0;
-
-      &:hover,
-      & a:hover {
-        color: ${Colours.mainHover};
-      }
-
-      &:active,
-      & a:active {
-        color: ${Colours.mainActive};
+        border-color: transparent;
       }
     `}
 `;

@@ -1,6 +1,6 @@
-import { mount } from 'enzyme';
 import React from 'react';
 import ImagePreview from '../ImagePreview';
+import { mountWithTheme } from '../../../testUtils';
 
 const testImage =
   // eslint-disable-next-line max-len
@@ -12,12 +12,12 @@ const secondTestImage =
 
 describe('<ImagePreview />', () => {
   it('should display image with correct data', () => {
-    const wrapper = mount(<ImagePreview onRemove={jest.fn} base64={[testImage]} />);
+    const wrapper = mountWithTheme(<ImagePreview onRemove={jest.fn} base64={[testImage]} />);
     const img = wrapper.find('img');
     expect(img.prop('src')).toBe(`data:image/jpeg;base64,${testImage}`);
   });
   it('should display two images with correct data', () => {
-    const wrapper = mount(<ImagePreview onRemove={jest.fn} base64={[testImage, secondTestImage]} />);
+    const wrapper = mountWithTheme(<ImagePreview onRemove={jest.fn} base64={[testImage, secondTestImage]} />);
     const img = wrapper.find('img');
     expect(img).toHaveLength(2);
     expect(img.at(0).prop('src')).toBe(`data:image/jpeg;base64,${testImage}`);
@@ -25,7 +25,7 @@ describe('<ImagePreview />', () => {
   });
   it('should remove image on click', () => {
     const onRemove = jest.fn();
-    const wrapper = mount(<ImagePreview onRemove={onRemove} base64={[testImage]} />);
+    const wrapper = mountWithTheme(<ImagePreview onRemove={onRemove} base64={[testImage]} />);
     const btn = wrapper.find('Button');
     btn.simulate('click');
     expect(onRemove).toHaveBeenCalledTimes(1);

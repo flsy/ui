@@ -1,11 +1,11 @@
-import { mount } from 'enzyme';
 import React from 'react';
 import DescriptionList from '../DescriptionList';
 import { eventMock } from '../testHelpers';
+import { mountWithTheme } from '../../../testUtils';
 
 describe('<DescriptionList />', () => {
   it('renders correctly on new strucuture', () => {
-    const component = mount(<DescriptionList data={eventMock} />);
+    const component = mountWithTheme(<DescriptionList data={eventMock} />);
 
     expect(component.find('dl').exists()).toBe(true);
     expect(component.find('dt[data-test-id="description-list-externalUid-key"]').text()).toBe('externalUid:');

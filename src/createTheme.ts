@@ -26,11 +26,12 @@ const getColorPalette = (color: string): ColorPalette => {
 
 const isDark = (config: ThemeConfig) => config.theme === 'dark';
 
-enum Colors {
+export enum Colors {
   success = '#52c41a',
   warning = '#fa8c16',
   error = '#f5222d',
   info = '#1890ff',
+  textLight = '#fdfdfd',
 }
 
 const createTheme = (config: ThemeConfig): DefaultTheme => ({

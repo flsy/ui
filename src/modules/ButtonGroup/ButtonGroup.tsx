@@ -1,18 +1,30 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { ButtonWrapper } from '../Button/Button';
+import Button from '../Button/Button';
 
 interface IProps {
   children: JSX.Element | JSX.Element[];
+  // eslint-disable-next-line react/no-unused-prop-types
   isCentered?: boolean;
+  className?: string;
 }
 
-const Styled = styled.div<IProps>`
-  ${ButtonWrapper}:not(:first-of-type) {
+const ButtonGroup = ({ children, className }: IProps) => <div className={className}>{children}</div>;
+
+ButtonGroup.defaultProps = {
+  isCentered: false,
+  className: undefined,
+};
+
+export default styled(ButtonGroup)`
+  display: flex;
+  flex-wrap: nowrap;
+
+  ${Button}:not(:first-of-type) {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
-  ${ButtonWrapper}:not(:last-of-type) {
+  ${Button}:not(:last-of-type) {
     border-right: none;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -21,16 +33,6 @@ const Styled = styled.div<IProps>`
   ${({ isCentered }) =>
     isCentered &&
     css`
-      text-align: center;
+      justify-content: center;
     `}
 `;
-
-const ButtonGroup = (props: IProps) => {
-  return <Styled {...props}>{props.children}</Styled>;
-};
-
-ButtonGroup.defaultProps = {
-  isCentered: false,
-};
-
-export default ButtonGroup;

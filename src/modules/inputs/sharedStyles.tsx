@@ -14,7 +14,7 @@ export const Inputs = css<{ hasError?: boolean }>`
   border: 1px solid ${(props) => (props.hasError ? Colours.error : Colours.lightGrey)};
 
   &:focus {
-    border: 1px solid ${Colours.main};
+    border: 1px solid ${({ theme }) => theme.colors.main.primary};
   }
 `;
 

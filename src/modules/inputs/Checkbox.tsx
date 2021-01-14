@@ -37,7 +37,7 @@ export const SCheckBox = styled.label`
   }
 
   input:checked ~ ${CheckMark} {
-    border: 1px solid ${Colours.main};
+    border: 1px solid ${({ theme }) => theme.colors.main.primary};
   }
 
   ${CheckMark}:after {
@@ -45,7 +45,7 @@ export const SCheckBox = styled.label`
     top: 2px;
     width: 5px;
     height: 10px;
-    border: solid ${Colours.main};
+    border: solid ${({ theme }) => theme.colors.main.primary};
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
   }

@@ -1,3 +1,10 @@
+# 0.5.0
+- Active state for inputs in theme colors
+- Checkbox check mark in theme colors
+
+# 0.4.0
+- Added FileUploader
+
 # 0.3.0
 - Added MetaTable module
 - Added Pagination component

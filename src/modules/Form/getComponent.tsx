@@ -12,6 +12,7 @@ import ButtonGroup from '../Layout/ButtonGroup';
 import ImageUpload from '../Upload/ImageUpload';
 import DatePicker, { DateTimePicker } from './components/DatePicker';
 import { FormTags } from './components/Tag';
+import FileUpload from '../Upload/FileUpload';
 
 export const getComponent = <T extends Field>(parentGetComponent?: Components<T>) => (componentProps: ComponentProps<T>) => {
   if (parentGetComponent) {
@@ -47,6 +48,8 @@ export const getComponent = <T extends Field>(parentGetComponent?: Components<T>
       return <DatePicker key={props.name} {...props} value={props.value * 1000} />;
     case 'image':
       return <ImageUpload key={props.name} {...props} multiple={true} />;
+    case 'csv':
+      return <FileUpload key={props.name} {...props} accept=".csv" />;
     case 'datetime-local':
       return <DateTimePicker key={props.name} {...props} />;
     case 'button-group':

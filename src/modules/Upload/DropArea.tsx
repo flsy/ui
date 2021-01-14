@@ -2,8 +2,6 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { borderRadius, Colours } from '../../mainStyles';
 import Button from '../Button/Button';
-import Modal from '../Modal/Modal';
-import { readAsDataURL } from './utils';
 
 const Wrapper = styled.div<{ hovered?: boolean }>`
   border: 1px dashed ${Colours.lightGrey};
@@ -16,7 +14,7 @@ const Wrapper = styled.div<{ hovered?: boolean }>`
   ${(props) =>
     props.hovered &&
     `
-    border-color: ${Colours.main};
+    border-color: ${props.theme.colors.main.primary};
   `}
 
   input[type='file'] {
@@ -25,8 +23,10 @@ const Wrapper = styled.div<{ hovered?: boolean }>`
 `;
 
 interface DropAreaProps {
-  onChange: (b64?: string[]) => void;
+  onChange: (fileList?: FileList) => void;
   name: string;
+  label: string;
+  accept?: string;
   multiple?: boolean;
 }
 
@@ -35,15 +35,9 @@ const preventDragDefault = (e: React.DragEvent<HTMLDivElement>) => {
   e.stopPropagation();
 };
 
-const getImage = async (file: File) => {
-  const dataUrl = await readAsDataURL(file);
-  return dataUrl?.replace(/^data:image.+;base64,/, '');
-};
-
-const DropArea = (props: DropAreaProps) => {
+const DropArea = ({ name, multiple, label, accept, ...props }: DropAreaProps) => {
   const inputEl = useRef<HTMLInputElement>(null);
   const [hovered, setHovered] = useState<boolean>(false);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
     preventDragDefault(e);
@@ -55,44 +49,32 @@ const DropArea = (props: DropAreaProps) => {
     setHovered(false);
   };
 
-  const onChange = async (fileList?: FileList) => {
-    const multiImages = await Promise.all(Array.from(fileList || []).map(async (file) => getImage(file)));
-    const filteredMi: string[] = multiImages.filter((mi): mi is string => mi !== undefined);
-    props.onChange(filteredMi);
-  };
+  const onChange = async (fileList?: FileList) => props.onChange(fileList);
 
   const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
     preventDragDefault(e);
     const fileList = e.dataTransfer.files;
-    if (!props.multiple && fileList.length > 1) {
-      setIsModalOpen(true);
-      return;
-    }
     await onChange(fileList);
     setHovered(false);
   };
 
-  const handleSelectFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    await onChange(e?.target?.files ?? undefined);
-  };
+  const handleSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => onChange(e?.target?.files);
 
-  const handleClick = () => {
-    inputEl.current?.click();
-  };
+  const handleClick = () => inputEl.current?.click();
 
   return (
     <Wrapper hovered={hovered} onDragEnter={handleDragEnter} onDrop={handleDrop} onDragLeave={handleDragLeave} onDragOver={preventDragDefault}>
       <Button size="xs" onClick={handleClick}>
-        Vyberte obrázek
+        {label}
       </Button>
-      <input ref={inputEl} onChange={handleSelectFile} type="file" accept="image/*" name={props.name} multiple={props.multiple} />
-      <Modal isOpen={isModalOpen} close={() => setIsModalOpen(false)} title="Chyba při nahrávání" text="Nelze nahrát více obrázků." />
+      <input ref={inputEl} onChange={handleSelectFile} accept={accept} type="file" name={name} multiple={multiple} />
     </Wrapper>
   );
 };
 
 DropArea.defaultProps = {
   multiple: false,
+  accept: undefined,
 };
 
 export default DropArea;

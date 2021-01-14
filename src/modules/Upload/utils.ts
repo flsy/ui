@@ -13,7 +13,7 @@ export const loadImage = async (imageSrc: string) =>
     };
   });
 
-export const readAsDataURL = async (file: File, options?: ReaderOptions): Promise<string | undefined> => {
+export const imageReader = async (file: File, options?: ReaderOptions): Promise<string | undefined> => {
   const fr = new FileReader();
 
   return new Promise((resolve, reject) => {
@@ -46,6 +46,23 @@ export const readAsDataURL = async (file: File, options?: ReaderOptions): Promis
       canvas.height = height;
       canvas.getContext('2d')?.drawImage(img, 0, 0, width, height);
       resolve(canvas.toDataURL('image/png'));
+    };
+
+    fr.readAsDataURL(file);
+  });
+};
+
+export const fileReader = async (file: File): Promise<string> => {
+  const fr = new FileReader();
+
+  return new Promise((resolve, reject) => {
+    fr.onerror = () => {
+      fr.abort();
+      reject(new DOMException('Error reading file.'));
+    };
+
+    fr.onload = async (e) => {
+      resolve(e.target.result as string);
     };
 
     fr.readAsDataURL(file);

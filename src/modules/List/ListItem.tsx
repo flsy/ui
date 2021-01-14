@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Colours } from '../../mainStyles';
@@ -57,7 +57,7 @@ interface IListItemProps {
   to?: string;
   onClick?: () => void;
   isActive?: boolean;
-  children: React.ReactChild;
+  children: ReactNode;
 }
 
 const ListItem = ({ to, children, onClick, isActive }: IListItemProps) => {

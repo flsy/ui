@@ -25,6 +25,10 @@ const form: MyForm = {
     type: 'image',
     label: 'Cat image',
   },
+  csv: {
+    type: 'csv',
+    label: 'Select CSV',
+  },
   password: {
     type: 'password',
     label: 'Password',

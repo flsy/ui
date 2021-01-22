@@ -1,3 +1,9 @@
+# 0.6.1
+- File uploader better state handling.
+
+# 0.6.0
+- File uploader returns file name
+
 # 0.5.0
 - Active state for inputs in theme colors
 - Checkbox check mark in theme colors

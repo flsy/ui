@@ -51,7 +51,8 @@ const SItem = css<SItemProps>`
 `;
 
 const SLink = styled(RRDLink)<SItemProps>`
-  ${SItem}
+  ${SItem};
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 const SButton = styled.div<SItemProps>`

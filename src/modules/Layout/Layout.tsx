@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Colours } from '../../mainStyles';
 import Time from '../Time/Time';
 
-const SLayout = styled.div`
+const styles = css`
   position: relative;
   display: grid;
   grid-template-columns: 200px 2rem auto 2rem;
@@ -51,11 +51,12 @@ interface ILayoutProps {
   navigation: ReactNode;
   version?: string;
   environment?: string;
+  className?: string;
 }
 
-const Layout = ({ navigation, children, version, environment }: ILayoutProps) => {
+const Layout = ({ className, navigation, children, version, environment }: ILayoutProps) => {
   return (
-    <SLayout>
+    <div className={className}>
       {environment && <SEnv>{environment}</SEnv>}
       <SNavigation>{navigation}</SNavigation>
       <SContent>{children}</SContent>
@@ -63,13 +64,16 @@ const Layout = ({ navigation, children, version, environment }: ILayoutProps) =>
         <Time />
         {version && <div>{version}</div>}
       </SFoot>
-    </SLayout>
+    </div>
   );
 };
 
 Layout.defaultProps = {
   version: undefined,
+  className: undefined,
   environment: undefined,
 };
 
-export default Layout;
+export default styled(Layout)`
+  ${styles}
+`;

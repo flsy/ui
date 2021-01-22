@@ -1,3 +1,6 @@
+# 0.6.3
+- Layout exported as styled component
+
 # 0.6.2
 - Navigation exported as styled component
 

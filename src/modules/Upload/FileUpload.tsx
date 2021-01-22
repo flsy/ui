@@ -9,7 +9,7 @@ import { fileReader } from './utils';
 import ListItem from '../List/ListItem';
 import List from '../List/List';
 
-export interface IFileUploadProps extends FieldProps<string | string[]> {
+export interface IFileUploadProps extends FieldProps<{ name: string; data: string }> {
   accept?: string;
 }
 
@@ -23,7 +23,7 @@ const FileUpload = ({ name, update, label, errorMessage, validation, accept }: I
   const handleChange = async (fl?: FileList) => {
     if (fl[0]) {
       const frResult = await fileReader(fl[0]);
-      update(name, frResult);
+      update(name, { name: fl[0].name, data: frResult });
       setFile(fl[0]);
     }
   };

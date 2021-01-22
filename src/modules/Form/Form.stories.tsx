@@ -2,6 +2,7 @@ import { boolean, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import { IForm } from 'react-metaforms';
 import { Container, Form } from '../../index';
+import Button from '../Button/Button';
 
 type MyForm = IForm<any>;
 
@@ -66,6 +67,7 @@ export const Basic = () => {
 
       <Container size="sm">
         <Form title="Login example" form={fields} onFormChange={setFields} onSubmit={({ formData }) => console.log(formData)} isLoading={boolean('isLoading', false)} />
+        <Button onClick={() => setFields(form)}>Reset</Button>
       </Container>
     </>
   );

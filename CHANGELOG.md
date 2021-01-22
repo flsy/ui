@@ -1,3 +1,6 @@
+# 0.6.4
+- Loading animation is using theme
+
 # 0.6.3
 - Layout exported as styled component
 

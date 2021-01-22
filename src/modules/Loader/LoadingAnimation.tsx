@@ -28,7 +28,7 @@ const SLoadingAnimation = styled.div<{ size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' }
 `;
 
 const SLoader = styled.div<{ size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'; inverted?: boolean }>`
-  color: ${({ inverted }) => (inverted ? '#fff' : Colours.main)};
+  color: ${({ inverted, theme }) => (inverted ? '#fff' : theme.colors.main.dark)};
   margin: 20px auto;
   position: relative;
   font-size: 11px;
@@ -38,7 +38,7 @@ const SLoader = styled.div<{ size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'; inverted?:
   &,
   &:before,
   &:after {
-    background: ${({ inverted }) => (inverted ? '#fff' : Colours.main)};
+    background: ${({ inverted, theme }) => (inverted ? '#fff' : theme.colors.main.dark)};
     animation: ${load} 1s infinite ease-in-out;
     width: 1em;
     height: 4em;

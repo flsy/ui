@@ -13,8 +13,6 @@ const SLogo = styled.div`
 
 type SItemProps = Transient<{ isActive: boolean; hasIcon: boolean; hasBadge: boolean }>;
 const SItem = css<SItemProps>`
-  color: ${Colours.font};
-  font-weight: 300;
   display: grid;
   align-items: center;
   grid-template-columns: auto;
@@ -140,10 +138,11 @@ const Divider = ({ children }: { children: string }) => <SDivider>{children}</SD
 interface INavigationProps {
   logo?: React.ReactElement;
   children: ReactNodeArray;
+  className?: string;
 }
 
-const Navigation = ({ logo, children }: INavigationProps) => (
-  <div>
+const Navigation = ({ logo, children, className }: INavigationProps) => (
+  <div className={className}>
     {logo && <SLogo>{logo}</SLogo>}
     <>{children}</>
   </div>
@@ -151,10 +150,14 @@ const Navigation = ({ logo, children }: INavigationProps) => (
 
 Navigation.defaultProps = {
   logo: undefined,
+  className: undefined,
 };
 
 Navigation.Divider = Divider;
 Navigation.Link = Link;
 Navigation.Button = Button;
 Navigation.Title = Title;
-export default Navigation;
+
+export default styled(Navigation)`
+  font-weight: 300;
+`;

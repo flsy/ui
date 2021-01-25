@@ -1,5 +1,4 @@
 import { css } from 'styled-components';
-import { Colours } from '../../mainStyles';
 import { Transient } from '../../types';
 
 export type ActiveProps = Transient<{
@@ -7,9 +6,9 @@ export type ActiveProps = Transient<{
 }>;
 
 export const ActiveStyle = css<ActiveProps>`
-  ${({ $isActive }) =>
+  ${({ $isActive, theme }) =>
     $isActive &&
     `
-      color: ${Colours.main}
+      color: ${theme.colors.main.primary}
   `}
 `;

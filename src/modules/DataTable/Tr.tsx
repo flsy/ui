@@ -22,11 +22,11 @@ export const STr = styled.tr<{ isClickable?: boolean; isSelected?: boolean; type
       }
     `}
 
-  ${({ isSelected }) =>
+  ${({ isSelected, theme }) =>
     isSelected &&
     css`
       ${STd} {
-        background-color: ${Colours.smidgenMain};
+        background-color: ${theme.colors.main.lighter};
       }
     `}
 
@@ -36,10 +36,10 @@ export const STr = styled.tr<{ isClickable?: boolean; isSelected?: boolean; type
       border-left: 3px solid ${Colours.smidgenWarning};
     `}
 
-    ${({ type }) =>
+    ${({ type, theme }) =>
     type === 'primary' &&
     css`
-      border-left: 3px solid ${Colours.main};
+      border-left: 3px solid ${theme.colors.main.primary};
     `}
 `;
 

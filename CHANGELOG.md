@@ -1,6 +1,12 @@
+# 0.6.5
+- Themed datatable selected row, sort and filter form
+- Updated datatable loader
+- Updated Button padding for sm and xs sizes
+- Themed navigation
+
 # 0.6.4
 - Loading animation is using theme
-- Navigation accepts only one children
+- Navigation accepts one or multiple children
 
 # 0.6.3
 - Layout exported as styled component

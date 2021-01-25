@@ -2,7 +2,6 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { calcFontSize, trainsitionTime } from '../../mainStyles';
 import LoadingAnimation from '../Loader/LoadingAnimation';
-import { Colors } from '../../createTheme';
 import { defaultButtonStyles, errorButtonStyles, linkButtonStyles, primaryButtonStyles } from './styles';
 
 export interface IButtonProps {
@@ -50,7 +49,13 @@ export const ButtonWrapper = styled.button<Omit<IButtonProps, 'children'>>`
     size &&
     css`
       font-size: ${calcFontSize(size)};
-      padding: 0.5em 1em;
+      padding: 0.3em 0.8em;
+    `}
+
+  ${({ size }) =>
+    (size === 'xs' || size === 'sm') &&
+    css`
+      padding: 0.2rem 0.5rem;
     `}
 
   ${({ disabled }) =>

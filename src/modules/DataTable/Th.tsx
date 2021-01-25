@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import { getFormData } from 'react-metaforms';
 import styled from 'styled-components';
 import { Column, getFilterFormValue, unsetAllSortFormValues } from 'metatable';
 import { Field } from 'metaforms';

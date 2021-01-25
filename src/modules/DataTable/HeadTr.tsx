@@ -1,6 +1,5 @@
 import React, { Children, useContext } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Colours } from '../../mainStyles';
 import { DataTableContext } from './context';
 import { IHeadTr } from './interfaces';
 import { STh } from './Th';
@@ -8,17 +7,6 @@ import { STh } from './Th';
 const first = keyframes`
   0% {
     left: -100%;
-    width: 100%;
-  }
-  100% {
-    left: 100%;
-    width: 20%;
-  }
-`;
-
-const second = keyframes`
-  0% {
-    left: -150%;
     width: 100%;
   }
   100% {
@@ -39,21 +27,14 @@ const SIntermediate = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+  background-color: ${({ theme }) => theme.colors.main.lighter};
 
   :before {
     content: '';
     position: absolute;
     height: 100%;
-    background-color: ${Colours.main};
-    animation: ${first} 2s infinite ease-out;
-  }
-
-  :after {
-    content: '';
-    position: absolute;
-    height: 100%;
-    background-color: ${Colours.mainHover};
-    animation: ${second} 2s infinite ease-in;
+    background-color: ${({ theme }) => theme.colors.main.primary};
+    animation: ${first} 1s infinite ease-out;
   }
 `;
 

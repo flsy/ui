@@ -42,11 +42,11 @@ const SItem = css<SItemProps>`
     background: ${Colours.smidgenGrey};
   }
 
-  ${({ $isActive }) =>
+  ${({ $isActive, theme }) =>
     $isActive &&
     `
-    color: ${Colours.main};
-    border-right: 2px solid ${Colours.main};
+    color: ${theme.colors.main.primary};
+    border-right: 2px solid ${theme.colors.main.primary};
   `}
 `;
 

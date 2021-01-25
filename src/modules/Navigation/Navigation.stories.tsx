@@ -23,7 +23,9 @@ export const Styled = (): JSX.Element => {
   return (
     <StyledNavigation>
       <Navigation.Title>Buttons</Navigation.Title>
-      <Navigation.Button isActive={true} onClick={action('clicked')}>Button 1</Navigation.Button>
+      <Navigation.Button isActive={true} onClick={action('clicked')}>
+        Button 1
+      </Navigation.Button>
       <Navigation.Button onClick={action('clicked')}>Button 2</Navigation.Button>
     </StyledNavigation>
   );

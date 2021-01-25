@@ -1,5 +1,6 @@
 # 0.6.4
 - Loading animation is using theme
+- Navigation accepts only one children
 
 # 0.6.3
 - Layout exported as styled component

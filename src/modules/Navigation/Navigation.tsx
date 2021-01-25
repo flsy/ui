@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactNodeArray } from 'react';
+import React, { ReactNode } from 'react';
 import { Link as RRDLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { Colours } from '../../mainStyles';
@@ -138,7 +138,7 @@ const Divider = ({ children }: { children: string }) => <SDivider>{children}</SD
 
 interface INavigationProps {
   logo?: React.ReactElement;
-  children: ReactNodeArray;
+  children: ReactNode;
   className?: string;
 }
 

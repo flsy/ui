@@ -6,12 +6,12 @@ import TimePicker from './TimePicker';
 import { isSameDay, isToday } from './utils';
 
 interface IProps {
-  value: Date;
+  value?: Date;
   onChange: (date: Date) => void;
   withTimePicker?: boolean;
 }
 
-const DatePicker = ({ value, onChange, withTimePicker }: IProps) => {
+const DatePicker = ({ onChange, withTimePicker, value }: IProps) => {
   const [year, setYear] = useState(value.getFullYear());
   const [month, setMonth] = useState(value.getMonth());
 
@@ -44,6 +44,7 @@ const DatePicker = ({ value, onChange, withTimePicker }: IProps) => {
 };
 
 DatePicker.defaultProps = {
+  value: new Date(),
   withTimePicker: false,
 };
 

@@ -7,7 +7,7 @@ const Day = styled.div<{ isDisabled?: boolean; isCurrent?: boolean; isSelected?:
 
   &:hover {
     color: ${Colours.background};
-    background-color: ${Colours.lighterMain};
+    background-color: ${({ theme }) => theme.colors.main.dark};
     outline: none;
   }
 
@@ -24,11 +24,11 @@ const Day = styled.div<{ isDisabled?: boolean; isCurrent?: boolean; isSelected?:
       outline: 1.25px dashed ${Colours.smidgenInfo};
     `}
 
-  ${({ isSelected }) =>
+  ${({ isSelected, theme }) =>
     isSelected &&
     css`
       color: ${Colours.background};
-      background: ${Colours.main};
+      background: ${theme.colors.main.primary};
       outline: none;
     `}
 `;

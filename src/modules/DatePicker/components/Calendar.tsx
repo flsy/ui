@@ -12,7 +12,7 @@ const CalendarWrapper = styled.div`
   padding: 4px;
   text-align: center;
   display: grid;
-  grid-template-columns: repeat(6, auto);
+  grid-template-columns: repeat(7, auto);
 `;
 
 const DayName = styled.div`

@@ -21,6 +21,7 @@ const Input = React.forwardRef((props: IProps, ref: React.Ref<HTMLInputElement>)
     <InputWrapper>
       {props.label && <Label fieldId={props.name} label={props.label} isRequired={isRequired(props.validation)} />}
       <InputStyled
+        autoComplete="off"
         ref={ref}
         id={props.name}
         type={props.type}

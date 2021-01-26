@@ -45,7 +45,7 @@ export const getComponent = <T extends Field>(parentGetComponent?: Components<T>
     case 'submit':
       return <Submit key={props.name} {...props} />;
     case 'date':
-      return <DatePicker key={props.name} {...props} value={props.value * 1000} />;
+      return <DatePicker key={props.name} {...props} />;
     case 'image':
       return <ImageUpload key={props.name} {...props} multiple={true} />;
     case 'csv':

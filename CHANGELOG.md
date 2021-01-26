@@ -1,3 +1,8 @@
+# 0.6.6
+- Themed datepicker
+- Fixed datepicker and datetimepicker bugs
+- Input autocomplete prop set to off
+
 # 0.6.5
 - Themed datatable selected row, sort and filter form
 - Updated datatable loader

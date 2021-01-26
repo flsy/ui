@@ -15,17 +15,17 @@ interface IProps {
 }
 
 const RangeDay = styled(Day)<{ isHighlighted: boolean }>`
-  ${({ isHighlighted, isSelected }) =>
+  ${({ isHighlighted, isSelected, theme }) =>
     isHighlighted &&
     !isSelected &&
     css`
       color: ${Colours.background};
-      background: ${Colours.lightMain};
+      background: ${theme.colors.main.light};
       outline: none;
 
       &:hover {
         color: ${Colours.background};
-        background: ${Colours.lighterMain};
+        background: ${theme.colors.main.dark};
       }
     `}
 `;

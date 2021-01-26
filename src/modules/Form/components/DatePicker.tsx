@@ -2,7 +2,7 @@ import React from 'react';
 import { FieldProps } from 'react-metaforms';
 import styled from 'styled-components';
 import DatePickerComponent from '../../DatePicker/DatePicker';
-import { getDate, toISOStringDate, toISOStringDateTime } from '../../DatePicker/utils';
+import { toISOStringDate, toISOStringDateTime } from '../../DatePicker/utils';
 import Input from '../../inputs/Input';
 import Popup, { PopupWrapper } from '../../Popup/Popup';
 
@@ -14,32 +14,22 @@ const Wrapper = styled.div`
   }
 `;
 
-export interface IDatePickerProps extends FieldProps<number> {
+export interface IDatePickerProps extends FieldProps<string> {
   withTimePicker?: boolean;
 }
 
-const toSecondsTimestamp = (date: Date): number => Math.round(date.getTime() / 1000);
-
-const DatePicker = ({ withTimePicker, ...props }: IDatePickerProps) => {
+const DatePicker = ({ withTimePicker, updateAndValidate, name, value, ...props }: IDatePickerProps) => {
   const [isShown, showDatePicker] = React.useState<boolean>(false);
 
   const onChange = (date: Date) => {
-    props.update(props.name, toSecondsTimestamp(date));
+    return updateAndValidate(name, withTimePicker ? toISOStringDateTime(date) : toISOStringDate(date));
   };
 
   return (
     <Wrapper>
-      <Input
-        {...props}
-        updateAndValidate={(name, value) => props.updateAndValidate(name, toSecondsTimestamp(new Date(value)))}
-        update={(name, value) => props.update(name, toSecondsTimestamp(new Date(value)))}
-        value={withTimePicker ? toISOStringDateTime(getDate(props.value)) : toISOStringDate(getDate(props.value))}
-        type="text"
-        onFocus={() => showDatePicker(true)}
-        onBlur={() => null}
-      />
+      <Input {...props} name={name} update={() => {}} updateAndValidate={() => {}} value={value} type="text" onFocus={() => showDatePicker(true)} />
       <Popup isOpen={isShown} onClose={() => showDatePicker(false)}>
-        <DatePickerComponent value={getDate(props.value)} onChange={onChange} withTimePicker={withTimePicker} />
+        <DatePickerComponent value={value ? new Date(value) : undefined} onChange={onChange} withTimePicker={withTimePicker} />
       </Popup>
     </Wrapper>
   );

@@ -1,6 +1,7 @@
 import { storiesOf } from '@storybook/react';
 import React, { useState } from 'react';
 import { FormData } from 'react-metaforms';
+import { required } from 'metaforms';
 import { Form } from '../../index';
 import DatePicker from './DatePicker';
 import DateRangePicker from './DateRangePicker';
@@ -17,6 +18,7 @@ const datePickerForm = {
     label: 'Enter end date',
     type: 'datetime-local',
     value: toISOStringDateTime(new Date()),
+    validation: [required('Toto pole je povinné')],
   },
   name: {
     label: 'Another text field',

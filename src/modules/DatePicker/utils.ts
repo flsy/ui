@@ -16,26 +16,6 @@ export const toISOStringDateTime = (date: Date) => {
 
 export const toISOStringDate = (date: Date) => [date.getFullYear(), date.getMonth() + 1, date.getDate()].map(pad).join('-');
 
-export const getDate = <Value>(value?: Value): Date => {
-  switch (typeof value) {
-    case 'string':
-    case 'number': {
-      const date = new Date(value);
-      if (Number.isNaN(date.getTime())) {
-        return new Date();
-      }
-      return date;
-    }
-
-    case 'boolean':
-    case 'undefined':
-      return new Date();
-
-    default:
-      return value as any;
-  }
-};
-
 // const daysMap = ["Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota", "Neděle"];
 export const daysMap = ['Po', 'Út', 'St', 'Čt', 'Pá', 'So', 'Ne'];
 export const monthMap = ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'];

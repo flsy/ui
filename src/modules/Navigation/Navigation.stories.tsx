@@ -10,6 +10,8 @@ export const Basic = (): JSX.Element => {
       <Navigation.Title>Buttons</Navigation.Title>
       <Navigation.Button onClick={action('clicked')}>Button 1</Navigation.Button>
       <Navigation.Button onClick={action('clicked')}>Button 2</Navigation.Button>
+      <Navigation.Button onClick={action('clicked')} isSub={true} isActive={true}>Submenu Button 3</Navigation.Button>
+      <Navigation.Button onClick={action('clicked')} isSub={true}>Submenu Button 4</Navigation.Button>
     </Navigation>
   );
 };

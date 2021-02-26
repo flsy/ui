@@ -76,7 +76,7 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...p
     if (isValidDate(from) && isValidDate(to)) {
       setErrorMessage(undefined);
     } else {
-      setErrorMessage('invalid date range');
+      setErrorMessage('Datum není ve správném formátu');
     }
   }, [value]);
 

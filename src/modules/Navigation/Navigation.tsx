@@ -11,7 +11,7 @@ const SLogo = styled.div`
   padding: 1em 0;
 `;
 
-type SItemProps = Transient<{ isActive: boolean; hasIcon: boolean; hasBadge: boolean }>;
+type SItemProps = Transient<{ isActive: boolean; hasIcon: boolean; hasBadge: boolean; isSub: boolean }>;
 const SItem = css<SItemProps>`
   display: grid;
   align-items: center;
@@ -47,6 +47,12 @@ const SItem = css<SItemProps>`
     `
     color: ${theme.colors.main.primary};
     border-right: 2px solid ${theme.colors.main.primary};
+  `}
+
+  ${({ $isSub }) =>
+    $isSub &&
+    `
+    padding-left: 2em;
   `}
 `;
 
@@ -95,13 +101,14 @@ export interface ILinkProps {
   children: string;
   to: string;
   isActive?: boolean;
+  isSub?: boolean;
   icon?: ReactNode;
   badge?: ReactNode;
 }
 
-const Link = ({ children, to, isActive, icon, badge }: ILinkProps) => {
+const Link = ({ children, to, isActive, icon, badge, isSub }: ILinkProps) => {
   return (
-    <SLink to={to} $isActive={!!isActive} $hasIcon={!!icon} $hasBadge={!!badge}>
+    <SLink to={to} $isActive={!!isActive} $hasIcon={!!icon} $hasBadge={!!badge} $isSub={isSub}>
       {icon && <SIcon>{icon}</SIcon>}
       <div>{children}</div>
       {badge && <div>{badge}</div>}
@@ -113,13 +120,14 @@ interface IButtonProps {
   children: string;
   onClick: () => void;
   isActive?: boolean;
+  isSub?: boolean;
   icon?: ReactNode;
   badge?: ReactNode;
 }
 
-const Button = ({ children, onClick, isActive, icon, badge }: IButtonProps) => {
+const Button = ({ children, onClick, isActive, icon, badge, isSub }: IButtonProps) => {
   return (
-    <SButton onClick={onClick} $isActive={!!isActive} $hasIcon={!!icon} $hasBadge={!!badge}>
+    <SButton onClick={onClick} $isActive={!!isActive} $hasIcon={!!icon} $hasBadge={!!badge} $isSub={isSub}>
       {icon && <SIcon>{icon}</SIcon>}
       <div>{children}</div>
       {badge && <div>{badge}</div>}
@@ -129,6 +137,7 @@ const Button = ({ children, onClick, isActive, icon, badge }: IButtonProps) => {
 
 Button.defaultProps = {
   isActive: false,
+  isSub: false,
   icon: undefined,
   badge: undefined,
 };

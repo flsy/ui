@@ -13,6 +13,7 @@ import ImageUpload from '../Upload/ImageUpload';
 import DatePicker, { DateTimePicker } from './components/DatePicker';
 import { FormTags } from './components/Tag';
 import FileUpload from '../Upload/FileUpload';
+import { DateTimeRangePicker } from './components/DateRangePicker';
 
 export const getComponent = <T extends Field>(parentGetComponent?: Components<T>) => (componentProps: ComponentProps<T>) => {
   if (parentGetComponent) {
@@ -52,6 +53,8 @@ export const getComponent = <T extends Field>(parentGetComponent?: Components<T>
       return <FileUpload key={props.name} {...props} accept=".csv" />;
     case 'datetime-local':
       return <DateTimePicker key={props.name} {...props} />;
+    case 'dateTimeRange':
+      return <DateTimeRangePicker key={props.name} {...props} />;
     case 'button-group':
       return <ButtonGroup key={props.name}>{groupChildren}</ButtonGroup>;
     case 'multiselect':

@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Colours } from '../../mainStyles';
 import Calendar from './components/Calendar';
@@ -10,7 +10,7 @@ import { isInRange, isSameDay, isToday } from './utils';
 
 interface IProps {
   dateRange: IDateRange;
-  setDateRange: Dispatch<SetStateAction<IDateRange>>;
+  setDateRange: (dateRange: IDateRange) => void;
   withTimePicker?: boolean;
 }
 

@@ -23,16 +23,11 @@ export const pad = (n: number) => (n < 10 ? `0${n}` : n);
 const trim = (s: string) => s.trim();
 
 // DD-MM-YYYY hh:mm
-const toStringDateTime = (date?: Date): string => {
-  return date ? `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} ${pad(date.getHours())}:${pad(date.getMinutes())}` : '';
+const toStringDateTime = (date: Date): string => {
+  return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} ${pad(date.getHours())}:${pad(date.getMinutes())}`;
 };
 
-const timeReadable = (timestamp?: number) => {
-  if (!timestamp) {
-    return '';
-  }
-  return toStringDateTime(new Date(timestamp * 1000));
-};
+const timeReadable = (timestamp: number) => toStringDateTime(new Date(timestamp * 1000));
 
 const toTimestamp = (date: Date): number => Math.round(date.valueOf() / 1000);
 
@@ -52,6 +47,8 @@ const isValidDate = (date?: string): boolean => {
   }
 };
 
+const isSet = (val: unknown): boolean => !!val;
+
 const splitStringDate = (date: string): string[] => date.split('-').map(trim);
 
 const getDateRange = (value: string[]): IDateRange => {
@@ -60,7 +57,7 @@ const getDateRange = (value: string[]): IDateRange => {
   return { startDate, endDate };
 };
 
-const rangeToValue = (fields: IDateRangePickerProps['fields']): string => [fields['Start Time'].value, fields['End Time'].value].map(timeReadable).join(' - ');
+const rangeToValue = (fields: IDateRangePickerProps['fields']): string => [fields['Start Time'].value, fields['End Time'].value].filter(isSet).map(timeReadable).join(' - ');
 
 const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...props }: IDateRangePickerProps) => {
   const [isShown, showDatePicker] = useState<boolean>(false);
@@ -70,17 +67,21 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...p
   React.useEffect(() => {
     const [from, to] = splitStringDate(value).filter(isValidDate);
 
+    if (isValidDate(from)) {
+      updateAndValidate([name, 'Start Time'].join('.'), toTimestamp(dateTimeToDate(from)));
+    }
+    if (isValidDate(to)) {
+      updateAndValidate([name, 'End Time'].join('.'), toTimestamp(dateTimeToDate(to)));
+    }
     if (isValidDate(from) && isValidDate(to)) {
       setErrorMessage(undefined);
-      updateAndValidate([name, 'Start Time'].join('.'), toTimestamp(dateTimeToDate(from)));
-      updateAndValidate([name, 'End Time'].join('.'), toTimestamp(dateTimeToDate(to)));
     } else {
       setErrorMessage('invalid date range');
     }
   }, [value]);
 
   const setDateRange = (range: IDateRange) => {
-    setValue([range.startDate, range.endDate].map(toStringDateTime).join(' - '));
+    setValue([range.startDate, range.endDate].filter(isSet).map(toStringDateTime).join(' - '));
   };
 
   return (

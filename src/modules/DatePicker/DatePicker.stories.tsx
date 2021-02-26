@@ -20,6 +20,23 @@ const datePickerForm = {
     value: toISOStringDateTime(new Date()),
     validation: [required('Toto pole je povinné')],
   },
+  dateRange: {
+    type: 'dateTimeRange',
+    label: 'label',
+    fields: {
+      'Start Time': {
+        label: 'Obdobi od',
+        name: 'Start Time',
+        type: 'datetime-local',
+        value: 1613829172,
+      },
+      'End Time': {
+        label: 'Obdobi od',
+        name: 'Start Time',
+        type: 'datetime-local',
+      },
+    },
+  },
   name: {
     label: 'Another text field',
     type: 'text',
@@ -37,6 +54,10 @@ const DatePickerStory = () => {
 
   return (
     <>
+      <h3>DatePicker in Form</h3>
+      <Form<any> title="Datepicker form example" form={fields} onFormChange={(f) => setFields(f)} onSubmit={({ formData }) => onSubmit(formData)} />
+      <pre>{JSON.stringify(submitted, null, 2)}</pre>
+
       <h3>DatePicker</h3>
       <DatePicker value={date} onChange={setDate} />
       <p>{toISOStringDate(date)}</p>
@@ -44,10 +65,6 @@ const DatePickerStory = () => {
       <h3>DatePicker with TimePicker</h3>
       <DatePicker value={date} onChange={setDate} withTimePicker={true} />
       <p>{toISOStringDateTime(date)}</p>
-
-      <h3>DatePicker in Form</h3>
-      <Form<any> title="Datepicker example" form={fields} onFormChange={(f) => setFields(f)} onSubmit={({ formData }) => onSubmit(formData)} />
-      <pre>{JSON.stringify(submitted, null, 2)}</pre>
     </>
   );
 };

@@ -20,10 +20,11 @@ export interface IDateRangePickerProps extends FieldProps<number> {
 }
 
 export const pad = (n: number) => (n < 10 ? `0${n}` : n);
+const trim = (s: string) => s.trim();
 
 // DD-MM-YYYY hh:mm
-const toStringDateTime = (date: Date) => {
-  return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} ${pad(date.getHours())}:${pad(date.getMinutes())}`;
+const toStringDateTime = (date?: Date): string => {
+  return date ? `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} ${pad(date.getHours())}:${pad(date.getMinutes())}` : '';
 };
 
 const timeReadable = (timestamp?: number) => {
@@ -33,20 +34,25 @@ const timeReadable = (timestamp?: number) => {
   return toStringDateTime(new Date(timestamp * 1000));
 };
 
-const dateTimeToDate = (dateTime: string) => {
+const toTimestamp = (date: Date): number => Math.round(date.valueOf() / 1000);
+
+const dateTimeToDate = (dateTime: string): Date => {
   const [date, time] = dateTime.split(' ');
   const [day, month, year] = date.split('.').map((s) => parseInt(s, 10));
   const [hour, minutes] = time.split(':').map((s) => parseInt(s, 10));
 
-  return new Date(year, month, day, hour, minutes);
+  return new Date(year, month - 1, day, hour, minutes);
 };
 
-const isValidDate = (date?: string): boolean => date && !Number.isNaN(dateTimeToDate(date).getTime());
-
-const splitStringDate = (date: string): string[] => {
-  const split = date.split('-').map((d) => d.trim());
-  return split;
+const isValidDate = (date?: string): boolean => {
+  try {
+    return date && !Number.isNaN(dateTimeToDate(date).getTime());
+  } catch (e) {
+    return false;
+  }
 };
+
+const splitStringDate = (date: string): string[] => date.split('-').map(trim);
 
 const getDateRange = (value: string[]): IDateRange => {
   const [startDate, endDate] = value.filter(isValidDate).map(dateTimeToDate);
@@ -54,40 +60,43 @@ const getDateRange = (value: string[]): IDateRange => {
   return { startDate, endDate };
 };
 
-const rangeToValue = (fields: IDateRangePickerProps['fields']) => `${timeReadable(fields['Start Time'].value)} - ${timeReadable(fields['End Time'].value)}`;
+const rangeToValue = (fields: IDateRangePickerProps['fields']): string => [fields['Start Time'].value, fields['End Time'].value].map(timeReadable).join(' - ');
 
 const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...props }: IDateRangePickerProps) => {
   const [isShown, showDatePicker] = useState<boolean>(false);
   const [value, setValue] = useState<string>(rangeToValue(fields));
+  const [errorMessage, setErrorMessage] = useState<string>(props.errorMessage);
 
-  const onInputUpdate = (path: string, fieldValue: string) => {
-    const range = getDateRange(splitStringDate(fieldValue));
-    setValue(fieldValue);
+  React.useEffect(() => {
+    const [from, to] = splitStringDate(value).filter(isValidDate);
 
-    if (range) {
-      if (range.startDate) {
-        updateAndValidate([name, 'Start Time'].join('.'), range.startDate.valueOf());
-      }
-      if (range.endDate) {
-        updateAndValidate([name, 'End Time'].join('.'), range.endDate.valueOf());
-      }
+    if (isValidDate(from) && isValidDate(to)) {
+      setErrorMessage(undefined);
+      updateAndValidate([name, 'Start Time'].join('.'), toTimestamp(dateTimeToDate(from)));
+      updateAndValidate([name, 'End Time'].join('.'), toTimestamp(dateTimeToDate(to)));
     } else {
-      // handle errors
+      setErrorMessage('invalid date range');
     }
-  };
+  }, [value]);
 
   const setDateRange = (range: IDateRange) => {
-    if (range.startDate) {
-      updateAndValidate([name, 'Start Time'].join('.'), range.startDate.valueOf());
-    }
-    if (range.endDate) {
-      updateAndValidate([name, 'End Time'].join('.'), range.endDate.valueOf());
-    }
+    setValue([range.startDate, range.endDate].map(toStringDateTime).join(' - '));
   };
 
   return (
     <Wrapper>
-      <Input {...props} name={name} update={onInputUpdate} validation={[]} updateAndValidate={() => {}} value={value} type="text" onFocus={() => showDatePicker(true)} />
+      <Input
+        {...props}
+        name={name}
+        label={[fields['Start Time'].label, fields['End Time'].label].join(' - ')}
+        errorMessage={errorMessage}
+        update={(path, v) => setValue(v)}
+        validation={[]}
+        updateAndValidate={() => null}
+        value={value}
+        type="text"
+        onFocus={() => showDatePicker(true)}
+      />
       <Popup isOpen={isShown} onClose={() => showDatePicker(false)}>
         <DateRangePickerComponent setDateRange={setDateRange} dateRange={getDateRange(splitStringDate(value))} withTimePicker={withTimePicker} />
       </Popup>

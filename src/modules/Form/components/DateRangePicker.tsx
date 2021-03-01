@@ -5,6 +5,7 @@ import Input from '../../inputs/Input';
 import Popup, { PopupWrapper } from '../../Popup/Popup';
 import DateRangePickerComponent from '../../DatePicker/DateRangePicker';
 import { IDateRange } from '../../DatePicker/interfaces';
+import InlineGroup from './InlineGroup';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -12,10 +13,6 @@ const Wrapper = styled.div`
   ${PopupWrapper} {
     margin-top: -1.2em;
   }
-`;
-
-const SInlineGroup = styled.div`
-  display: flex;
 `;
 
 export interface IDateRangePickerProps extends FieldProps<number> {
@@ -58,13 +55,7 @@ const isValidDateTime = (dateTime?: number): boolean => {
   }
 };
 
-const isSame = (date: Date, n?: number): boolean => {
-  if (isValidDateTime(n) && toStringDateTime(date) === timeReadable(n)) {
-    return true;
-  }
-
-  return false;
-};
+const isSame = (date: Date, n?: number): boolean => isValidDateTime(n) && toStringDateTime(date) === timeReadable(n);
 
 const getDateRange = (value: { from: string; to: string }): IDateRange => {
   return {
@@ -75,18 +66,22 @@ const getDateRange = (value: { from: string; to: string }): IDateRange => {
 
 const cond = (a, b) => (a ? b() : undefined);
 
-const rangeToValue = (fields: IDateRangePickerProps['fields']) => ({
+const rangeToValue = (fields: IDateRangePickerProps['fields']): IState => ({
   from: cond(fields['Start Time'].value, () => timeReadable(fields['Start Time'].value)),
   to: cond(fields['End Time'].value, () => timeReadable(fields['End Time'].value)),
 });
 
+interface IState {
+  from: string;
+  to: string;
+}
+
 const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...props }: IDateRangePickerProps) => {
   const [isShown, showDatePicker] = useState<'none' | 'from' | 'to'>('none');
-  const [value, setValue] = useState<{ from: string; to: string }>({ from: '', to: '' });
+  const [value, setValue] = useState<IState>({ from: '', to: '' });
 
   React.useEffect(() => {
-    const { from, to } = rangeToValue(fields);
-    setValue({ from, to });
+    setValue(rangeToValue(fields));
   }, [fields]);
 
   const setDateRange = (dateRange: IDateRange) => {
@@ -98,48 +93,36 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...p
     }
   };
 
-  const onBlurFrom = () => {
-    if (isValidDate(value.from)) {
-      updateAndValidate([name, 'Start Time'].join('.'), toTimestamp(dateTimeToDate(value.from)));
-    }
-  };
-
-  const onBlurTo = () => {
-    if (isValidDate(value.to)) {
-      updateAndValidate([name, 'End Time'].join('.'), toTimestamp(dateTimeToDate(value.to)));
+  const onBlur = (fieldName: string, property: keyof IState) => () => {
+    if (isValidDate(value[property])) {
+      updateAndValidate([name, fieldName].join('.'), toTimestamp(dateTimeToDate(value[property])));
     }
   };
 
   return (
     <Wrapper>
-      <SInlineGroup>
+      <InlineGroup>
         <Input
           {...props}
-          name={name}
-          label={fields['Start Time'].label}
+          {...fields['Start Time']}
           errorMessage={value.from && !isValidDate(value.from) ? 'Datum není ve správném formátu' : undefined}
           update={(path, from) => setValue({ from, to: value.to })}
-          validation={fields['Start Time'].validation}
           updateAndValidate={() => null}
           value={value.from}
-          type="text"
           onFocus={() => showDatePicker('from')}
-          onBlur={onBlurFrom}
+          onBlur={onBlur('Star Time', 'from')}
         />
         <Input
           {...props}
-          name={name}
-          label={fields['End Time'].label}
+          {...fields['End Time']}
           errorMessage={value.to && !isValidDate(value.to) ? 'Datum není ve správném formátu' : undefined}
           update={(path, to) => setValue({ to, from: value.from })}
-          validation={fields['End Time'].validation}
           updateAndValidate={() => null}
           value={value.to}
-          type="text"
           onFocus={() => showDatePicker('to')}
-          onBlur={onBlurTo}
+          onBlur={onBlur('End Time', 'to')}
         />
-      </SInlineGroup>
+      </InlineGroup>
       <Popup isOpen={isShown !== 'none'} onClose={() => showDatePicker('none')}>
         <DateRangePickerComponent setDateRange={setDateRange} dateRange={getDateRange(value)} withTimePicker={withTimePicker} startedWithEndDate={isShown === 'to'} />
       </Popup>

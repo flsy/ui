@@ -60,12 +60,6 @@ export const getComponent = <T extends Field>(parentGetComponent?: Components<T>
       return <ButtonGroup key={props.name}>{groupChildren}</ButtonGroup>;
     case 'multiselect':
       return <FormCheckboxList key={props.name} {...props} labels={{ search: 'Hledat', empty: 'Žádný záznam' }} />;
-    case 'inline-group':
-      return (
-        <InlineGroup key={props.name} hidden={component.hidden}>
-          {groupChildren}
-        </InlineGroup>
-      );
     case 'group':
       return (
         <Group key={props.name} legend={component.legend} hidden={component.hidden}>

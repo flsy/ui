@@ -27,13 +27,13 @@ const datePickerForm = {
       'Start Time': {
         label: 'Obdobi od',
         name: 'Start Time',
-        type: 'datetime-local',
-        value: 1613829172,
+        type: 'text',
       },
       'End Time': {
         label: 'Obdobi do',
         name: 'Start Time',
-        type: 'datetime-local',
+        type: 'text',
+        value: 1613829172,
       },
     },
   },

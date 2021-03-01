@@ -12,6 +12,7 @@ interface IProps {
   dateRange: IDateRange;
   setDateRange: (dateRange: IDateRange) => void;
   withTimePicker?: boolean;
+  startedWithEndDate?: boolean;
 }
 
 const RangeDay = styled(Day)<{ isHighlighted: boolean }>`
@@ -30,7 +31,7 @@ const RangeDay = styled(Day)<{ isHighlighted: boolean }>`
     `}
 `;
 
-const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, withTimePicker }: IProps) => {
+const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, withTimePicker, startedWithEndDate }: IProps) => {
   const [year, setYear] = useState(startDate?.getFullYear() || new Date().getFullYear());
   const [month, setMonth] = useState(startDate?.getMonth() || new Date().getMonth());
   const [hoverDate, setHoverDate] = useState<Date>();
@@ -39,17 +40,36 @@ const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, with
     const now = new Date();
     const pickDay = new Date(y, m, d, now.getHours(), now.getMinutes(), now.getSeconds());
 
-    if (!startDate && !endDate) {
-      return setDateRange({ startDate: pickDay });
-    }
-    if (startDate && startDate > pickDay) {
-      return setDateRange({ startDate: pickDay });
-    }
-    if (startDate && !endDate) {
-      return setDateRange({ startDate, endDate: pickDay });
-    }
-    if (startDate && endDate) {
-      return setDateRange({ startDate: pickDay });
+    // todo refactor this
+    if (startedWithEndDate) {
+      if (!startDate && !endDate) {
+        return setDateRange({ endDate: pickDay });
+      }
+      if (!startDate && endDate) {
+        return setDateRange({ startDate: pickDay, endDate });
+      }
+      if (startDate && endDate) {
+        return setDateRange({ startDate, endDate: pickDay });
+      }
+      if (startDate && !endDate) {
+        return setDateRange({ startDate, endDate: pickDay });
+      }
+    } else {
+      if (!startDate && !endDate) {
+        return setDateRange({ startDate: pickDay });
+      }
+      if (startDate && startDate > pickDay) {
+        return setDateRange({ startDate: pickDay });
+      }
+      if (startDate && !endDate) {
+        return setDateRange({ startDate, endDate: pickDay });
+      }
+      if (startDate && endDate) {
+        return setDateRange({ startDate: pickDay });
+      }
+      if (!startDate && endDate) {
+        return setDateRange({ startDate: pickDay, endDate });
+      }
     }
     return setDateRange({});
   };
@@ -83,6 +103,7 @@ const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, with
 
 DateRangePicker.defaultProps = {
   withTimePicker: false,
+  startedWithEndDate: false,
 };
 
 export default DateRangePicker;

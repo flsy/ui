@@ -7,12 +7,14 @@ import SelectYearAndMonth from './components/SelectYearAndMonth';
 import { IDateRange } from './interfaces';
 import TimePicker from './TimePicker';
 import { isInRange, isSameDay, isToday } from './utils';
+import Flex from '../Layout/Flex';
 
 interface IProps {
   dateRange: IDateRange;
   setDateRange: (dateRange: IDateRange) => void;
   withTimePicker?: boolean;
   startedWithEndDate?: boolean;
+  showPrevMonth?: boolean;
 }
 
 const RangeDay = styled(Day)<{ isHighlighted: boolean }>`
@@ -31,9 +33,20 @@ const RangeDay = styled(Day)<{ isHighlighted: boolean }>`
     `}
 `;
 
-const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, withTimePicker, startedWithEndDate }: IProps) => {
+const getMonth = (startDate?: Date, showPrevMonth?: boolean) => {
+  if (startDate && !showPrevMonth) {
+    return startDate.getMonth();
+  }
+  if (startDate && showPrevMonth) {
+    return startDate.getMonth() - 1;
+  }
+
+  return showPrevMonth ? new Date().getMonth() - 1 : new Date().getMonth();
+};
+
+const DateRangePickerComponent = ({ setDateRange, dateRange: { startDate, endDate }, withTimePicker, startedWithEndDate, showPrevMonth }: IProps) => {
   const [year, setYear] = useState(startDate?.getFullYear() || new Date().getFullYear());
-  const [month, setMonth] = useState(startDate?.getMonth() || new Date().getMonth());
+  const [month, setMonth] = useState(getMonth(startDate, showPrevMonth));
   const [hoverDate, setHoverDate] = useState<Date>();
 
   const onDateClick = (d: number, m: number, y: number) => {
@@ -101,9 +114,27 @@ const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, with
   );
 };
 
+const DateRangePicker = ({ showPrevMonth, ...props }: IProps) => {
+  if (showPrevMonth) {
+    return (
+      <Flex horizontal={true}>
+        <DateRangePickerComponent {...props} showPrevMonth={showPrevMonth} />
+        <DateRangePickerComponent {...props} />
+      </Flex>
+    );
+  }
+
+  return <DateRangePickerComponent {...props} />;
+};
+
 DateRangePicker.defaultProps = {
   withTimePicker: false,
   startedWithEndDate: false,
+  showPrevMonth: false,
+};
+
+DateRangePickerComponent.defaultProps = {
+  ...DateRangePicker.defaultProps,
 };
 
 export default DateRangePicker;

@@ -123,8 +123,14 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...p
           onBlur={onBlur('End Time', 'to')}
         />
       </InlineGroup>
-      <Popup isOpen={isShown !== 'none'} onClose={() => showDatePicker('none')}>
-        <DateRangePickerComponent setDateRange={setDateRange} dateRange={getDateRange(value)} withTimePicker={withTimePicker} startedWithEndDate={isShown === 'to'} />
+      <Popup isOpen={isShown !== 'none'} onClose={() => showDatePicker('none')} styles={{ left: isShown === 'to' && '50%' }}>
+        <DateRangePickerComponent
+          setDateRange={setDateRange}
+          dateRange={getDateRange(value)}
+          withTimePicker={withTimePicker}
+          startedWithEndDate={isShown === 'to'}
+          showPrevMonth={true}
+        />
       </Popup>
     </Wrapper>
   );

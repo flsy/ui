@@ -85,6 +85,10 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...p
   }, [fields]);
 
   const setDateRange = (dateRange: IDateRange) => {
+    if (dateRange.startDate > dateRange.endDate) {
+      return;
+    }
+
     if (dateRange.startDate && !isSame(dateRange.startDate, fields['Start Time'].value)) {
       updateAndValidate([name, 'Start Time'].join('.'), toTimestamp(dateRange.startDate));
     }
@@ -99,14 +103,18 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...p
     }
   };
 
+  const handleErrorMessage = (prop: keyof IState) => {
+    return value[prop] && !isValidDate(value[prop]) ? 'Datum není ve správném formátu' : undefined;
+  };
+
   return (
     <Wrapper>
       <InlineGroup>
         <Input
           {...props}
           {...fields['Start Time']}
-          errorMessage={value.from && !isValidDate(value.from) ? 'Datum není ve správném formátu' : undefined}
-          update={(path, from) => setValue({ from, to: value.to })}
+          errorMessage={handleErrorMessage('from')}
+          update={(path, from) => setValue({ ...value, from })}
           updateAndValidate={() => null}
           value={value.from}
           onFocus={() => showDatePicker('from')}
@@ -115,8 +123,8 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...p
         <Input
           {...props}
           {...fields['End Time']}
-          errorMessage={value.to && !isValidDate(value.to) ? 'Datum není ve správném formátu' : undefined}
-          update={(path, to) => setValue({ to, from: value.from })}
+          errorMessage={handleErrorMessage('to')}
+          update={(path, to) => setValue({ ...value, to })}
           updateAndValidate={() => null}
           value={value.to}
           onFocus={() => showDatePicker('to')}

@@ -137,7 +137,7 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...p
           dateRange={getDateRange(value)}
           withTimePicker={withTimePicker}
           startedWithEndDate={isShown === 'to'}
-          showPrevMonth={true}
+          withPrevMonth={true}
         />
       </Popup>
     </Wrapper>

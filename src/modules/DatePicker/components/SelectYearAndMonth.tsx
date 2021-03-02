@@ -33,29 +33,29 @@ interface IProps {
   month: number;
   setMonth: (month: number) => void;
   className?: string;
+  withPrevMonth?: boolean;
 }
 
-const SelectYearAndMonth = ({ year, setYear, month, setMonth, className }: IProps) => {
-  return (
-    <div className={className}>
-      <div>
-        <Button link={true} type="button" onClick={() => setYear(year - 1)} icon={<LeftOutlined />} />
-        <span>{month >= 0 ? year : year - 1}</span>
-        <Button link={true} type="button" onClick={() => setYear(year + 1)} icon={<RightOutlined />} />
-      </div>
-
-      <div>
-        <Button link={true} type="button" onClick={() => updateMonth(month - 1, year, setMonth, setYear)} icon={<LeftOutlined />} />
-        <span>{month >= 0 ? monthMap[month] : monthMap[11]}</span>
-        <Button link={true} type="button" onClick={() => updateMonth(month + 1, year, setMonth, setYear)} icon={<RightOutlined />} />
-      </div>
-      <hr />
+const SelectYearAndMonth = ({ year, setYear, month, setMonth, className, withPrevMonth }: IProps) => (
+  <div className={className}>
+    <div>
+      <Button link={true} type="button" onClick={() => setYear(year - 1)} icon={<LeftOutlined />} />
+      <span>{month >= 0 ? year : year - 1}</span>
+      <Button link={true} type="button" onClick={() => setYear(year + 1)} icon={<RightOutlined />} />
     </div>
-  );
-};
+
+    <div>
+      <Button link={true} type="button" onClick={() => updateMonth(withPrevMonth ? month : month - 1, year, setMonth, setYear)} icon={<LeftOutlined />} />
+      <span>{month === -1 ? monthMap[11] : monthMap[month]}</span>
+      <Button link={true} type="button" onClick={() => updateMonth(withPrevMonth ? month + 2 : month + 1, year, setMonth, setYear)} icon={<RightOutlined />} />
+    </div>
+    <hr />
+  </div>
+);
 
 SelectYearAndMonth.defaultProps = {
   className: undefined,
+  withPrevMonth: false,
 };
 
 export default styled(SelectYearAndMonth)`

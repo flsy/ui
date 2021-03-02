@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Colours } from '../../mainStyles';
 import Calendar from './components/Calendar';
@@ -9,13 +9,24 @@ import TimePicker from './TimePicker';
 import { isInRange, isSameDay, isToday } from './utils';
 import Flex from '../Layout/Flex';
 
-interface IProps {
+interface IDatePickerProps {
   dateRange: IDateRange;
   setDateRange: (dateRange: IDateRange) => void;
   withTimePicker?: boolean;
   startedWithEndDate?: boolean;
-  showPrevMonth?: boolean;
+  withPrevMonth?: boolean;
 }
+
+interface IComponentProps extends IDatePickerProps {
+  month: number;
+  year: number;
+  setMonth: Dispatch<SetStateAction<number>>;
+  setYear: Dispatch<SetStateAction<number>>;
+}
+
+const SCalendarWrapper = styled.div`
+  padding: 8px;
+`;
 
 const RangeDay = styled(Day)<{ isHighlighted: boolean }>`
   ${({ isHighlighted, isSelected, theme }) =>
@@ -33,20 +44,24 @@ const RangeDay = styled(Day)<{ isHighlighted: boolean }>`
     `}
 `;
 
-const getMonth = (startDate?: Date, showPrevMonth?: boolean) => {
-  if (startDate && !showPrevMonth) {
-    return startDate.getMonth();
+const getInitialDate = ({ endDate, startDate }: IDateRange, startedWithEndDate?: boolean): Date => {
+  if (startedWithEndDate) {
+    return endDate;
   }
-  if (startDate && showPrevMonth) {
-    return startDate.getMonth() - 1;
-  }
-
-  return showPrevMonth ? new Date().getMonth() - 1 : new Date().getMonth();
+  return startDate || new Date();
 };
 
-const DateRangePickerComponent = ({ setDateRange, dateRange: { startDate, endDate }, withTimePicker, startedWithEndDate, showPrevMonth }: IProps) => {
-  const [year, setYear] = useState(startDate?.getFullYear() || new Date().getFullYear());
-  const [month, setMonth] = useState(getMonth(startDate, showPrevMonth));
+const DateRangePickerComponent = ({
+  setDateRange,
+  dateRange: { startDate, endDate },
+  withTimePicker,
+  startedWithEndDate,
+  month,
+  setMonth,
+  year,
+  setYear,
+  withPrevMonth,
+}: IComponentProps) => {
   const [hoverDate, setHoverDate] = useState<Date>();
 
   const onDateClick = (d: number, m: number, y: number) => {
@@ -91,8 +106,8 @@ const DateRangePickerComponent = ({ setDateRange, dateRange: { startDate, endDat
   const setEndDate = (d: Date) => setDateRange({ startDate, endDate: d });
 
   return (
-    <div>
-      <SelectYearAndMonth month={month} setMonth={setMonth} year={year} setYear={setYear} />
+    <SCalendarWrapper>
+      <SelectYearAndMonth month={month} setMonth={setMonth} year={year} setYear={setYear} withPrevMonth={withPrevMonth} />
       <Calendar year={year} month={month}>
         {(day) => (
           <RangeDay
@@ -110,27 +125,39 @@ const DateRangePickerComponent = ({ setDateRange, dateRange: { startDate, endDat
       </Calendar>
       <div>{withTimePicker && startDate && <TimePicker value={startDate} onChange={setStartDate} label="Začátek" />}</div>
       <div>{withTimePicker && endDate && <TimePicker value={endDate} onChange={setEndDate} label="Konec" />}</div>
-    </div>
+    </SCalendarWrapper>
   );
 };
 
-const DateRangePicker = ({ showPrevMonth, ...props }: IProps) => {
-  if (showPrevMonth) {
+const DateRangePicker = ({ startedWithEndDate, dateRange, withPrevMonth, ...props }: IDatePickerProps) => {
+  const [year, setYear] = useState(getInitialDate(dateRange, startedWithEndDate).getFullYear());
+  const [month, setMonth] = useState(getInitialDate(dateRange, startedWithEndDate).getMonth());
+
+  const rest = {
+    dateRange,
+    year,
+    month,
+    setYear,
+    setMonth,
+    startedWithEndDate,
+  };
+
+  if (withPrevMonth) {
     return (
       <Flex horizontal={true}>
-        <DateRangePickerComponent {...props} showPrevMonth={showPrevMonth} />
-        <DateRangePickerComponent {...props} />
+        <DateRangePickerComponent {...props} {...rest} month={month - 1} withPrevMonth={withPrevMonth} />
+        <DateRangePickerComponent {...props} {...rest} />
       </Flex>
     );
   }
 
-  return <DateRangePickerComponent {...props} />;
+  return <DateRangePickerComponent {...props} {...rest} />;
 };
 
 DateRangePicker.defaultProps = {
   withTimePicker: false,
+  withPrevMonth: false,
   startedWithEndDate: false,
-  showPrevMonth: false,
 };
 
 DateRangePickerComponent.defaultProps = {

@@ -35,22 +35,24 @@ interface IProps {
   className?: string;
 }
 
-const SelectYearAndMonth = ({ year, setYear, month, setMonth, className }: IProps) => (
-  <div className={className}>
-    <div>
-      <Button link={true} type="button" onClick={() => setYear(year - 1)} icon={<LeftOutlined />} />
-      <span>{year}</span>
-      <Button link={true} type="button" onClick={() => setYear(year + 1)} icon={<RightOutlined />} />
-    </div>
+const SelectYearAndMonth = ({ year, setYear, month, setMonth, className }: IProps) => {
+  return (
+    <div className={className}>
+      <div>
+        <Button link={true} type="button" onClick={() => setYear(year - 1)} icon={<LeftOutlined />} />
+        <span>{month >= 0 ? year : year - 1}</span>
+        <Button link={true} type="button" onClick={() => setYear(year + 1)} icon={<RightOutlined />} />
+      </div>
 
-    <div>
-      <Button link={true} type="button" onClick={() => updateMonth(month - 1, year, setMonth, setYear)} icon={<LeftOutlined />} />
-      <span>{monthMap[month]}</span>
-      <Button link={true} type="button" onClick={() => updateMonth(month + 1, year, setMonth, setYear)} icon={<RightOutlined />} />
+      <div>
+        <Button link={true} type="button" onClick={() => updateMonth(month - 1, year, setMonth, setYear)} icon={<LeftOutlined />} />
+        <span>{month >= 0 ? monthMap[month] : monthMap[11]}</span>
+        <Button link={true} type="button" onClick={() => updateMonth(month + 1, year, setMonth, setYear)} icon={<RightOutlined />} />
+      </div>
+      <hr />
     </div>
-    <hr />
-  </div>
-);
+  );
+};
 
 SelectYearAndMonth.defaultProps = {
   className: undefined,

@@ -93,7 +93,7 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...p
     }
   };
 
-  const onBlur = (fieldName: string, property: keyof IState) => () => {
+  const onBlur = (fieldName: keyof IDateRangePickerProps['fields'], property: keyof IState) => () => {
     if (isValidDate(value[property])) {
       updateAndValidate([name, fieldName].join('.'), toTimestamp(dateTimeToDate(value[property])));
     }

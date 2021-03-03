@@ -110,7 +110,7 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...p
           updateAndValidate={() => null}
           value={value.from}
           onFocus={() => showDatePicker('from')}
-          onBlur={onBlur(fields['Start Time'].name, 'from')}
+          onBlur={onBlur('Start Time', 'from')}
         />
         <Input
           {...props}
@@ -120,7 +120,7 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...p
           updateAndValidate={() => null}
           value={value.to}
           onFocus={() => showDatePicker('to')}
-          onBlur={onBlur(fields['End Time'].name, 'to')}
+          onBlur={onBlur('End Time', 'to')}
         />
       </InlineGroup>
       <Popup isOpen={isShown !== 'none'} onClose={() => showDatePicker('none')}>

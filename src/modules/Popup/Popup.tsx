@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { borderRadius, Colours } from '../../mainStyles';
 import useClickOutside from '../../utils/useClickOutside';
 
-interface IProps {
+export interface IPopupProps {
   isOpen: boolean;
   isRelative?: boolean;
   styles?: React.CSSProperties;
@@ -33,7 +33,7 @@ export const PopupWrapper = styled.div<IWrapper>`
     `}
 `;
 
-const Popup: React.FC<IProps> = ({ isOpen, children, onClose, isRelative, styles }) => {
+const Popup: React.FC<IPopupProps> = ({ isOpen, children, onClose, isRelative, styles }) => {
   const { ref } = useClickOutside(onClose);
 
   if (!isOpen) {

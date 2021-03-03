@@ -33,21 +33,30 @@ interface IProps {
   month: number;
   setMonth: (month: number) => void;
   className?: string;
-  withPrevMonth?: boolean;
+  withPreviousMonth?: boolean;
 }
 
-const SelectYearAndMonth = ({ year, setYear, month, setMonth, className, withPrevMonth }: IProps) => (
+const getMonthName = (month: number, monthArray: string[]): string => (month === -1 ? monthArray[11] : monthArray[month]);
+
+const renderMonthName = (month: number, monthArray: string[], withPreviousMonth?: boolean): string => {
+  if (withPreviousMonth) {
+    return [getMonthName(month - 1, monthArray), getMonthName(month, monthArray)].join(' - ');
+  }
+  return getMonthName(month, monthArray);
+};
+
+const SelectYearAndMonth = ({ year, setYear, month, setMonth, className, withPreviousMonth }: IProps) => (
   <div className={className}>
     <div>
       <Button link={true} type="button" onClick={() => setYear(year - 1)} icon={<LeftOutlined />} />
-      <span>{month >= 0 ? year : year - 1}</span>
+      <span>{year}</span>
       <Button link={true} type="button" onClick={() => setYear(year + 1)} icon={<RightOutlined />} />
     </div>
 
     <div>
-      <Button link={true} type="button" onClick={() => updateMonth(withPrevMonth ? month : month - 1, year, setMonth, setYear)} icon={<LeftOutlined />} />
-      <span>{month === -1 ? monthMap[11] : monthMap[month]}</span>
-      <Button link={true} type="button" onClick={() => updateMonth(withPrevMonth ? month + 2 : month + 1, year, setMonth, setYear)} icon={<RightOutlined />} />
+      <Button link={true} type="button" onClick={() => updateMonth(month - 1, year, setMonth, setYear)} icon={<LeftOutlined />} />
+      <span>{renderMonthName(month, monthMap, withPreviousMonth)}</span>
+      <Button link={true} type="button" onClick={() => updateMonth(month + 1, year, setMonth, setYear)} icon={<RightOutlined />} />
     </div>
     <hr />
   </div>
@@ -55,7 +64,7 @@ const SelectYearAndMonth = ({ year, setYear, month, setMonth, className, withPre
 
 SelectYearAndMonth.defaultProps = {
   className: undefined,
-  withPrevMonth: false,
+  withPreviousMonth: false,
 };
 
 export default styled(SelectYearAndMonth)`

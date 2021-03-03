@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { FieldProps } from 'react-metaforms';
 import styled from 'styled-components';
 import Input from '../../inputs/Input';
-import Popup, { PopupWrapper } from '../../Popup/Popup';
+import { PopupWrapper } from '../../Popup/Popup';
 import DateRangePickerComponent from '../../DatePicker/DateRangePicker';
 import { IDateRange } from '../../DatePicker/interfaces';
 import InlineGroup from './InlineGroup';
+import CalendarPopup from '../../DatePicker/CalendarPopup';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -17,6 +18,7 @@ const Wrapper = styled.div`
 
 export interface IDateRangePickerProps extends FieldProps<number> {
   withTimePicker?: boolean;
+  withPreviousMonth?: boolean;
   fields: { 'Start Time': FieldProps<number>; 'End Time': FieldProps<number> };
 }
 
@@ -76,7 +78,7 @@ interface IState {
   to: string;
 }
 
-const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...props }: IDateRangePickerProps) => {
+const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, withPreviousMonth, ...props }: IDateRangePickerProps) => {
   const [isShown, showDatePicker] = useState<'none' | 'from' | 'to'>('none');
   const [value, setValue] = useState<IState>({ from: '', to: '' });
 
@@ -85,10 +87,6 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...p
   }, [fields]);
 
   const setDateRange = (dateRange: IDateRange) => {
-    if (dateRange.startDate > dateRange.endDate) {
-      return;
-    }
-
     if (dateRange.startDate && !isSame(dateRange.startDate, fields['Start Time'].value)) {
       updateAndValidate([name, 'Start Time'].join('.'), toTimestamp(dateRange.startDate));
     }
@@ -103,7 +101,7 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...p
     }
   };
 
-  const handleErrorMessage = (prop: keyof IState) => {
+  const getErrorMessage = (prop: keyof IState) => {
     return value[prop] && !isValidDate(value[prop]) ? 'Datum není ve správném formátu' : undefined;
   };
 
@@ -113,7 +111,7 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...p
         <Input
           {...props}
           {...fields['Start Time']}
-          errorMessage={handleErrorMessage('from')}
+          errorMessage={getErrorMessage('from')}
           update={(path, from) => setValue({ ...value, from })}
           updateAndValidate={() => null}
           value={value.from}
@@ -123,7 +121,7 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...p
         <Input
           {...props}
           {...fields['End Time']}
-          errorMessage={handleErrorMessage('to')}
+          errorMessage={getErrorMessage('to')}
           update={(path, to) => setValue({ ...value, to })}
           updateAndValidate={() => null}
           value={value.to}
@@ -131,18 +129,18 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...p
           onBlur={onBlur('End Time', 'to')}
         />
       </InlineGroup>
-      <Popup isOpen={isShown !== 'none'} onClose={() => showDatePicker('none')} styles={{ left: isShown === 'to' && '50%' }}>
+      <CalendarPopup isOpen={isShown !== 'none'} onClose={() => showDatePicker('none')} isRight={isShown === 'to'}>
         <DateRangePickerComponent
           setDateRange={setDateRange}
           dateRange={getDateRange(value)}
           withTimePicker={withTimePicker}
           startedWithEndDate={isShown === 'to'}
-          withPrevMonth={true}
+          withPreviousMonth={withPreviousMonth}
         />
-      </Popup>
+      </CalendarPopup>
     </Wrapper>
   );
 };
 
 export default DateRangePicker;
-export const DateTimeRangePicker = (props: IDateRangePickerProps) => <DateRangePicker {...props} withTimePicker={true} />;
+export const DateTimeRangePicker = (props: IDateRangePickerProps) => <DateRangePicker {...props} withTimePicker={true} withPreviousMonth={true} />;

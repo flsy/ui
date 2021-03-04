@@ -45,11 +45,18 @@ const renderMonthName = (month: number, monthArray: string[], withPreviousMonth?
   return getMonthName(month, monthArray);
 };
 
+const renderYear = (year: number, month: number, withPreviousMonth) => {
+  if (withPreviousMonth) {
+    return month === 0 ? [year - 1, year].join(' - ') : year;
+  }
+  return year;
+};
+
 const SelectYearAndMonth = ({ year, setYear, month, setMonth, className, withPreviousMonth }: IProps) => (
   <div className={className}>
     <div>
       <Button link={true} type="button" onClick={() => setYear(year - 1)} icon={<LeftOutlined />} />
-      <span>{year}</span>
+      <span>{renderYear(year, month, withPreviousMonth)}</span>
       <Button link={true} type="button" onClick={() => setYear(year + 1)} icon={<RightOutlined />} />
     </div>
 

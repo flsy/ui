@@ -20,7 +20,7 @@ const Wrapper = styled.div`
 
 export interface IDateRangePickerProps extends FieldProps<number> {
   withTimePicker?: boolean;
-  withPreviousMonth?: boolean;
+  previousMonths?: number;
   fields: { 'Start Time': FieldProps<number>; 'End Time': FieldProps<number> };
 }
 
@@ -80,7 +80,7 @@ interface IState {
   to: string;
 }
 
-const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, withPreviousMonth, ...props }: IDateRangePickerProps) => {
+const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, previousMonths, ...props }: IDateRangePickerProps) => {
   const [isShown, showDatePicker] = useState<'none' | 'from' | 'to'>('none');
   const [value, setValue] = useState<IState>({ from: '', to: '' });
 
@@ -129,7 +129,7 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, with
                 dateRange={getDateRange(value)}
                 withTimePicker={withTimePicker}
                 startedWithEndDate={isShown === 'to'}
-                withPreviousMonth={withPreviousMonth}
+                previousMonths={previousMonths}
               />
             </Popup>
           </SFlexGrow1>
@@ -140,4 +140,4 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, with
 };
 
 export default DateRangePicker;
-export const DateTimeRangePicker = (props: IDateRangePickerProps) => <DateRangePicker {...props} withTimePicker={true} withPreviousMonth={true} />;
+export const DateTimeRangePicker = (props: IDateRangePickerProps) => <DateRangePicker {...props} withTimePicker={true} previousMonths={1} />;

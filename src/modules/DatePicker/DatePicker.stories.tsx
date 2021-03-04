@@ -89,6 +89,32 @@ const DateRangePickerStory = () => {
   );
 };
 
+const DateRangePickerMonthsStory = () => {
+  const [dateRange, setDateRange] = useState<IDateRange>({ startDate: undefined, endDate: undefined });
+
+  return (
+    <>
+      <h3>Date range picker with a current month</h3>
+      <DateRangePicker dateRange={dateRange} setDateRange={setDateRange} previousMonths={0} />
+      <p>
+        {dateRange?.startDate && toISOStringDate(dateRange.startDate)} - {dateRange?.endDate && toISOStringDate(dateRange.endDate)}
+      </p>
+
+      <h3>Date range picker with 1 previous and current month</h3>
+      <DateRangePicker dateRange={dateRange} setDateRange={setDateRange} previousMonths={1} />
+      <p>
+        {dateRange?.startDate && toISOStringDate(dateRange.startDate)} - {dateRange?.endDate && toISOStringDate(dateRange.endDate)}
+      </p>
+      <h3>Date range picker with 2 previous and current month</h3>
+      <DateRangePicker dateRange={dateRange} setDateRange={setDateRange} previousMonths={2} />
+      <p>
+        {dateRange?.startDate && toISOStringDate(dateRange.startDate)} - {dateRange?.endDate && toISOStringDate(dateRange.endDate)}
+      </p>
+    </>
+  );
+};
+
 storiesOf('Date picker', module)
   .add('basic usage', () => <DatePickerStory />)
-  .add('Date range picker', () => <DateRangePickerStory />);
+  .add('Date range picker', () => <DateRangePickerStory />)
+  .add('Date range picker more months', () => <DateRangePickerMonthsStory />);

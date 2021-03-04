@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import Calendar from './components/Calendar';
 import SelectYearAndMonth from './components/SelectYearAndMonth';
 import { IDateRange } from './interfaces';
 import TimePicker from './TimePicker';
 import { isInRange, isSameDay, isToday } from './utils';
-import { WithPreviousMonth } from './WithPreviousMonth';
 import { RangeDay } from './RangeDay';
+import Flex from '../Layout/Flex';
 
 interface IDatePickerProps {
   startedWithEndDate?: boolean;
-  withPreviousMonth?: boolean;
+  previousMonths?: number;
   setDateRange: (dateRange: IDateRange) => void;
   dateRange: IDateRange;
   withTimePicker?: boolean;
 }
+
+const FlexNoWrap = styled(Flex)`
+  flex-wrap: nowrap;
+`;
 
 const getInitialDate = ({ endDate, startDate }: IDateRange, startedWithEndDate?: boolean): Date => {
   if (startedWithEndDate) {
@@ -22,7 +27,7 @@ const getInitialDate = ({ endDate, startDate }: IDateRange, startedWithEndDate?:
   return startDate || new Date();
 };
 
-const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, withTimePicker, startedWithEndDate, withPreviousMonth }: IDatePickerProps) => {
+const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, withTimePicker, startedWithEndDate, previousMonths }: IDatePickerProps) => {
   const [year, setYear] = useState(getInitialDate({ startDate, endDate }, startedWithEndDate).getFullYear());
   const [month, setMonth] = useState(getInitialDate({ startDate, endDate }, startedWithEndDate).getMonth());
   const [hoverDate, setHoverDate] = useState<Date>();
@@ -83,43 +88,30 @@ const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, with
   const setStartDate = (d: Date) => setDateRange({ startDate: d, endDate });
   const setEndDate = (d: Date) => setDateRange({ startDate, endDate: d });
 
-  if (withPreviousMonth) {
-    const previousMonth = month - 1;
-    return (
-      <WithPreviousMonth
-        year={year}
-        months={[previousMonth, month]}
-        dateRange={{ startDate, endDate }}
-        hoverDate={hoverDate}
-        onDateClick={onDateClick}
-        setHoverDate={setHoverDate}
-        setMonth={setMonth}
-        setYear={setYear}
-        withTimePicker={withTimePicker}
-        setStartDate={setStartDate}
-        setEndDate={setEndDate}
-      />
-    );
-  }
+  const months = previousMonths >= 0 ? [month, ...Array(previousMonths)].map((m, i) => month - i).reverse() : [];
 
   return (
     <>
-      <SelectYearAndMonth month={month} setMonth={setMonth} year={year} setYear={setYear} withPreviousMonth={withPreviousMonth} />
-      <Calendar year={year} month={month}>
-        {(day) => (
-          <RangeDay
-            key={day.index}
-            onClick={() => onDateClick(day.day, day.month, day.year)}
-            onMouseEnter={() => setHoverDate(day.date)}
-            isDisabled={!day.isCurrentMonth}
-            isCurrent={isToday(day.date)}
-            isHighlighted={isInRange(day.date, { startDate, endDate: endDate || hoverDate })}
-            isSelected={isSameDay(day.date, startDate) || isSameDay(day.date, endDate)}
-          >
-            {day.day}
-          </RangeDay>
-        )}
-      </Calendar>
+      <SelectYearAndMonth month={month} setMonth={setMonth} year={year} setYear={setYear} previousMonths={previousMonths} />
+      <FlexNoWrap horizontal={true}>
+        {months.map((m: number) => (
+          <Calendar year={year} month={m} key={m}>
+            {(day) => (
+              <RangeDay
+                key={day.index}
+                onClick={() => onDateClick(day.day, day.month, day.year)}
+                onMouseEnter={() => setHoverDate(day.date)}
+                isDisabled={!day.isCurrentMonth}
+                isCurrent={isToday(day.date)}
+                isHighlighted={isInRange(day.date, { startDate, endDate: endDate || hoverDate })}
+                isSelected={isSameDay(day.date, startDate) || isSameDay(day.date, endDate)}
+              >
+                {day.day}
+              </RangeDay>
+            )}
+          </Calendar>
+        ))}
+      </FlexNoWrap>
       <div>{withTimePicker && startDate && <TimePicker value={startDate} onChange={setStartDate} label="Začátek" />}</div>
       <div>{withTimePicker && endDate && <TimePicker value={endDate} onChange={setEndDate} label="Konec" />}</div>
     </>
@@ -128,7 +120,7 @@ const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, with
 
 DateRangePicker.defaultProps = {
   withTimePicker: false,
-  withPreviousMonth: false,
+  previousMonths: 0,
   startedWithEndDate: false,
 };
 

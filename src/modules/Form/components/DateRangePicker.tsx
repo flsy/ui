@@ -5,10 +5,13 @@ import Input from '../../inputs/Input';
 import Popup, { PopupWrapper } from '../../Popup/Popup';
 import DateRangePickerComponent from '../../DatePicker/DateRangePicker';
 import { IDateRange } from '../../DatePicker/interfaces';
-import InlineGroup from './InlineGroup';
+
+const SFlexGrow1 = styled.div`
+  flex-grow: 1;
+`;
 
 const Wrapper = styled.div`
-  width: 100%;
+  display: flex;
 
   ${PopupWrapper} {
     margin-top: -1.2em;
@@ -17,6 +20,7 @@ const Wrapper = styled.div`
 
 export interface IDateRangePickerProps extends FieldProps<number> {
   withTimePicker?: boolean;
+  withPreviousMonth?: boolean;
   fields: { 'Start Time': FieldProps<number>; 'End Time': FieldProps<number> };
 }
 
@@ -76,7 +80,7 @@ interface IState {
   to: string;
 }
 
-const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...props }: IDateRangePickerProps) => {
+const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, withPreviousMonth, ...props }: IDateRangePickerProps) => {
   const [isShown, showDatePicker] = useState<'none' | 'from' | 'to'>('none');
   const [value, setValue] = useState<IState>({ from: '', to: '' });
 
@@ -99,36 +103,41 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, ...p
     }
   };
 
+  const getErrorMessage = (prop: keyof IState) => {
+    return value[prop] && !isValidDate(value[prop]) ? 'Datum není ve správném formátu' : undefined;
+  };
+
   return (
     <Wrapper>
-      <InlineGroup>
-        <Input
-          {...props}
-          {...fields['Start Time']}
-          errorMessage={value.from && !isValidDate(value.from) ? 'Datum není ve správném formátu' : undefined}
-          update={(path, from) => setValue({ from, to: value.to })}
-          updateAndValidate={() => null}
-          value={value.from}
-          onFocus={() => showDatePicker('from')}
-          onBlur={onBlur('Start Time', 'from')}
-        />
-        <Input
-          {...props}
-          {...fields['End Time']}
-          errorMessage={value.to && !isValidDate(value.to) ? 'Datum není ve správném formátu' : undefined}
-          update={(path, to) => setValue({ to, from: value.from })}
-          updateAndValidate={() => null}
-          value={value.to}
-          onFocus={() => showDatePicker('to')}
-          onBlur={onBlur('End Time', 'to')}
-        />
-      </InlineGroup>
-      <Popup isOpen={isShown !== 'none'} onClose={() => showDatePicker('none')}>
-        <DateRangePickerComponent setDateRange={setDateRange} dateRange={getDateRange(value)} withTimePicker={withTimePicker} startedWithEndDate={isShown === 'to'} />
-      </Popup>
+      {Object.entries(fields).map(([n, field]: [keyof IDateRangePickerProps['fields'], FieldProps<number>], index) => {
+        const shown = index === 0 ? 'from' : 'to';
+        return (
+          <SFlexGrow1 key={n}>
+            <Input
+              {...props}
+              {...field}
+              errorMessage={getErrorMessage(shown)}
+              update={(path, v) => setValue({ ...value, [shown]: v })}
+              updateAndValidate={() => null}
+              value={value[shown]}
+              onFocus={() => showDatePicker(shown)}
+              onBlur={onBlur(n, shown)}
+            />
+            <Popup isOpen={isShown === shown} onClose={() => showDatePicker('none')}>
+              <DateRangePickerComponent
+                setDateRange={setDateRange}
+                dateRange={getDateRange(value)}
+                withTimePicker={withTimePicker}
+                startedWithEndDate={isShown === 'to'}
+                withPreviousMonth={withPreviousMonth}
+              />
+            </Popup>
+          </SFlexGrow1>
+        );
+      })}
     </Wrapper>
   );
 };
 
 export default DateRangePicker;
-export const DateTimeRangePicker = (props: IDateRangePickerProps) => <DateRangePicker {...props} withTimePicker={true} />;
+export const DateTimeRangePicker = (props: IDateRangePickerProps) => <DateRangePicker {...props} withTimePicker={true} withPreviousMonth={true} />;

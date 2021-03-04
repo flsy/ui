@@ -33,19 +33,36 @@ interface IProps {
   month: number;
   setMonth: (month: number) => void;
   className?: string;
+  withPreviousMonth?: boolean;
 }
 
-const SelectYearAndMonth = ({ year, setYear, month, setMonth, className }: IProps) => (
+const getMonthName = (month: number, monthArray: string[]): string => (month === -1 ? monthArray[11] : monthArray[month]);
+
+const renderMonthName = (month: number, monthArray: string[], withPreviousMonth?: boolean): string => {
+  if (withPreviousMonth) {
+    return [getMonthName(month - 1, monthArray), getMonthName(month, monthArray)].join(' - ');
+  }
+  return getMonthName(month, monthArray);
+};
+
+const renderYear = (year: number, month: number, withPreviousMonth) => {
+  if (withPreviousMonth) {
+    return month === 0 ? [year - 1, year].join(' - ') : year;
+  }
+  return year;
+};
+
+const SelectYearAndMonth = ({ year, setYear, month, setMonth, className, withPreviousMonth }: IProps) => (
   <div className={className}>
     <div>
       <Button link={true} type="button" onClick={() => setYear(year - 1)} icon={<LeftOutlined />} />
-      <span>{year}</span>
+      <span>{renderYear(year, month, withPreviousMonth)}</span>
       <Button link={true} type="button" onClick={() => setYear(year + 1)} icon={<RightOutlined />} />
     </div>
 
     <div>
       <Button link={true} type="button" onClick={() => updateMonth(month - 1, year, setMonth, setYear)} icon={<LeftOutlined />} />
-      <span>{monthMap[month]}</span>
+      <span>{renderMonthName(month, monthMap, withPreviousMonth)}</span>
       <Button link={true} type="button" onClick={() => updateMonth(month + 1, year, setMonth, setYear)} icon={<RightOutlined />} />
     </div>
     <hr />
@@ -54,6 +71,7 @@ const SelectYearAndMonth = ({ year, setYear, month, setMonth, className }: IProp
 
 SelectYearAndMonth.defaultProps = {
   className: undefined,
+  withPreviousMonth: false,
 };
 
 export default styled(SelectYearAndMonth)`

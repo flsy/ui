@@ -5,11 +5,14 @@ import Input from '../../inputs/Input';
 import { PopupWrapper } from '../../Popup/Popup';
 import DateRangePickerComponent from '../../DatePicker/DateRangePicker';
 import { IDateRange } from '../../DatePicker/interfaces';
-import InlineGroup from './InlineGroup';
-import CalendarPopup from '../../DatePicker/CalendarPopup';
+import { Popup } from '../../../index';
+
+const SFlexGrow1 = styled.div`
+  flex-grow: 1;
+`;
 
 const Wrapper = styled.div`
-  width: 100%;
+  display: flex;
 
   ${PopupWrapper} {
     margin-top: -1.2em;
@@ -107,37 +110,32 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, with
 
   return (
     <Wrapper>
-      <InlineGroup>
-        <Input
-          {...props}
-          {...fields['Start Time']}
-          errorMessage={getErrorMessage('from')}
-          update={(path, from) => setValue({ ...value, from })}
-          updateAndValidate={() => null}
-          value={value.from}
-          onFocus={() => showDatePicker('from')}
-          onBlur={onBlur('Start Time', 'from')}
-        />
-        <Input
-          {...props}
-          {...fields['End Time']}
-          errorMessage={getErrorMessage('to')}
-          update={(path, to) => setValue({ ...value, to })}
-          updateAndValidate={() => null}
-          value={value.to}
-          onFocus={() => showDatePicker('to')}
-          onBlur={onBlur('End Time', 'to')}
-        />
-      </InlineGroup>
-      <CalendarPopup isOpen={isShown !== 'none'} onClose={() => showDatePicker('none')} isRight={isShown === 'to'}>
-        <DateRangePickerComponent
-          setDateRange={setDateRange}
-          dateRange={getDateRange(value)}
-          withTimePicker={withTimePicker}
-          startedWithEndDate={isShown === 'to'}
-          withPreviousMonth={withPreviousMonth}
-        />
-      </CalendarPopup>
+      {Object.entries(fields).map(([n, field]: [keyof IDateRangePickerProps['fields'], FieldProps<number>], index) => {
+        const shown = index === 0 ? 'from' : 'to';
+        return (
+          <SFlexGrow1 key={n}>
+            <Input
+              {...props}
+              {...field}
+              errorMessage={getErrorMessage(shown)}
+              update={(path, v) => setValue({ ...value, [shown]: v })}
+              updateAndValidate={() => null}
+              value={value[shown]}
+              onFocus={() => showDatePicker(shown)}
+              onBlur={onBlur(n, shown)}
+            />
+            <Popup isOpen={isShown === shown} onClose={() => showDatePicker('none')}>
+              <DateRangePickerComponent
+                setDateRange={setDateRange}
+                dateRange={getDateRange(value)}
+                withTimePicker={withTimePicker}
+                startedWithEndDate={isShown === 'to'}
+                withPreviousMonth={withPreviousMonth}
+              />
+            </Popup>
+          </SFlexGrow1>
+        );
+      })}
     </Wrapper>
   );
 };

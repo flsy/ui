@@ -84,10 +84,11 @@ const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, with
   const setEndDate = (d: Date) => setDateRange({ startDate, endDate: d });
 
   if (withPreviousMonth) {
+    const previousMonth = month - 1;
     return (
       <WithPreviousMonth
         year={year}
-        month={month}
+        months={[previousMonth, month]}
         dateRange={{ startDate, endDate }}
         hoverDate={hoverDate}
         onDateClick={onDateClick}

@@ -10,7 +10,7 @@ import { RangeDay } from './RangeDay';
 
 interface IWithPreviousMonthProps {
   year: number;
-  month: number;
+  months: number[];
   setMonth: Dispatch<SetStateAction<number>>;
   setYear: Dispatch<SetStateAction<number>>;
   onDateClick: (d: number, m: number, y: number) => void;
@@ -26,9 +26,11 @@ const FlexNoWrap = styled(Flex)`
   flex-wrap: nowrap;
 `;
 
+const tail = <T extends unknown>(arr: Array<T>): T => arr[arr.length - 1];
+
 export const WithPreviousMonth = ({
   year,
-  month,
+  months,
   setMonth,
   setYear,
   onDateClick,
@@ -41,39 +43,25 @@ export const WithPreviousMonth = ({
 }: IWithPreviousMonthProps) => {
   return (
     <>
-      <SelectYearAndMonth month={month} setMonth={setMonth} year={year} setYear={setYear} withPreviousMonth={true} />
+      <SelectYearAndMonth month={tail(months)} setMonth={setMonth} year={year} setYear={setYear} withPreviousMonth={true} />
       <FlexNoWrap horizontal={true}>
-        <Calendar year={year} month={month - 1}>
-          {(day) => (
-            <RangeDay
-              key={day.index}
-              onClick={() => onDateClick(day.day, day.month, day.year)}
-              onMouseEnter={() => setHoverDate(day.date)}
-              isDisabled={!day.isCurrentMonth}
-              isCurrent={isToday(day.date)}
-              isHighlighted={isInRange(day.date, { startDate, endDate: endDate || hoverDate })}
-              isSelected={isSameDay(day.date, startDate) || isSameDay(day.date, endDate)}
-            >
-              {day.day}
-            </RangeDay>
-          )}
-        </Calendar>
-
-        <Calendar year={year} month={month}>
-          {(day) => (
-            <RangeDay
-              key={day.index}
-              onClick={() => onDateClick(day.day, day.month, day.year)}
-              onMouseEnter={() => setHoverDate(day.date)}
-              isDisabled={!day.isCurrentMonth}
-              isCurrent={isToday(day.date)}
-              isHighlighted={isInRange(day.date, { startDate, endDate: endDate || hoverDate })}
-              isSelected={isSameDay(day.date, startDate) || isSameDay(day.date, endDate)}
-            >
-              {day.day}
-            </RangeDay>
-          )}
-        </Calendar>
+        {months.map((m) => (
+          <Calendar year={year} month={m}>
+            {(day) => (
+              <RangeDay
+                key={day.index}
+                onClick={() => onDateClick(day.day, day.month, day.year)}
+                onMouseEnter={() => setHoverDate(day.date)}
+                isDisabled={!day.isCurrentMonth}
+                isCurrent={isToday(day.date)}
+                isHighlighted={isInRange(day.date, { startDate, endDate: endDate || hoverDate })}
+                isSelected={isSameDay(day.date, startDate) || isSameDay(day.date, endDate)}
+              >
+                {day.day}
+              </RangeDay>
+            )}
+          </Calendar>
+        ))}
       </FlexNoWrap>
       <div>{withTimePicker && startDate && <TimePicker value={startDate} onChange={setStartDate} label="Začátek" />}</div>
       <div>{withTimePicker && endDate && <TimePicker value={endDate} onChange={setEndDate} label="Konec" />}</div>

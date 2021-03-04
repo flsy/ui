@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { FieldProps } from 'react-metaforms';
 import styled from 'styled-components';
 import Input from '../../inputs/Input';
-import { PopupWrapper } from '../../Popup/Popup';
+import Popup, { PopupWrapper } from '../../Popup/Popup';
 import DateRangePickerComponent from '../../DatePicker/DateRangePicker';
 import { IDateRange } from '../../DatePicker/interfaces';
-import { Popup } from '../../../index';
 
 const SFlexGrow1 = styled.div`
   flex-grow: 1;

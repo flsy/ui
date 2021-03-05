@@ -23,6 +23,7 @@ const datePickerForm = {
   dateRange: {
     type: 'dateTimeRange',
     label: 'label',
+    previousMonths: 1,
     fields: {
       'Start Time': {
         label: 'Obdobi od',

@@ -27,6 +27,8 @@ const getInitialDate = ({ endDate, startDate }: IDateRange, startedWithEndDate?:
   return startDate || new Date();
 };
 
+const getMonths = (month: number, previousMonths: number): number[] => [month, ...Array(previousMonths)].map((m, i) => month - i).reverse();
+
 const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, withTimePicker, startedWithEndDate, previousMonths }: IDatePickerProps) => {
   const [year, setYear] = useState(getInitialDate({ startDate, endDate }, startedWithEndDate).getFullYear());
   const [month, setMonth] = useState(getInitialDate({ startDate, endDate }, startedWithEndDate).getMonth());
@@ -88,7 +90,7 @@ const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, with
   const setStartDate = (d: Date) => setDateRange({ startDate: d, endDate });
   const setEndDate = (d: Date) => setDateRange({ startDate, endDate: d });
 
-  const months = previousMonths >= 0 ? [month, ...Array(previousMonths)].map((m, i) => month - i).reverse() : [];
+  const months = previousMonths >= 0 ? getMonths(month, previousMonths) : [];
 
   return (
     <>

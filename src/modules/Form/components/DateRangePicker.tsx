@@ -140,4 +140,4 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, prev
 };
 
 export default DateRangePicker;
-export const DateTimeRangePicker = (props: IDateRangePickerProps) => <DateRangePicker {...props} withTimePicker={true} previousMonths={1} />;
+export const DateTimeRangePicker = (props: IDateRangePickerProps) => <DateRangePicker {...props} withTimePicker={true} />;

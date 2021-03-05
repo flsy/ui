@@ -124,8 +124,8 @@ const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, with
 
 DateRangePicker.defaultProps = {
   withTimePicker: false,
-  startedWithEndDate: false,
   previousMonths: 0,
+  startedWithEndDate: false,
 };
 
 export default DateRangePicker;

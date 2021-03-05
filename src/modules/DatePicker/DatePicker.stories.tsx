@@ -76,13 +76,13 @@ const DateRangePickerStory = () => {
   return (
     <>
       <h3>DatePicker</h3>
-      <DateRangePicker dateRange={dateRange} setDateRange={setDateRange} previousMonths={0} />
+      <DateRangePicker dateRange={dateRange} setDateRange={setDateRange} />
       <p>
         {dateRange?.startDate && toISOStringDate(dateRange.startDate)} - {dateRange?.endDate && toISOStringDate(dateRange.endDate)}
       </p>
 
       <h3>DateRangePicker with TimePicker</h3>
-      <DateRangePicker withTimePicker={true} dateRange={dateRange} setDateRange={setDateRange} previousMonths={0} />
+      <DateRangePicker withTimePicker={true} dateRange={dateRange} setDateRange={setDateRange} />
       <p>
         {dateRange?.startDate && toISOStringDateTime(dateRange.startDate)} - {dateRange?.endDate && toISOStringDateTime(dateRange.endDate)}
       </p>
@@ -96,7 +96,7 @@ const DateRangePickerMonthsStory = () => {
   return (
     <>
       <h3>Date range picker with a current month</h3>
-      <DateRangePicker dateRange={dateRange} setDateRange={setDateRange} previousMonths={0} />
+      <DateRangePicker dateRange={dateRange} setDateRange={setDateRange} />
       <p>
         {dateRange?.startDate && toISOStringDate(dateRange.startDate)} - {dateRange?.endDate && toISOStringDate(dateRange.endDate)}
       </p>

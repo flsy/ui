@@ -24,7 +24,7 @@ const DatePicker = ({ onChange, withTimePicker, value }: IProps) => {
 
   return (
     <>
-      <SelectYearAndMonth month={month} setMonth={setMonth} year={year} setYear={setYear} />
+      <SelectYearAndMonth month={month} setMonth={setMonth} year={year} setYear={setYear} months={[month]} />
       <Calendar year={year} month={month}>
         {(day) => (
           <Day

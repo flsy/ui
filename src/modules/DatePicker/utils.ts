@@ -95,7 +95,7 @@ const getDayDetails = (args: IDayDetailsProps): IDayDetails => {
 export const getMonthDetails = (year: number, month: number): IDayDetails[] => {
   const firstDay = getFirstDayInMonth(year, month);
   const numberOfDays = getNumberOfDays(year, month);
-  const rows = 6;
+  const rows = 5;
   const cols = 7;
 
   return new Array(rows * cols).fill(0).map((_, i) =>

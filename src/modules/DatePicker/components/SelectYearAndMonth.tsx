@@ -4,6 +4,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import Button from '../../Button/Button';
 import { monthMap } from '../utils';
+import { FlexGrow1 } from '../../Layout/Flex';
 
 const selectYearAndMonthCss = css`
   & > div {
@@ -12,6 +13,7 @@ const selectYearAndMonthCss = css`
     align-items: center;
     margin: 0 auto;
     padding: 4px;
+    line-height: 1.5;
   }
 `;
 
@@ -33,37 +35,63 @@ interface IProps {
   month: number;
   setMonth: (month: number) => void;
   className?: string;
-  previousMonths?: number;
+  months?: number[];
 }
 
-const getMonthName = (month: number, monthArray: string[]): string => (month === -1 ? monthArray[11] : monthArray[month]);
-
-const renderMonthName = (month: number, monthArray: string[], previousMonths?: number): string => {
-  if (previousMonths) {
-    return [getMonthName(month - 1, monthArray), getMonthName(month, monthArray)].join(' - ');
-  }
-  return getMonthName(month, monthArray);
+const isLast = <T extends number>(value: T, months: Array<T>) => months[months.length - 1] === value;
+const isFirst = <T extends number>(value: T, array: T[]) => {
+  const [first] = array;
+  return value === first;
 };
+const tail = <T extends unknown>(array: T[]): T => array[array.length - 1];
 
-const renderYear = (year: number, month: number, previousMonths?: number) => {
-  if (previousMonths) {
-    return month === 0 ? [year - 1, year].join(' - ') : year;
+const getMonthName = (month: number, monthArray: string[]): string => (month < 0 ? monthArray[monthArray.length + month] : monthArray[month]);
+
+const renderYear = (year: number, month: number, months?: number[]) => {
+  if (months.length > 1) {
+    return month < 0 ? year - 1 : year;
   }
   return year;
 };
 
-const SelectYearAndMonth = ({ year, setYear, month, setMonth, className, previousMonths }: IProps) => (
+const isOnArrayEdges = (month: number, months: number[]): boolean => {
+  if (months.length === 1) {
+    return true;
+  }
+  return isFirst(month, months) || isLast(month, months);
+};
+
+const isInner = (month: number, months: number[]): boolean => {
+  if (months.length === 1) {
+    return true;
+  }
+  return !isFirst(month, months) || isLast(month, months);
+};
+
+const SelectYearAndMonth = ({ year, setYear, month, setMonth, className, months }: IProps) => (
   <div className={className}>
     <div>
-      <Button link={true} type="button" onClick={() => setYear(year - 1)} icon={<LeftOutlined />} />
-      <span>{renderYear(year, month, previousMonths)}</span>
-      <Button link={true} type="button" onClick={() => setYear(year + 1)} icon={<RightOutlined />} />
+      <FlexGrow1>
+        {isOnArrayEdges(month, months) && isFirst(month, months) && <Button link={true} type="button" onClick={() => setYear(year - 1)} icon={<LeftOutlined />} />}
+      </FlexGrow1>
+      <FlexGrow1>
+        <span>{renderYear(year, month, months)}</span>
+      </FlexGrow1>
+      {isOnArrayEdges(month, months) && isInner(month, months) && <Button link={true} type="button" onClick={() => setYear(year + 1)} icon={<RightOutlined />} />}
     </div>
 
     <div>
-      <Button link={true} type="button" onClick={() => updateMonth(month - 1, year, setMonth, setYear)} icon={<LeftOutlined />} />
-      <span>{renderMonthName(month, monthMap, previousMonths)}</span>
-      <Button link={true} type="button" onClick={() => updateMonth(month + 1, year, setMonth, setYear)} icon={<RightOutlined />} />
+      <FlexGrow1>
+        {isOnArrayEdges(month, months) && isFirst(month, months) && (
+          <Button link={true} type="button" onClick={() => updateMonth(tail(months) - 1, year, setMonth, setYear)} icon={<LeftOutlined />} />
+        )}
+      </FlexGrow1>
+      <FlexGrow1>
+        <span>{getMonthName(month, monthMap)}</span>
+      </FlexGrow1>
+      {isOnArrayEdges(month, months) && isInner(month, months) && (
+        <Button link={true} type="button" onClick={() => updateMonth(tail(months) + 1, year, setMonth, setYear)} icon={<RightOutlined />} />
+      )}
     </div>
     <hr />
   </div>
@@ -71,7 +99,7 @@ const SelectYearAndMonth = ({ year, setYear, month, setMonth, className, previou
 
 SelectYearAndMonth.defaultProps = {
   className: undefined,
-  previousMonths: 0,
+  months: [],
 };
 
 export default styled(SelectYearAndMonth)`

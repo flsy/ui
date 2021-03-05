@@ -27,7 +27,7 @@ const getInitialDate = ({ endDate, startDate }: IDateRange, startedWithEndDate?:
   return startDate || new Date();
 };
 
-const getMonths = (month: number, previousMonths: number): number[] => [month, ...Array(previousMonths)].map((m, i) => month - i).reverse();
+export const getMonths = (month: number, previousMonths: number): number[] => [month, ...Array(previousMonths)].map((m, i) => month - i).reverse();
 
 const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, withTimePicker, startedWithEndDate, previousMonths }: IDatePickerProps) => {
   const [year, setYear] = useState(getInitialDate({ startDate, endDate }, startedWithEndDate).getFullYear());
@@ -94,24 +94,26 @@ const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, with
 
   return (
     <>
-      <SelectYearAndMonth month={month} setMonth={setMonth} year={year} setYear={setYear} previousMonths={previousMonths} />
       <FlexNoWrap horizontal={true}>
         {months.map((m: number) => (
-          <Calendar year={year} month={m} key={m}>
-            {(day) => (
-              <RangeDay
-                key={day.index}
-                onClick={() => onDateClick(day.day, day.month, day.year)}
-                onMouseEnter={() => setHoverDate(day.date)}
-                isDisabled={!day.isCurrentMonth}
-                isCurrent={isToday(day.date)}
-                isHighlighted={isInRange(day.date, { startDate, endDate: endDate || hoverDate })}
-                isSelected={isSameDay(day.date, startDate) || isSameDay(day.date, endDate)}
-              >
-                {day.day}
-              </RangeDay>
-            )}
-          </Calendar>
+          <div key={m}>
+            <SelectYearAndMonth month={m} setMonth={setMonth} year={year} setYear={setYear} months={months} />
+            <Calendar year={year} month={m}>
+              {(day) => (
+                <RangeDay
+                  key={day.index}
+                  onClick={() => onDateClick(day.day, day.month, day.year)}
+                  onMouseEnter={() => setHoverDate(day.date)}
+                  isDisabled={!day.isCurrentMonth}
+                  isCurrent={isToday(day.date)}
+                  isHighlighted={isInRange(day.date, { startDate, endDate: endDate || hoverDate })}
+                  isSelected={isSameDay(day.date, startDate) || isSameDay(day.date, endDate)}
+                >
+                  {day.day}
+                </RangeDay>
+              )}
+            </Calendar>
+          </div>
         ))}
       </FlexNoWrap>
       <div>{withTimePicker && startDate && <TimePicker value={startDate} onChange={setStartDate} label="Začátek" />}</div>

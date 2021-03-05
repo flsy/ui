@@ -96,7 +96,7 @@ const DateRangePickerMonthsStory = () => {
   return (
     <>
       <h3>Date range picker with a current month</h3>
-      <DateRangePicker dateRange={dateRange} setDateRange={setDateRange} previousMonths={0} />
+      <DateRangePicker dateRange={dateRange} setDateRange={setDateRange} />
       <p>
         {dateRange?.startDate && toISOStringDate(dateRange.startDate)} - {dateRange?.endDate && toISOStringDate(dateRange.endDate)}
       </p>

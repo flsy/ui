@@ -11,4 +11,8 @@ const Flex = styled.div<{ horizontal?: boolean; reverse?: boolean }>`
     `}
 `;
 
+export const FlexGrow1 = styled.div`
+  flex-grow: 1;
+`;
+
 export default Flex;

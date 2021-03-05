@@ -33,36 +33,36 @@ interface IProps {
   month: number;
   setMonth: (month: number) => void;
   className?: string;
-  withPreviousMonth?: boolean;
+  previousMonths?: number;
 }
 
 const getMonthName = (month: number, monthArray: string[]): string => (month === -1 ? monthArray[11] : monthArray[month]);
 
-const renderMonthName = (month: number, monthArray: string[], withPreviousMonth?: boolean): string => {
-  if (withPreviousMonth) {
+const renderMonthName = (month: number, monthArray: string[], previousMonths?: number): string => {
+  if (previousMonths) {
     return [getMonthName(month - 1, monthArray), getMonthName(month, monthArray)].join(' - ');
   }
   return getMonthName(month, monthArray);
 };
 
-const renderYear = (year: number, month: number, withPreviousMonth) => {
-  if (withPreviousMonth) {
+const renderYear = (year: number, month: number, previousMonths?: number) => {
+  if (previousMonths) {
     return month === 0 ? [year - 1, year].join(' - ') : year;
   }
   return year;
 };
 
-const SelectYearAndMonth = ({ year, setYear, month, setMonth, className, withPreviousMonth }: IProps) => (
+const SelectYearAndMonth = ({ year, setYear, month, setMonth, className, previousMonths }: IProps) => (
   <div className={className}>
     <div>
       <Button link={true} type="button" onClick={() => setYear(year - 1)} icon={<LeftOutlined />} />
-      <span>{renderYear(year, month, withPreviousMonth)}</span>
+      <span>{renderYear(year, month, previousMonths)}</span>
       <Button link={true} type="button" onClick={() => setYear(year + 1)} icon={<RightOutlined />} />
     </div>
 
     <div>
       <Button link={true} type="button" onClick={() => updateMonth(month - 1, year, setMonth, setYear)} icon={<LeftOutlined />} />
-      <span>{renderMonthName(month, monthMap, withPreviousMonth)}</span>
+      <span>{renderMonthName(month, monthMap, previousMonths)}</span>
       <Button link={true} type="button" onClick={() => updateMonth(month + 1, year, setMonth, setYear)} icon={<RightOutlined />} />
     </div>
     <hr />
@@ -71,7 +71,7 @@ const SelectYearAndMonth = ({ year, setYear, month, setMonth, className, withPre
 
 SelectYearAndMonth.defaultProps = {
   className: undefined,
-  withPreviousMonth: false,
+  previousMonths: 0,
 };
 
 export default styled(SelectYearAndMonth)`

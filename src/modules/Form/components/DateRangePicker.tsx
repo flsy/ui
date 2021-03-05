@@ -5,10 +5,7 @@ import Input from '../../inputs/Input';
 import Popup, { PopupWrapper } from '../../Popup/Popup';
 import DateRangePickerComponent from '../../DatePicker/DateRangePicker';
 import { IDateRange } from '../../DatePicker/interfaces';
-
-const SFlexGrow1 = styled.div`
-  flex-grow: 1;
-`;
+import { FlexGrow1 } from '../../Layout/Flex';
 
 const Wrapper = styled.div`
   display: flex;
@@ -112,7 +109,7 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, prev
       {Object.entries(fields).map(([n, field]: [keyof IDateRangePickerProps['fields'], FieldProps<number>], index) => {
         const shown = index === 0 ? 'from' : 'to';
         return (
-          <SFlexGrow1 key={n}>
+          <FlexGrow1 key={n}>
             <Input
               {...props}
               {...field}
@@ -132,7 +129,7 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, prev
                 previousMonths={previousMonths}
               />
             </Popup>
-          </SFlexGrow1>
+          </FlexGrow1>
         );
       })}
     </Wrapper>

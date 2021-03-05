@@ -4,6 +4,7 @@ import Day from './components/Day';
 import SelectYearAndMonth from './components/SelectYearAndMonth';
 import TimePicker from './TimePicker';
 import { isSameDay, isToday } from './utils';
+import { getMonths } from './DateRangePicker';
 
 interface IProps {
   value?: Date;

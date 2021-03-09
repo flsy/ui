@@ -29,7 +29,7 @@ const DatePicker = ({ onChange, withTimePicker, value, isDisabled }: IProps) => 
       <Calendar year={year} month={month}>
         {(day) => {
           const disabled = isDisabled ? isDisabled(day) : false;
-          return day.day ? (
+          return (
             <Day
               key={day.index}
               onClick={!disabled ? () => onDateClick(day.day, day.month, day.year) : undefined}
@@ -40,11 +40,8 @@ const DatePicker = ({ onChange, withTimePicker, value, isDisabled }: IProps) => 
             >
               {day.day}
             </Day>
-          ) : (
-            <div />
-          )
-        }
-        }
+          );
+        }}
       </Calendar>
       <div>{withTimePicker && <TimePicker value={value} onChange={onChange} label="Vyberte hodinu a minutu" />}</div>
     </>

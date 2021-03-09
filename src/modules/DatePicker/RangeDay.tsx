@@ -9,8 +9,8 @@ export const RangeDay = styled(Day)<{ isHighlighted: boolean }>`
     css`
       color: ${Colours.background};
       background: ${theme.colors.main.light};
-      outline: none;
-      border: none;
+      margin: -1px 0 0 -1px;
+      border: 1px solid transparent;
 
       &:hover {
         background: ${theme.colors.main.dark};

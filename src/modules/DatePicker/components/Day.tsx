@@ -1,35 +1,41 @@
 import styled, { css } from 'styled-components';
-import { Colours } from '../../../mainStyles';
 
-const Day = styled.div<{ isDisabled?: boolean; isCurrent?: boolean; isSelected?: boolean }>`
+const Day = styled.div<{ isDisabled?: boolean; isCurrent?: boolean; isCurrentMonth?: boolean; isSelected?: boolean }>`
   padding: 0.5em;
   cursor: pointer;
 
-  &:hover {
-    color: ${Colours.background};
-    background-color: ${({ theme }) => theme.colors.main.dark};
-    outline: none;
-  }
+  ${({ theme }) => css`
+    color: ${theme.colors.text};
+    &:hover {
+      color: #fff;
+      background-color: ${theme.colors.main.dark};
+    }
+  `}
+
+  ${({ isCurrentMonth }) =>
+    !isCurrentMonth &&
+    css`
+      color: #999;
+    `}
 
   ${({ isDisabled }) =>
     isDisabled &&
     css`
-      color: ${Colours.disabled};
-      background-color: ${Colours.border};
+      background-color: #bbb;
     `}
 
-  ${({ isCurrent }) =>
+  ${({ isCurrent, theme }) =>
     isCurrent &&
     css`
-      outline: 1.25px dashed ${Colours.smidgenInfo};
+      border: 1px dashed ${theme.colors.main.light};
     `}
 
   ${({ isSelected, theme }) =>
     isSelected &&
     css`
-      color: ${Colours.background};
+      color: #fff;
       background: ${theme.colors.main.primary};
-      outline: none;
+      border: none;
     `}
 `;
 

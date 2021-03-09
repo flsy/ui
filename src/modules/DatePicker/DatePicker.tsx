@@ -3,17 +3,18 @@ import Calendar from './components/Calendar';
 import Day from './components/Day';
 import SelectYearAndMonth from './components/SelectYearAndMonth';
 import TimePicker from './TimePicker';
-import { isSameDay, isToday } from './utils';
+import { IDayDetails, isSameDay, isToday } from './utils';
 
 interface IProps {
   value?: Date;
   onChange: (date: Date) => void;
   withTimePicker?: boolean;
+  isDisabled?: (day: IDayDetails) => boolean;
 }
 
-const DatePicker = ({ onChange, withTimePicker, value }: IProps) => {
-  const [year, setYear] = useState(value.getFullYear());
-  const [month, setMonth] = useState(value.getMonth());
+const DatePicker = ({ onChange, withTimePicker, value, isDisabled }: IProps) => {
+  const [year, setYear] = useState((value || new Date()).getFullYear());
+  const [month, setMonth] = useState((value || new Date()).getMonth());
 
   const onDateClick = (d: number, m: number, y: number) => {
     if (withTimePicker) {
@@ -26,17 +27,21 @@ const DatePicker = ({ onChange, withTimePicker, value }: IProps) => {
     <>
       <SelectYearAndMonth month={month} setMonth={setMonth} year={year} setYear={setYear} months={[month]} />
       <Calendar year={year} month={month}>
-        {(day) => (
-          <Day
-            key={day.index}
-            onClick={() => onDateClick(day.day, day.month, day.year)}
-            isDisabled={!day.isCurrentMonth}
-            isCurrent={isToday(day.date)}
-            isSelected={isSameDay(day.date, value)}
-          >
-            {day.day}
-          </Day>
-        )}
+        {(day) => {
+          const disabled = isDisabled ? isDisabled(day) : false;
+          return (
+            <Day
+              key={day.index}
+              onClick={!disabled ? () => onDateClick(day.day, day.month, day.year) : undefined}
+              isDisabled={disabled}
+              isCurrentMonth={day.isCurrentMonth}
+              isCurrent={isToday(day.date)}
+              isSelected={isSameDay(day.date, value)}
+            >
+              {day.day}
+            </Day>
+          );
+        }}
       </Calendar>
       <div>{withTimePicker && <TimePicker value={value} onChange={onChange} label="Vyberte hodinu a minutu" />}</div>
     </>
@@ -44,7 +49,8 @@ const DatePicker = ({ onChange, withTimePicker, value }: IProps) => {
 };
 
 DatePicker.defaultProps = {
-  value: new Date(),
+  value: undefined,
+  isDisabled: undefined,
   withTimePicker: false,
 };
 

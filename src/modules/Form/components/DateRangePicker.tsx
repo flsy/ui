@@ -94,8 +94,8 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, prev
     }
   };
 
-  const updateFields = (fieldName: keyof IDateRangePickerProps['fields'], v: string) =>
-    isValidDate(v) && updateAndValidate([name, fieldName].join('.'), toTimestamp(dateTimeToDate(v)));
+  const updateFields = (fieldName: keyof IDateRangePickerProps['fields'], fieldValue: string) =>
+    isValidDate(fieldValue) && updateAndValidate([name, fieldName].join('.'), toTimestamp(dateTimeToDate(fieldValue)));
 
   const getErrorMessage = (prop: keyof IState) => {
     return value[prop] && !isValidDate(value[prop]) ? 'Datum není ve správném formátu' : undefined;

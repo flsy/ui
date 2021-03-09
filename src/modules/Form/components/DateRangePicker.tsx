@@ -94,11 +94,8 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, prev
     }
   };
 
-  const onBlur = (fieldName: keyof IDateRangePickerProps['fields'], property: keyof IState) => () => {
-    if (isValidDate(value[property])) {
-      updateAndValidate([name, fieldName].join('.'), toTimestamp(dateTimeToDate(value[property])));
-    }
-  };
+  const updateFields = (fieldName: keyof IDateRangePickerProps['fields'], v: string) =>
+    isValidDate(v) && updateAndValidate([name, fieldName].join('.'), toTimestamp(dateTimeToDate(v)));
 
   const getErrorMessage = (prop: keyof IState) => {
     return value[prop] && !isValidDate(value[prop]) ? 'Datum není ve správném formátu' : undefined;
@@ -114,11 +111,13 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, prev
               {...props}
               {...field}
               errorMessage={getErrorMessage(shown)}
-              update={(path, v) => setValue({ ...value, [shown]: v })}
+              update={(path: keyof IDateRangePickerProps['fields'], v) => {
+                setValue({ ...value, [shown]: v });
+                updateFields(path, v);
+              }}
               updateAndValidate={() => null}
               value={value[shown]}
               onFocus={() => showDatePicker(shown)}
-              onBlur={onBlur(n, shown)}
             />
             <Popup isOpen={isShown === shown} onClose={() => showDatePicker('none')}>
               <DateRangePickerComponent

@@ -12,7 +12,6 @@ export const RangeDay = styled(Day)<{ isHighlighted: boolean }>`
       outline: none;
 
       &:hover {
-        color: ${Colours.background};
         background: ${theme.colors.main.dark};
       }
     `}

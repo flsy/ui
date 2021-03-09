@@ -104,7 +104,7 @@ const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, with
                   key={day.index}
                   onClick={() => onDateClick(day.day, day.month, day.year)}
                   onMouseEnter={() => setHoverDate(day.date)}
-                  isDisabled={!day.isCurrentMonth}
+                  isCurrentMonth={day.isCurrentMonth}
                   isCurrent={isToday(day.date)}
                   isHighlighted={isInRange(day.date, { startDate, endDate: endDate || hoverDate })}
                   isSelected={isSameDay(day.date, startDate) || isSameDay(day.date, endDate)}

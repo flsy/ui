@@ -1,8 +1,11 @@
 import styled, { css } from 'styled-components';
+import { Colours } from '../../../mainStyles';
 
 const Day = styled.div<{ isDisabled?: boolean; isCurrent?: boolean; isCurrentMonth?: boolean; isSelected?: boolean }>`
   padding: 0.5em;
   cursor: pointer;
+  border: 1px solid ${Colours.border};
+  margin: -1px 0 0 -1px;
 
   ${({ theme }) => css`
     color: ${theme.colors.text};
@@ -22,12 +25,14 @@ const Day = styled.div<{ isDisabled?: boolean; isCurrent?: boolean; isCurrentMon
     isDisabled &&
     css`
       background-color: #bbb;
+      border: none;
     `}
 
   ${({ isCurrent, theme }) =>
     isCurrent &&
     css`
-      border: 1px dashed ${theme.colors.main.light};
+      border: none;
+      outline: 1px dashed ${theme.colors.main.light};
     `}
 
   ${({ isSelected, theme }) =>

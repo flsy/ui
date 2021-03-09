@@ -87,7 +87,7 @@ const getDayDetails = (args: IDayDetailsProps): IDayDetails => {
     isCurrentMonth,
     year: yearReal,
     month: monthReal,
-    day: returnDay,
+    day: isCurrentMonth && returnDay,
     date: new Date(yearReal, monthReal, returnDay),
   };
 };

@@ -99,19 +99,23 @@ const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, with
           <div key={m}>
             <SelectYearAndMonth month={m} setMonth={setMonth} year={year} setYear={setYear} months={months} />
             <Calendar year={year} month={m}>
-              {(day) => (
-                <RangeDay
-                  key={day.index}
-                  onClick={() => onDateClick(day.day, day.month, day.year)}
-                  onMouseEnter={() => setHoverDate(day.date)}
-                  isCurrentMonth={day.isCurrentMonth}
-                  isCurrent={isToday(day.date)}
-                  isHighlighted={isInRange(day.date, { startDate, endDate: endDate || hoverDate })}
-                  isSelected={isSameDay(day.date, startDate) || isSameDay(day.date, endDate)}
-                >
-                  {day.day}
-                </RangeDay>
-              )}
+              {(day) =>
+                day.day ? (
+                  <RangeDay
+                    key={day.index}
+                    onClick={() => onDateClick(day.day, day.month, day.year)}
+                    onMouseEnter={() => setHoverDate(day.date)}
+                    isCurrentMonth={day.isCurrentMonth}
+                    isCurrent={isToday(day.date)}
+                    isHighlighted={isInRange(day.date, { startDate, endDate: endDate || hoverDate })}
+                    isSelected={isSameDay(day.date, startDate) || isSameDay(day.date, endDate)}
+                  >
+                    {day.day}
+                  </RangeDay>
+                ) : (
+                  <div />
+                )
+              }
             </Calendar>
           </div>
         ))}

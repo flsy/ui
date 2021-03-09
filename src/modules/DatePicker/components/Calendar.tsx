@@ -9,7 +9,7 @@ interface ICalendarProps {
 }
 
 const CalendarWrapper = styled.div`
-  padding: 4px;
+  padding: 4px 8px;
   text-align: center;
   display: grid;
   grid-template-columns: repeat(7, auto);

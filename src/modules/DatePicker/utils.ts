@@ -100,7 +100,7 @@ const getDayDetails = (args: IDayDetailsProps): IDayDetails => {
   };
 };
 
-export const getMonthDetails = (year: number, month: number, hasMoreMonths: boolean): IDayDetails[] => {
+export const getMonthDetails = (year: number, month: number, hasMoreMonths?: boolean): IDayDetails[] => {
   const firstDay = getFirstDayInMonth(year, month);
   const numberOfDays = getNumberOfDays(year, month);
   const rows = 6;

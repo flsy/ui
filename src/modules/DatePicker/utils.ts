@@ -65,7 +65,7 @@ const getDayDetails = (args: IDayDetailsProps): IDayDetails => {
   let nextMonth = args.month + 1;
   let prevYear = args.year;
 
-  if (prevMonth < 0) {
+  if (prevMonth === -1) {
     prevMonth = 11;
     prevYear -= 1;
   }

@@ -80,6 +80,8 @@ interface IState {
 const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, previousMonths, ...props }: IDateRangePickerProps) => {
   const [isShown, showDatePicker] = useState<'none' | 'from' | 'to'>('none');
   const [value, setValue] = useState<IState>({ from: '', to: '' });
+  const fromInput = React.useRef(null);
+  const toInput = React.useRef(null);
 
   React.useEffect(() => {
     setValue(rangeToValue(fields));
@@ -91,6 +93,14 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, prev
     }
     if (dateRange.endDate && !isSame(dateRange.endDate, fields['End Time'].value)) {
       updateAndValidate([name, 'End Time'].join('.'), toTimestamp(dateRange.endDate));
+    }
+
+    if (dateRange.startDate && !dateRange.endDate) {
+      toInput.current.focus();
+    } else if (dateRange.endDate && !dateRange.startDate) {
+      fromInput.current.focus();
+    } else {
+      showDatePicker('none');
     }
   };
 
@@ -110,6 +120,7 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, prev
             <Input
               {...props}
               {...field}
+              ref={index === 0 ? fromInput : toInput}
               errorMessage={getErrorMessage(shown)}
               update={(path: keyof IDateRangePickerProps['fields'], v) => {
                 setValue({ ...value, [shown]: v });

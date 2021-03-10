@@ -104,12 +104,20 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, prev
     }
   };
 
-  const updateFields = (fieldName: keyof IDateRangePickerProps['fields'], fieldValue: string) =>
-    isValidDate(fieldValue) && updateAndValidate([name, fieldName].join('.'), toTimestamp(dateTimeToDate(fieldValue)));
+  const updateFields = (fieldName: keyof IDateRangePickerProps['fields'], property: keyof IState) => {
+    if (isValidDate(value[property])) {
+      updateAndValidate([name, fieldName].join('.'), toTimestamp(dateTimeToDate(value[property])));
+    }
+  };
+
+  const onBlur = (fieldName: keyof IDateRangePickerProps['fields'], property: keyof IState) => () => updateFields(fieldName, property);
 
   const getErrorMessage = (prop: keyof IState) => {
     return value[prop] && !isValidDate(value[prop]) ? 'Datum není ve správném formátu' : undefined;
   };
+
+  const onKeyPress = (event: React.KeyboardEvent<HTMLInputElement>, fieldName: keyof IDateRangePickerProps['fields'], property: keyof IState) =>
+    event.key === 'Enter' && updateFields(fieldName, property);
 
   return (
     <Wrapper>
@@ -122,13 +130,12 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, prev
               {...field}
               ref={index === 0 ? fromInput : toInput}
               errorMessage={getErrorMessage(shown)}
-              update={(path: keyof IDateRangePickerProps['fields'], v) => {
-                setValue({ ...value, [shown]: v });
-                updateFields(path, v);
-              }}
+              update={(path, v) => setValue({ ...value, [shown]: v })}
               updateAndValidate={() => null}
               value={value[shown]}
               onFocus={() => showDatePicker(shown)}
+              onBlur={onBlur(n, shown)}
+              onKeyPress={(event) => onKeyPress(event, n, shown)}
             />
             <Popup isOpen={isShown === shown} onClose={() => showDatePicker('none')}>
               <DateRangePickerComponent

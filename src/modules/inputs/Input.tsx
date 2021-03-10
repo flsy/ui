@@ -14,6 +14,7 @@ interface IProps extends FieldProps<string> {
   inputMode?: 'text' | 'none' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search';
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onKeyPress?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 const Input = React.forwardRef((props: IProps, ref: React.Ref<HTMLInputElement>) => {
@@ -35,6 +36,7 @@ const Input = React.forwardRef((props: IProps, ref: React.Ref<HTMLInputElement>)
         inputMode={props.inputMode}
         hasError={!!props.errorMessage}
         data-test-id={`form-input-${props.name}`}
+        onKeyPress={props.onKeyPress}
       />
       {props.errorMessage ? <ErrorMessage message={props.errorMessage} name={props.name} /> : null}
     </InputWrapper>
@@ -46,6 +48,7 @@ Input.defaultProps = {
   inputMode: 'text',
   onFocus: undefined,
   onBlur: undefined,
+  onKeyPress: undefined,
 };
 
 export default Input;

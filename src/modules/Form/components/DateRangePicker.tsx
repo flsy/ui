@@ -85,14 +85,16 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, prev
 
   React.useEffect(() => {
     setValue(rangeToValue(fields));
-  }, [fields]);
+  }, []);
 
   const setDateRange = (dateRange: IDateRange) => {
     if (dateRange.startDate && !isSame(dateRange.startDate, fields['Start Time'].value)) {
       updateAndValidate([name, 'Start Time'].join('.'), toTimestamp(dateRange.startDate));
+      setValue({ ...value, from: timeReadable(Math.round(dateRange.startDate.getTime() / 1000)) });
     }
     if (dateRange.endDate && !isSame(dateRange.endDate, fields['End Time'].value)) {
       updateAndValidate([name, 'End Time'].join('.'), toTimestamp(dateRange.endDate));
+      setValue({ ...value, to: timeReadable(Math.round(dateRange.endDate.getTime() / 1000)) });
     }
 
     if (dateRange.startDate && !dateRange.endDate) {

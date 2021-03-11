@@ -57,11 +57,11 @@ interface IDayDetailsProps {
   firstDay: number;
   year: number;
   month: number;
-  hasMoreMonths?: boolean;
+  showOtherMonthDays?: boolean;
 }
 
-const getDay = (day, hasMoreMonths, isCurrentMonth) => {
-  if (hasMoreMonths) {
+const getDay = (day: number, isCurrentMonth: boolean, showOtherMonthDays?: boolean) => {
+  if (showOtherMonthDays) {
     return isCurrentMonth && day;
   }
   return day;
@@ -95,12 +95,12 @@ const getDayDetails = (args: IDayDetailsProps): IDayDetails => {
     isCurrentMonth,
     year: yearReal,
     month: monthReal,
-    day: getDay(returnDay, args.hasMoreMonths, isCurrentMonth),
+    day: getDay(returnDay, isCurrentMonth, args.showOtherMonthDays),
     date: new Date(yearReal, monthReal, returnDay),
   };
 };
 
-export const getMonthDetails = (year: number, month: number, hasMoreMonths?: boolean): IDayDetails[] => {
+export const getMonthDetails = (year: number, month: number, showOtherMonthDays?: boolean): IDayDetails[] => {
   const firstDay = getFirstDayInMonth(year, month);
   const numberOfDays = getNumberOfDays(year, month);
   const rows = 6;
@@ -113,7 +113,7 @@ export const getMonthDetails = (year: number, month: number, hasMoreMonths?: boo
       firstDay,
       year,
       month,
-      hasMoreMonths,
+      showOtherMonthDays,
     }),
   );
 };

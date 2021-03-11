@@ -1,19 +1,22 @@
 import styled, { css } from 'styled-components';
 
+export const getBorder = (color: string) => css`
+  border: 1px solid ${color};
+  margin: -1px 0 0 -1px;
+  outline: none;
+`;
+
 const Day = styled.div<{ isDisabled?: boolean; isCurrent?: boolean; isCurrentMonth?: boolean; isSelected?: boolean }>`
   padding: 0.5em;
   cursor: pointer;
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  margin: -1px 0 0 -1px;
+  ${({ theme }) => getBorder(theme.colors.border)};
 
   ${({ theme }) => css`
     color: ${theme.colors.text};
     &:hover {
       color: #fff;
       background-color: ${theme.colors.main.dark};
-      outline: none;
-      margin: -1px 0 0 -1px;
-      border: 1px solid ${theme.colors.main.dark};
+      ${getBorder(theme.colors.main.dark)};
     }
   `}
 
@@ -43,9 +46,7 @@ const Day = styled.div<{ isDisabled?: boolean; isCurrent?: boolean; isCurrentMon
     css`
       color: #fff;
       background: ${theme.colors.main.primary};
-      outline: none;
-      border: 1px solid ${theme.colors.main.primary};
-      margin: -1px 0 0 -1px;
+      ${getBorder(theme.colors.main.primary)};
     `}
 `;
 

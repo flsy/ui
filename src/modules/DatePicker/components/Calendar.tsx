@@ -6,7 +6,7 @@ interface ICalendarProps {
   year: number;
   month: number;
   children: (day: IDayDetails) => ReactNode;
-  hasMoreMonths?: boolean;
+  showOtherMonthDays?: boolean;
 }
 
 const CalendarWrapper = styled.div`
@@ -21,19 +21,19 @@ const DayName = styled.div`
   cursor: pointer;
 `;
 
-const Calendar = ({ year, month, children, hasMoreMonths }: ICalendarProps) => {
+const Calendar = ({ year, month, children, showOtherMonthDays }: ICalendarProps) => {
   return (
     <CalendarWrapper>
       {daysMap.map((day) => (
         <DayName key={day}>{day}</DayName>
       ))}
-      {getMonthDetails(year, month, hasMoreMonths).map((day) => children(day))}
+      {getMonthDetails(year, month, showOtherMonthDays).map((day) => children(day))}
     </CalendarWrapper>
   );
 };
 
 Calendar.defaultProps = {
-  hasMoreMonths: undefined,
+  showOtherMonthDays: undefined,
 };
 
 export default Calendar;

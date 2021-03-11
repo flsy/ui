@@ -98,7 +98,7 @@ const DateRangePicker = ({ setDateRange, dateRange: { startDate, endDate }, with
         {months.map((m: number) => (
           <div key={m}>
             <SelectYearAndMonth month={m} setMonth={setMonth} year={year} setYear={setYear} months={months} />
-            <Calendar year={year} month={m} hasMoreMonths={months.length > 1}>
+            <Calendar year={year} month={m} showOtherMonthDays={months.length > 1}>
               {(day) =>
                 day.day ? (
                   <RangeDay

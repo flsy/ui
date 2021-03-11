@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import Day from './components/Day';
+import Day, { getBorder } from './components/Day';
 import { Colours } from '../../mainStyles';
 
 export const RangeDay = styled(Day)<{ isHighlighted: boolean }>`
@@ -9,7 +9,7 @@ export const RangeDay = styled(Day)<{ isHighlighted: boolean }>`
     css`
       color: ${Colours.background};
       background: ${theme.colors.main.light};
-      outline: none;
+      ${getBorder('transparent')}
 
       &:hover {
         background: ${theme.colors.main.dark};

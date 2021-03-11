@@ -124,7 +124,7 @@ const DateRangePicker = ({ withTimePicker, updateAndValidate, name, fields, prev
               {...props}
               {...field}
               ref={index === 0 ? fromInput : toInput}
-              errorMessage={getErrorMessage(shown)}
+              errorMessage={field.errorMessage || getErrorMessage(shown)}
               update={(path, v) => setValue({ ...value, [shown]: v })}
               updateAndValidate={() => null}
               value={value[shown]}

@@ -49,6 +49,41 @@ const form: MyForm = {
     type: 'checkbox',
     label: 'doIt',
   },
+  'tree-select': {
+    type: 'tree-select',
+    label: 'Select me',
+    value: ['u:jim'],
+    treeData: [
+      {
+        label: 'Admin',
+        value: 'g:admin',
+        children: [
+          {
+            label: 'John',
+            value: 'u:john',
+          },
+          {
+            label: 'Joe',
+            value: 'u:joe',
+          },
+        ],
+      },
+      {
+        label: 'Auditor',
+        value: 'g:auditor',
+        children: [
+          {
+            label: 'Jenny',
+            value: 'u:jenny',
+          },
+          {
+            label: 'Jim',
+            value: 'u:jim',
+          },
+        ],
+      },
+    ],
+  },
   submit: {
     type: 'submit',
     label: 'Login',

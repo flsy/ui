@@ -50,3 +50,4 @@ export { default as ToastProvider } from './modules/Toast/ToastProvider';
 export { default as useToasts } from './modules/Toast/useToasts';
 export { default as Tooltip } from './modules/Tooltip/Tooltip';
 export { default as FormStep, FormStepManual } from './modules/Wizard/FormStep';
+export * from './modules/MetaTable/interfaces';

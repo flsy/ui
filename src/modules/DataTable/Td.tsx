@@ -35,7 +35,7 @@ const renderValue = (value: unknown | unknown[], type: AllTypes): React.ReactNod
   return <>{value}</>;
 };
 
-const Td: ITd<AllTypes> = ({ value, type }) => {
+const Td: ITd<AllTypes, any> = ({ value, type }) => {
   return <STd>{renderValue(value, type)}</STd>;
 };
 

@@ -8,7 +8,7 @@ export interface IMetaTableProps<TColumns, TRow, TTypes> {
   data: TRow[];
   columns: TColumns;
   render?: {
-    Td?: ITd<TTypes>;
+    Td?: ITd<TTypes, TRow>;
     Tr?: ITr<TRow>;
     HeadTr?: IHeadTr;
     Th?: ITh<TTypes>;
@@ -25,7 +25,7 @@ const DefaultTh: ITh<any> = ({ columns, columnPath }) => <th>{view(lensPath([...
 const DefaultThead: React.FC = ({ children }) => <thead>{children}</thead>;
 const DefaultTr: ITr<any> = ({ children }) => <tr>{children}</tr>;
 const DefaultHeadTr: IHeadTr = ({ children }) => <tr>{children}</tr>;
-const DefaultTd: ITd<any> = ({ value }) => <td>{renderValue(value)}</td>;
+const DefaultTd: ITd<any, any> = ({ value }) => <td>{renderValue(value)}</td>;
 
 const MetaTable = <TColumns extends Columns<TTypes>, TRow, TTypes>({ data, render, columns }: IMetaTableProps<TColumns, TRow, TTypes>) => {
   const Td = render?.Td || DefaultTd;
@@ -59,7 +59,7 @@ const MetaTable = <TColumns extends Columns<TTypes>, TRow, TTypes>({ data, rende
         {data.map((row) => (
           <Tr key={rowKey(row)} row={row}>
             {displayedColumnPaths.map((columnPath) => {
-              return <Td key={cellKey(columnPath, row)} value={getCellValue(columnPath)(row)} type={cellType(columnPath)} />;
+              return <Td key={cellKey(columnPath, row)} value={getCellValue(columnPath)(row)} row={row} type={cellType(columnPath)} />;
             })}
           </Tr>
         ))}

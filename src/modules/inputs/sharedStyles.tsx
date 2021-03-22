@@ -12,7 +12,7 @@ export const Inputs = css<{ hasError?: boolean }>`
   padding: 4px;
   margin: 4px 0;
   border: 1px solid ${(props) => (props.hasError ? Colours.error : Colours.lightGrey)};
-
+  width: 100%;
   &:focus {
     border: 1px solid ${({ theme }) => theme.colors.main.primary};
   }

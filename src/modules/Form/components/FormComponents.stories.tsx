@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IForm } from 'metaforms';
+import { IForm, required } from 'metaforms';
 import { withKnobs } from '@storybook/addon-knobs';
 import { Form, Modal } from '../../../index';
 import FormTags from './Tag/FormTags';
@@ -70,7 +70,7 @@ export const Tags = () => {
       <Form
         onSubmit={({ formData }) => console.log(formData)}
         form={fields}
-        onFormChange={(f) => setFields(f)}
+        onFormChange={(f) => {}}
         components={(props) => {
           if (props.component.type === 'tags') {
             // @ts-ignore
@@ -100,7 +100,7 @@ export const RangePicker = () => {
     rangeWDefault: {
       type: 'dateRange',
       label: 'Range with default value',
-      value: ['2021-03-16T23:00:00.000Z', '2021-04-20T21:59:59.000Z'],
+      value: [1613319172, 1613819172],
       dateInputPlaceholder: ['From', 'To'],
     },
     submit: {
@@ -109,7 +109,7 @@ export const RangePicker = () => {
     },
   });
 
-  return <Form onSubmit={({ formData }) => console.log(formData)} form={fields} onFormChange={(f) => setFields(f)} />;
+  return <Form onSubmit={(v) => console.log(v)} form={fields} onFormChange={(f) => setFields(f)} />;
 };
 
 export default {

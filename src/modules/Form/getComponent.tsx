@@ -14,7 +14,6 @@ import DatePicker, { DateTimePicker } from './components/DatePicker';
 import { FormTags } from './components/Tag';
 import FileUpload from '../Upload/FileUpload';
 import { DateTimeRangePicker } from './components/DateRangePicker';
-import FormTreeSelect from './components/FormTreeSelect';
 
 export const getComponent = <T extends Field>(parentGetComponent?: Components<T>) => (componentProps: ComponentProps<T>) => {
   if (parentGetComponent) {
@@ -66,8 +65,6 @@ export const getComponent = <T extends Field>(parentGetComponent?: Components<T>
           {groupChildren}
         </Group>
       );
-    case 'tree-select':
-      return <FormTreeSelect key={props.name} {...props} />;
     default:
       return;
   }

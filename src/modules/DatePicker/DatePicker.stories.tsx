@@ -2,11 +2,13 @@ import { storiesOf } from '@storybook/react';
 import React, { useState } from 'react';
 import { FormData } from 'react-metaforms';
 import { required } from 'metaforms';
+import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { Form } from '../../index';
 import DatePicker from './DatePicker';
 import DateRangePicker from './DateRangePicker';
 import { IDateRange } from './interfaces';
 import { toISOStringDate, toISOStringDateTime } from './utils';
+import RangePicker from './RangePicker';
 
 const datePickerForm = {
   start: {
@@ -116,6 +118,8 @@ const DateRangePickerMonthsStory = () => {
 };
 
 storiesOf('Date picker', module)
+  .addDecorator(withKnobs)
   .add('basic usage', () => <DatePickerStory />)
   .add('Date range picker', () => <DateRangePickerStory />)
-  .add('Date range picker more months', () => <DateRangePickerMonthsStory />);
+  .add('Date range picker more months', () => <DateRangePickerMonthsStory />)
+  .add('range', () => <RangePicker placeholder="Select range:" withTimePicker={boolean('with time picker', false)} />);

@@ -47,7 +47,7 @@ const form = {
   },
 };
 
-export const Tags = () => {
+export const Tags = (): JSX.Element => {
   const [fields, setFields] = useState<any>(form);
 
   const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
@@ -70,7 +70,7 @@ export const Tags = () => {
       <Form
         onSubmit={({ formData }) => console.log(formData)}
         form={fields}
-        onFormChange={(f) => {}}
+        onFormChange={setFields}
         components={(props) => {
           if (props.component.type === 'tags') {
             // @ts-ignore
@@ -84,7 +84,7 @@ export const Tags = () => {
   );
 };
 
-export const RangePicker = () => {
+export const RangePicker = (): JSX.Element => {
   const [fields, setFields] = useState<any>({
     range: {
       type: 'dateRange',

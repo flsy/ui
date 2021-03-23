@@ -8,7 +8,7 @@ import DownloadButton from './DownloadButton';
 
 const sizes = ['xs', 'sm', 'md', 'lg'];
 
-export const Default = () => (
+export const Default = (): JSX.Element => (
   <Button
     onClick={action('onClick')}
     primary={boolean('Primary', false, 'Type')}
@@ -46,7 +46,9 @@ const mockFile =
   '  ]\n' +
   '}';
 
-export const Download = () => <DownloadButton fileContent={mockFile} fileName="rawData.json" mimeType="application/json" text="Download" icon={<DownloadOutlined />} />;
+export const Download = (): JSX.Element => (
+  <DownloadButton fileContent={mockFile} fileName="rawData.json" mimeType="application/json" text="Download" icon={<DownloadOutlined />} />
+);
 
 export default {
   title: 'Components/Button',

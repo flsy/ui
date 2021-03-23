@@ -84,6 +84,34 @@ export const Tags = () => {
   );
 };
 
+export const RangePicker = () => {
+  const [fields, setFields] = useState<any>({
+    range: {
+      type: 'dateRange',
+      label: 'Range',
+      dateInputPlaceholder: ['From', 'To'],
+    },
+    rangeWTime: {
+      type: 'dateRange',
+      label: 'Range with time',
+      withTimePicker: true,
+      dateInputPlaceholder: ['From', 'To'],
+    },
+    rangeWDefault: {
+      type: 'dateRange',
+      label: 'Range with default value',
+      value: ['2021-03-16T23:00:00.000Z', '2021-04-20T21:59:59.000Z'],
+      dateInputPlaceholder: ['From', 'To'],
+    },
+    submit: {
+      type: 'submit',
+      label: 'Submit',
+    },
+  });
+
+  return <Form onSubmit={({ formData }) => console.log(formData)} form={fields} onFormChange={(f) => setFields(f)} />;
+};
+
 export default {
   title: 'Form/Components',
   decorators: [withKnobs],

@@ -17,8 +17,6 @@ const now = moment();
 const defaultCalendarValue = now.clone();
 defaultCalendarValue.add(-1, 'month');
 
-const formatStr = 'DD.MM.YYYY HH:mm';
-const format = (v) => (v ? v.format(formatStr) : '');
 const isValidRange = (v) => v && v[0] && v[1];
 
 const InputStyled = styled.input`
@@ -103,17 +101,22 @@ const RangeCalendarStyled = styled(RangeCalendar)`
   `}
 `;
 
-const TimePicker = <TimePickerPanel showSecond={false} defaultValue={[moment('00:00:00', 'HH:mm:ss'), moment('23:59:59', 'HH:mm:ss')]} />;
+export type RangePickerValue = [string, string];
 
 interface IProps {
   withTimePicker?: boolean;
   placeholder?: string;
   dateInputPlaceholder?: [string, string];
+  onChange: (date: RangePickerValue) => void;
+  value?: RangePickerValue;
 }
 
-const RangePicker = ({ withTimePicker, placeholder, dateInputPlaceholder }: IProps) => {
-  const [value, setValue] = useState([]);
+const RangePicker = ({ withTimePicker, placeholder, dateInputPlaceholder, value, onChange }: IProps) => {
   const [hoverValue, setHoverValue] = useState([]);
+
+  const formatStr = `DD.MM.YYYY ${withTimePicker ? 'HH:mm' : ''}`;
+  const format = (v) => (v ? v.format(formatStr) : '');
+  const pickerValue = isValidRange(value) ? [moment(value[0]), moment(value[1])] : [];
 
   const calendar = (
     <RangeCalendarStyled
@@ -124,24 +127,27 @@ const RangePicker = ({ withTimePicker, placeholder, dateInputPlaceholder }: IPro
       showWeekNumber={false}
       dateInputPlaceholder={dateInputPlaceholder}
       defaultValue={[now, now.clone().add(1, 'months')]}
-      timePicker={withTimePicker ? TimePicker : undefined}
+      timePicker={withTimePicker ? <TimePickerPanel showSecond={false} /> : undefined}
     />
   );
 
   return (
-    <Picker value={value} onChange={setValue} animation="slide-up" calendar={calendar}>
-      {({ value: v }) => {
-        return (
-          <span>
-            <InputStyled placeholder={placeholder} readOnly={true} value={(isValidRange(value) && `${format(v[0])} - ${format(v[1])}`) || ''} />
-          </span>
-        );
+    <Picker
+      value={pickerValue}
+      onChange={(v) => {
+        const nextValue: RangePickerValue = [moment(v[0]).clone().toISOString(), moment(v[1]).clone().toISOString()];
+        return isValidRange(v) ? onChange(nextValue) : [];
       }}
+      animation="slide-up"
+      calendar={calendar}
+    >
+      {({ value: v }) => <InputStyled placeholder={placeholder} readOnly={true} value={(isValidRange(value) && `${format(v[0])} - ${format(v[1])}`) || ''} />}
     </Picker>
   );
 };
 
 RangePicker.defaultProps = {
+  value: undefined,
   withTimePicker: false,
   placeholder: undefined,
   dateInputPlaceholder: ['from', 'to'],

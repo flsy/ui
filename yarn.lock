@@ -1682,7 +1682,7 @@ __metadata:
     jest: ^26.6.3
     jest-styled-components: ^7.0.3
     metacharts: ^0.0.8
-    metaforms: ^1.0.3
+    metaforms: ^1.0.7
     metatable: ^2.0.2
     moment: ^2.29.1
     prettier: ^2.2.1
@@ -1693,7 +1693,7 @@ __metadata:
     react: ^16.14.0
     react-dom: ^16.14.0
     react-is: ^17.0.1
-    react-metaforms: ^3.0.5
+    react-metaforms: ^3.0.7
     react-router-dom: ^5.2.0
     react-spring: ^8.0.27
     react-toast-notifications: ^2.4.0
@@ -8265,6 +8265,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fputils@npm:^1.1.4":
+  version: 1.1.6
+  resolution: "fputils@npm:1.1.6"
+  checksum: 62fa4d0d75214c9f43950e59df9efcf2cc0364a9cb26491df7159cb4b55d5661e6829cdbc1f0f6a4effe82f154d57b3552794a587f26d0d9619800b49a2594da
+  languageName: node
+  linkType: hard
+
 "fragment-cache@npm:^0.2.1":
   version: 0.2.1
   resolution: "fragment-cache@npm:0.2.1"
@@ -11080,12 +11087,21 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"metaforms@npm:^1.0.2, metaforms@npm:^1.0.3":
+"metaforms@npm:^1.0.2":
   version: 1.0.3
   resolution: "metaforms@npm:1.0.3"
   dependencies:
     fputils: ^1.0.12
   checksum: 9bb91c78bbea8ca57a415037f0d4aef0938ee8b2ba52fdea9ef621853160299dd5bbb41ba358d784875aacf1c2e5e046651401b91ddc81f16cde6033fce0948c
+  languageName: node
+  linkType: hard
+
+"metaforms@npm:^1.0.7":
+  version: 1.0.7
+  resolution: "metaforms@npm:1.0.7"
+  dependencies:
+    fputils: ^1.1.4
+  checksum: 46274fecac3bf4c12d9a49ff5f010ac3db34287766a9369699dec3d9c1477f1ecc3d5442c8b4876c7f960d73800f6ab7580325f34bbc7948f5ce70385f332b58
   languageName: node
   linkType: hard
 
@@ -13224,16 +13240,16 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"react-metaforms@npm:^3.0.5":
-  version: 3.0.5
-  resolution: "react-metaforms@npm:3.0.5"
+"react-metaforms@npm:^3.0.7":
+  version: 3.0.7
+  resolution: "react-metaforms@npm:3.0.7"
   dependencies:
-    metaforms: ^1.0.3
+    metaforms: ^1.0.7
     react: ^16.*
   peerDependencies:
     react: "*"
     react-dom: "*"
-  checksum: 3cf513327938557a8e03393238fdfcd5804f1f7d96429be458756873fc9cacd71fd93a4ef71473006f44a803857730fb76155221628f3ef74dc488d5343108e4
+  checksum: d5b4cedc04f211cd607b03efde8986fd2ecb9ab0729a08b370c59792a57a76eece517463034e0762afa44f0f81f7484f89e5f78277f49479b033305859326118
   languageName: node
   linkType: hard
 

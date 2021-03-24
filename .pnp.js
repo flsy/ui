@@ -75,7 +75,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:26.6.3"],
             ["jest-styled-components", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:7.0.3"],
             ["metacharts", "npm:0.0.8"],
-            ["metaforms", "npm:1.0.3"],
+            ["metaforms", "npm:1.0.7"],
             ["metatable", "npm:2.0.2"],
             ["moment", "npm:2.29.1"],
             ["prettier", "npm:2.2.1"],
@@ -86,7 +86,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:16.14.0"],
             ["react-dom", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:16.14.0"],
             ["react-is", "npm:17.0.1"],
-            ["react-metaforms", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:3.0.5"],
+            ["react-metaforms", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:3.0.7"],
             ["react-router-dom", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:5.2.0"],
             ["react-spring", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:8.0.27"],
             ["react-toast-notifications", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:2.4.0"],
@@ -3027,7 +3027,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "npm:26.6.3"],
             ["jest-styled-components", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:7.0.3"],
             ["metacharts", "npm:0.0.8"],
-            ["metaforms", "npm:1.0.3"],
+            ["metaforms", "npm:1.0.7"],
             ["metatable", "npm:2.0.2"],
             ["moment", "npm:2.29.1"],
             ["prettier", "npm:2.2.1"],
@@ -3038,7 +3038,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:16.14.0"],
             ["react-dom", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:16.14.0"],
             ["react-is", "npm:17.0.1"],
-            ["react-metaforms", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:3.0.5"],
+            ["react-metaforms", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:3.0.7"],
             ["react-router-dom", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:5.2.0"],
             ["react-spring", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:8.0.27"],
             ["react-toast-notifications", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:2.4.0"],
@@ -10993,6 +10993,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["fputils", "npm:1.0.12"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:1.1.6", {
+          "packageLocation": "./.yarn/cache/fputils-npm-1.1.6-de22d68027-62fa4d0d75.zip/node_modules/fputils/",
+          "packageDependencies": [
+            ["fputils", "npm:1.1.6"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["fragment-cache", [
@@ -14122,6 +14129,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["fputils", "npm:1.0.12"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:1.0.7", {
+          "packageLocation": "./.yarn/cache/metaforms-npm-1.0.7-58dc657ce2-46274fecac.zip/node_modules/metaforms/",
+          "packageDependencies": [
+            ["metaforms", "npm:1.0.7"],
+            ["fputils", "npm:1.1.6"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["metatable", [
@@ -16707,20 +16722,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["react-metaforms", [
-        ["npm:3.0.5", {
-          "packageLocation": "./.yarn/cache/react-metaforms-npm-3.0.5-3dd9e4751f-3cf5133279.zip/node_modules/react-metaforms/",
+        ["npm:3.0.7", {
+          "packageLocation": "./.yarn/cache/react-metaforms-npm-3.0.7-7ea87c2d25-d5b4cedc04.zip/node_modules/react-metaforms/",
           "packageDependencies": [
-            ["react-metaforms", "npm:3.0.5"]
+            ["react-metaforms", "npm:3.0.7"]
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:3.0.5", {
-          "packageLocation": "./.yarn/$$virtual/react-metaforms-virtual-0ac282a71d/0/cache/react-metaforms-npm-3.0.5-3dd9e4751f-3cf5133279.zip/node_modules/react-metaforms/",
+        ["virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:3.0.7", {
+          "packageLocation": "./.yarn/$$virtual/react-metaforms-virtual-3bd2ca0f10/0/cache/react-metaforms-npm-3.0.7-7ea87c2d25-d5b4cedc04.zip/node_modules/react-metaforms/",
           "packageDependencies": [
-            ["react-metaforms", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:3.0.5"],
+            ["react-metaforms", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:3.0.7"],
             ["@types/react", "npm:16.14.2"],
             ["@types/react-dom", "npm:16.9.10"],
-            ["metaforms", "npm:1.0.3"],
+            ["metaforms", "npm:1.0.7"],
             ["react", "npm:16.14.0"],
             ["react-dom", "virtual:0a36081fe516c7b3d5048c44282cc8294423a640d03ef30a62af551da26c79b00773468f5ce094743193f2d2f1d375c9348ff9a6f61e6b391246ddd1a1d23057#npm:16.14.0"]
           ],

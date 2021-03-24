@@ -3,14 +3,14 @@ import { FieldProps } from 'react-metaforms';
 import { isRequired } from 'metaforms';
 import moment from 'moment';
 import RangePicker, { isValidRange, RangePickerValue } from '../../DatePicker/RangePicker';
-import { InputWrapper, Label } from '../../inputs/sharedStyles';
+import { ErrorMessage, InputWrapper, Label } from '../../inputs/sharedStyles';
 
 export interface IDateRangePickerProps extends FieldProps<[number, number]> {
   withTimePicker?: boolean;
   dateInputPlaceholder?: [string, string];
 }
 
-const DateRangePicker = ({ withTimePicker, name, placeholder, value, update, label, validation, dateInputPlaceholder, validate }: IDateRangePickerProps) => {
+const DateRangePicker = ({ withTimePicker, name, placeholder, value, update, label, validation, dateInputPlaceholder, validate, errorMessage }: IDateRangePickerProps) => {
   const pickerValue: RangePickerValue = isValidRange(value) ? [moment.unix(value[0]), moment.unix(value[1])] : undefined;
 
   const handleBlur = () => {
@@ -35,6 +35,7 @@ const DateRangePicker = ({ withTimePicker, name, placeholder, value, update, lab
         withTimePicker={withTimePicker}
         dateInputPlaceholder={dateInputPlaceholder}
       />
+      {errorMessage ? <ErrorMessage message={errorMessage} name={name} /> : null}
     </InputWrapper>
   );
 };

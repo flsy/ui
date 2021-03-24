@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IForm, required } from 'metaforms';
+import { array, IForm, required } from 'metaforms';
 import { withKnobs } from '@storybook/addon-knobs';
 import { Form, Modal } from '../../../index';
 import FormTags from './Tag/FormTags';
@@ -102,6 +102,12 @@ export const RangePicker = (): JSX.Element => {
       label: 'Range with default value',
       value: [1613319172, 1613819172],
       dateInputPlaceholder: ['From', 'To'],
+    },
+    rangeWValidation: {
+      type: 'dateRange',
+      label: 'Range with validation',
+      dateInputPlaceholder: ['From', 'To'],
+      validation: [array([required('This is required')])],
     },
     submit: {
       type: 'submit',

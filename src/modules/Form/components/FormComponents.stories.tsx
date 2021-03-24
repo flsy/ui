@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IForm } from 'metaforms';
+import { IForm, required } from 'metaforms';
 import { withKnobs } from '@storybook/addon-knobs';
 import { Form, Modal } from '../../../index';
 import FormTags from './Tag/FormTags';
@@ -47,7 +47,7 @@ const form = {
   },
 };
 
-export const Tags = () => {
+export const Tags = (): JSX.Element => {
   const [fields, setFields] = useState<any>(form);
 
   const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
@@ -70,7 +70,7 @@ export const Tags = () => {
       <Form
         onSubmit={({ formData }) => console.log(formData)}
         form={fields}
-        onFormChange={(f) => setFields(f)}
+        onFormChange={setFields}
         components={(props) => {
           if (props.component.type === 'tags') {
             // @ts-ignore
@@ -82,6 +82,34 @@ export const Tags = () => {
       />
     </>
   );
+};
+
+export const RangePicker = (): JSX.Element => {
+  const [fields, setFields] = useState<any>({
+    range: {
+      type: 'dateRange',
+      label: 'Range',
+      dateInputPlaceholder: ['From', 'To'],
+    },
+    rangeWTime: {
+      type: 'dateRange',
+      label: 'Range with time',
+      withTimePicker: true,
+      dateInputPlaceholder: ['From', 'To'],
+    },
+    rangeWDefault: {
+      type: 'dateRange',
+      label: 'Range with default value',
+      value: [1613319172, 1613819172],
+      dateInputPlaceholder: ['From', 'To'],
+    },
+    submit: {
+      type: 'submit',
+      label: 'Submit',
+    },
+  });
+
+  return <Form onSubmit={(v) => console.log(v)} form={fields} onFormChange={(f) => setFields(f)} />;
 };
 
 export default {

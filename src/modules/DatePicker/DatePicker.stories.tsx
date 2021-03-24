@@ -8,7 +8,7 @@ import DatePicker from './DatePicker';
 import DateRangePicker from './DateRangePicker';
 import { IDateRange } from './interfaces';
 import { toISOStringDate, toISOStringDateTime } from './utils';
-import RangePicker from './RangePicker';
+import RangePicker, { RangePickerValue } from './RangePicker';
 
 const datePickerForm = {
   start: {
@@ -117,9 +117,14 @@ const DateRangePickerMonthsStory = () => {
   );
 };
 
+const RangeExample = () => {
+  const [value, setValue] = useState<RangePickerValue>();
+  return <RangePicker onChange={setValue} value={value} placeholder="Select range:" withTimePicker={boolean('with time picker', false)} />;
+};
+
 storiesOf('Date picker', module)
   .addDecorator(withKnobs)
   .add('basic usage', () => <DatePickerStory />)
   .add('Date range picker', () => <DateRangePickerStory />)
   .add('Date range picker more months', () => <DateRangePickerMonthsStory />)
-  .add('range', () => <RangePicker placeholder="Select range:" withTimePicker={boolean('with time picker', false)} />);
+  .add('range', () => <RangeExample />);

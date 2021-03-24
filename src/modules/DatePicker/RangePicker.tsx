@@ -6,7 +6,7 @@ import 'rc-calendar/assets/index.css';
 import 'rc-time-picker/assets/index.css';
 import cs_CZ from 'rc-calendar/lib/locale/cs_CZ';
 
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 import 'moment/locale/cs';
 import styled, { css } from 'styled-components';
 import { Inputs } from '../inputs/sharedStyles';
@@ -17,9 +17,7 @@ const now = moment();
 const defaultCalendarValue = now.clone();
 defaultCalendarValue.add(-1, 'month');
 
-const formatStr = 'DD.MM.YYYY HH:mm';
-const format = (v) => (v ? v.format(formatStr) : '');
-const isValidRange = (v) => v && v[0] && v[1];
+export const isValidRange = (v?: RangePickerValue | [number, number]) => v && v[0] && v[1];
 
 const InputStyled = styled.input`
   ${Inputs}
@@ -103,17 +101,21 @@ const RangeCalendarStyled = styled(RangeCalendar)`
   `}
 `;
 
-const TimePicker = <TimePickerPanel showSecond={false} defaultValue={[moment('00:00:00', 'HH:mm:ss'), moment('23:59:59', 'HH:mm:ss')]} />;
+export type RangePickerValue = [Moment, Moment];
 
 interface IProps {
   withTimePicker?: boolean;
   placeholder?: string;
   dateInputPlaceholder?: [string, string];
+  onChange: (date: RangePickerValue) => void;
+  value?: RangePickerValue;
+  onBlur?: () => void;
 }
 
-const RangePicker = ({ withTimePicker, placeholder, dateInputPlaceholder }: IProps) => {
-  const [value, setValue] = useState([]);
+const RangePicker = ({ withTimePicker, placeholder, dateInputPlaceholder, value, onChange, onBlur }: IProps) => {
   const [hoverValue, setHoverValue] = useState([]);
+  const formatStr = `DD.MM.YYYY ${withTimePicker ? 'HH:mm' : ''}`;
+  const format = (v) => (v ? v.format(formatStr) : '');
 
   const calendar = (
     <RangeCalendarStyled
@@ -124,27 +126,23 @@ const RangePicker = ({ withTimePicker, placeholder, dateInputPlaceholder }: IPro
       showWeekNumber={false}
       dateInputPlaceholder={dateInputPlaceholder}
       defaultValue={[now, now.clone().add(1, 'months')]}
-      timePicker={withTimePicker ? TimePicker : undefined}
+      timePicker={withTimePicker ? <TimePickerPanel showSecond={false} defaultValue={[moment('00:00:00', 'HH:mm:ss'), moment('23:59:59', 'HH:mm:ss')]} /> : undefined}
     />
   );
 
   return (
-    <Picker value={value} onChange={setValue} animation="slide-up" calendar={calendar}>
-      {({ value: v }) => {
-        return (
-          <span>
-            <InputStyled placeholder={placeholder} readOnly={true} value={(isValidRange(value) && `${format(v[0])} - ${format(v[1])}`) || ''} />
-          </span>
-        );
-      }}
+    <Picker value={value} onChange={onChange} animation="slide-up" calendar={calendar}>
+      {({ value: v }) => <InputStyled onBlur={onBlur} placeholder={placeholder} readOnly={true} value={(isValidRange(value) && `${format(v[0])} - ${format(v[1])}`) || ''} />}
     </Picker>
   );
 };
 
 RangePicker.defaultProps = {
+  value: [],
   withTimePicker: false,
   placeholder: undefined,
   dateInputPlaceholder: ['from', 'to'],
+  onBlur: undefined,
 };
 
 export default RangePicker;

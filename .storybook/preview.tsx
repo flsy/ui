@@ -6,7 +6,7 @@ import {select} from "@storybook/addon-knobs";
 
 export const decorators = [
   Story => (
-    <ThemeProvider theme={createTheme({ theme: select('theme', ['light', 'dark'], 'light'), main: '#ffc069' })}>
+    <ThemeProvider theme={createTheme({ theme: select('theme', ['light', 'dark'], 'light'), main: '#237804' })}>
       <GlobalStyle />
       <Story />
     </ThemeProvider>

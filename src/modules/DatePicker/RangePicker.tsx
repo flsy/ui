@@ -9,6 +9,7 @@ import cs_CZ from 'rc-calendar/lib/locale/cs_CZ';
 import moment, { Moment } from 'moment';
 import 'moment/locale/cs';
 import styled, { css } from 'styled-components';
+import Color from 'color';
 import { Inputs } from '../inputs/sharedStyles';
 
 moment.locale('cs-CZ');
@@ -91,12 +92,22 @@ const RangeCalendarStyled = styled(RangeCalendar)`
     .rc-calendar-decade-panel-decade:hover {
       background: ${theme.colors.main.light};
     }
+    .rc-calendar-date:hover,
+    .rc-calendar-time-panel-time:hover,
+    .rc-calendar-month-panel-cell .rc-calendar-month-panel-month:hover,
+    .rc-calendar-year-panel-year:hover,
+    .rc-calendar-decade-panel-decade:hover {
+      color: ${Color(theme.colors.main.light).isLight() ? '#000' : '#fff'};
+    }
     .rc-calendar-fullscreen .rc-calendar-selected-day .rc-calendar-date,
     .rc-calendar-fullscreen .rc-calendar-month-panel-selected-cell .rc-calendar-month-panel-month {
       background-color: ${theme.colors.main.light};
     }
     .rc-calendar-in-range-cell {
       background: ${theme.colors.main.lighter};
+    }
+    .rc-calendar-in-range-cell .rc-calendar-date {
+      color: ${Color(theme.colors.main.lighter).isLight() ? '#000' : '#fff'};
     }
   `}
 `;

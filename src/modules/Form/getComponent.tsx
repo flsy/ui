@@ -14,6 +14,8 @@ import DatePicker, { DateTimePicker } from './components/DatePicker';
 import { FormTags } from './components/Tag';
 import FileUpload from '../Upload/FileUpload';
 import DateRangePicker from './components/DateRangePicker';
+import { InputWrapper } from '../inputs/sharedStyles';
+import Message from '../Message/Message';
 
 export const getComponent = <T extends Field>(parentGetComponent?: Components<T>) => (componentProps: ComponentProps<T>) => {
   if (parentGetComponent) {
@@ -59,6 +61,12 @@ export const getComponent = <T extends Field>(parentGetComponent?: Components<T>
       return <ButtonGroup key={props.name}>{groupChildren}</ButtonGroup>;
     case 'multiselect':
       return <FormCheckboxList key={props.name} {...props} labels={{ search: 'Hledat', empty: 'Žádný záznam' }} />;
+    case 'message':
+      return (
+        <InputWrapper key={props.name}>
+          <Message {...props} type={props.messageType} open={true} />
+        </InputWrapper>
+      );
     case 'group':
       return (
         <Group key={props.name} legend={component.legend} hidden={component.hidden}>

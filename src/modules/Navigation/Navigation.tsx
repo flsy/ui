@@ -108,10 +108,10 @@ export interface ILinkProps {
 
 const Link = ({ children, to, isActive, icon, badge, isSub }: ILinkProps) => {
   return (
-    <SLink to={to} $isActive={!!isActive} $hasIcon={!!icon} $hasBadge={!!badge} $isSub={isSub}>
+    <SLink to={to} $isActive={!!isActive} $hasIcon={!!icon} $hasBadge={badge !== undefined} $isSub={isSub}>
       {icon && <SIcon>{icon}</SIcon>}
       <div>{children}</div>
-      {badge && <div>{badge}</div>}
+      {badge !== undefined && <div>{badge}</div>}
     </SLink>
   );
 };
@@ -127,10 +127,10 @@ interface IButtonProps {
 
 const Button = ({ children, onClick, isActive, icon, badge, isSub }: IButtonProps) => {
   return (
-    <SButton onClick={onClick} $isActive={!!isActive} $hasIcon={!!icon} $hasBadge={!!badge} $isSub={isSub}>
+    <SButton onClick={onClick} $isActive={!!isActive} $hasIcon={!!icon} $hasBadge={badge !== undefined} $isSub={isSub}>
       {icon && <SIcon>{icon}</SIcon>}
       <div>{children}</div>
-      {badge && <div>{badge}</div>}
+      {badge !== undefined && <div>{badge}</div>}
     </SButton>
   );
 };

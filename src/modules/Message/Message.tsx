@@ -17,12 +17,12 @@ interface IProps {
   dismissTimeout?: number;
 }
 
-export const MessageWrapper = styled.div<{ hasDismiss: boolean }>`
-  padding: 8px 16px ${({ hasDismiss }) => (hasDismiss ? 6 : 8)}px 16px;
+export const MessageWrapper = styled.div`
+  padding: 12px 16px;
 
   h3 {
-    font-size: 1em;
-    margin: 8px 0;
+    font-size: 0.95em;
+    margin: 0 0 8px 0;
   }
 
   p {
@@ -67,7 +67,7 @@ const Message: React.FC<IProps> = ({ dismissTimeout, type, text, description, ch
 
   return (
     <ColouredWrapper type={type}>
-      <MessageWrapper hasDismiss={!!dismissTimeout}>
+      <MessageWrapper>
         <MessageFlex horizontal={true}>
           {text && description && <h3>{text}</h3>}
           {close && <Button onClick={close} icon={<CloseOutlined />} hasBorder={false} size="sm" />}

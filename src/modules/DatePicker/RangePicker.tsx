@@ -115,6 +115,7 @@ const RangeCalendarStyled = styled(RangeCalendar)`
 export type RangePickerValue = [Moment, Moment];
 
 interface IProps {
+  name: string;
   withTimePicker?: boolean;
   placeholder?: string;
   dateInputPlaceholder?: [string, string];
@@ -123,7 +124,7 @@ interface IProps {
   onBlur?: () => void;
 }
 
-const RangePicker = ({ withTimePicker, placeholder, dateInputPlaceholder, value, onChange, onBlur }: IProps) => {
+const RangePicker = ({ withTimePicker, placeholder, dateInputPlaceholder, value, onChange, onBlur, name }: IProps) => {
   const [hoverValue, setHoverValue] = useState([]);
   const formatStr = `DD.MM.YYYY ${withTimePicker ? 'HH:mm' : ''}`;
   const format = (v) => (v ? v.format(formatStr) : '');
@@ -143,7 +144,9 @@ const RangePicker = ({ withTimePicker, placeholder, dateInputPlaceholder, value,
 
   return (
     <Picker value={value} onChange={onChange} animation="slide-up" calendar={calendar}>
-      {({ value: v }) => <InputStyled onBlur={onBlur} placeholder={placeholder} readOnly={true} value={(isValidRange(value) && `${format(v[0])} - ${format(v[1])}`) || ''} />}
+      {({ value: v }) => (
+        <InputStyled onBlur={onBlur} placeholder={placeholder} readOnly={true} name={name} id={name} value={(isValidRange(value) && `${format(v[0])} - ${format(v[1])}`) || ''} />
+      )}
     </Picker>
   );
 };

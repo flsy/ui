@@ -28,6 +28,7 @@ const DateRangePicker = ({ withTimePicker, name, placeholder, value, update, lab
     <InputWrapper>
       {label && <Label fieldId={name} label={label} isRequired={isRequired(validation)} />}
       <RangePicker
+        name={name}
         onChange={handleChange}
         onBlur={handleBlur}
         value={pickerValue}

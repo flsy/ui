@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
-import { Column, getFilterFormValue, unsetAllSortFormValues } from 'metatable';
+import { Column, Columns, getFilterFormValue, unsetAllSortFormValues } from 'metatable';
 import { Field } from 'metaforms';
 import { lensPath, pipe, set, view } from 'ramda';
 import { Colours } from '../../mainStyles';
@@ -9,9 +9,9 @@ import FilterIcon from '../Icon/FilterIcon';
 import { Submit } from '../inputs/Button';
 import Popup from '../Popup/Popup';
 import { DataTableContext } from './context';
-import { AllTypes, ITh } from './interfaces';
 import SortForm from './SortForm';
 import TextFilter from './filters/TextFilter';
+import { ITh } from '../MetaTable/interfaces';
 
 export const STh = styled.th`
   padding: 0;
@@ -50,9 +50,9 @@ const SFilter = styled.div<{ isOpen: boolean }>`
   }
 `;
 
-const Th: ITh = ({ columns, columnPath }) => {
+const Th = <Types extends unknown>({ columns, columnPath }: { columns: Columns<Types>; columnPath: string[] }) => {
   const columnPathLens = lensPath(columnPath);
-  const column: Column<AllTypes> = view(columnPathLens)(columns);
+  const column: Column<Types> = view(columnPathLens)(columns);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [fields, setFields] = React.useState(column.filterForm);

@@ -4,7 +4,6 @@ import MetaTable, { IMetaTableProps } from '../MetaTable/MetaTable';
 import useKeyPress, { KeyboardKey } from '../../utils/useKeyPress';
 import { DataTableContext } from './context';
 import HeadTr from './HeadTr';
-import { AllTypes } from './interfaces';
 import Table from './Table';
 import Tbody from './Tbody';
 import Td from './Td';
@@ -12,11 +11,11 @@ import Tfoot from './Tfoot';
 import Th from './Th';
 import Tr from './Tr';
 
-type IColumns = Columns<AllTypes>;
+type IColumns<T> = Columns<T>;
 
-interface IDataTableProps<TRow> {
+interface IDataTableProps<TRow, Types> {
   data?: TRow[];
-  columns?: IColumns;
+  columns?: IColumns<Types>;
   labels?: {
     empty?: string;
   };
@@ -26,12 +25,12 @@ interface IDataTableProps<TRow> {
   isKeyboardSelect?: boolean;
   expandedRowRender?: (row: TRow) => ReactNode;
   isLoading?: boolean;
-  render?: IMetaTableProps<IColumns, TRow, AllTypes>['render'];
+  render?: IMetaTableProps<IColumns<Types>, TRow, Types>['render'];
   onLoadMore?: () => void;
-  onColumnsChange?: (columns: IColumns) => void;
+  onColumnsChange?: (columns: IColumns<Types>) => void;
 }
 
-const DataTable = <TRow extends {}>({
+const DataTable = <TRow extends {}, Types>({
   data,
   columns,
   render,
@@ -44,7 +43,7 @@ const DataTable = <TRow extends {}>({
   isLoading,
   onLoadMore,
   onColumnsChange,
-}: IDataTableProps<TRow>) => {
+}: IDataTableProps<TRow, Types>) => {
   const downPress = useKeyPress(KeyboardKey.arrowDown, !isKeyboardSelect);
   const upPress = useKeyPress(KeyboardKey.arrowUp, !isKeyboardSelect);
 
@@ -58,7 +57,7 @@ const DataTable = <TRow extends {}>({
     }
   }, [downPress, upPress]);
 
-  const columnsChanged = (changedColumns: Columns<AllTypes>) => {
+  const columnsChanged = (changedColumns: Columns<Types>) => {
     if (onColumnsChange) {
       onColumnsChange(changedColumns);
     }
@@ -78,7 +77,7 @@ const DataTable = <TRow extends {}>({
         onLoadMore,
       }}
     >
-      <MetaTable<IColumns, TRow, AllTypes> data={data} columns={columns} render={{ Th, Tr, Table, Td, HeadTr, Tbody, Tfoot, ...render }} />
+      <MetaTable<IColumns<Types>, TRow, Types> data={data} columns={columns} render={{ Th, Tr, Table, Td, HeadTr, Tbody, Tfoot, ...render }} />
     </DataTableContext.Provider>
   );
 };

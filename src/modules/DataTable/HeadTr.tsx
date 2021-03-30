@@ -1,7 +1,7 @@
 import React, { Children, useContext } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { DataTableContext } from './context';
-import { IHeadTr } from './interfaces';
+import { IHeadTr } from '../MetaTable/interfaces';
 import { STh } from './Th';
 
 const first = keyframes`

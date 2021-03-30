@@ -1,10 +1,9 @@
 import React from 'react';
 import { Column, Columns } from 'metatable';
 import DataTable from '../DataTable';
-import { AllTypes } from '../interfaces';
 import { mountWithTheme } from '../../../testUtils';
 
-interface IColumns extends Columns<AllTypes> {
+interface IColumns extends Columns<'number' | 'string' | 'timestamp' | 'boolean'> {
   id: Column<'number'>;
   createdAt: Column<'timestamp'>;
   createdBy: {
@@ -68,7 +67,7 @@ const data = [...Array(50)].map((_, i) => ({
 
 describe('<DataTable />', () => {
   it('renders ths correctly', () => {
-    const component = mountWithTheme(<DataTable<object> columns={columns} data={data} isRowSelected={() => false} onRowSelect={jest.fn} />);
+    const component = mountWithTheme(<DataTable<object, string> columns={columns} data={data} isRowSelected={() => false} onRowSelect={jest.fn} />);
     const ths = component.find('thead').find('th');
 
     expect(ths.length).toEqual(7);
@@ -82,7 +81,7 @@ describe('<DataTable />', () => {
     component.unmount();
   });
   it('renders trs and tds correctly', () => {
-    const component = mountWithTheme(<DataTable<object> columns={columns} data={data} isRowSelected={() => false} onRowSelect={jest.fn} />);
+    const component = mountWithTheme(<DataTable<object, string> columns={columns} data={data} isRowSelected={() => false} onRowSelect={jest.fn} />);
     const trs = component.find('tbody').find('tr');
 
     expect(trs.length).toEqual(50);
@@ -105,20 +104,22 @@ describe('<DataTable />', () => {
     component.unmount();
   });
   it('should display default no data placeholder', () => {
-    const component = mountWithTheme(<DataTable<object> columns={columns} data={[]} isRowSelected={() => false} onRowSelect={jest.fn} />);
+    const component = mountWithTheme(<DataTable<object, string> columns={columns} data={[]} isRowSelected={() => false} onRowSelect={jest.fn} />);
     expect(component.find('tbody').text()).toBe('No data');
   });
   it('should display custom no data placeholder', () => {
-    const component = mountWithTheme(<DataTable<object> labels={{ empty: 'Yo nothing to see' }} columns={columns} data={[]} isRowSelected={() => false} onRowSelect={jest.fn} />);
+    const component = mountWithTheme(
+      <DataTable<object, string> labels={{ empty: 'Yo nothing to see' }} columns={columns} data={[]} isRowSelected={() => false} onRowSelect={jest.fn} />,
+    );
     expect(component.find('tbody').text()).toBe('Yo nothing to see');
   });
   describe('isLoading state', () => {
     it('should display loader', () => {
-      const component = mountWithTheme(<DataTable<object> columns={columns} isLoading={true} data={data} isRowSelected={() => false} onRowSelect={jest.fn} />);
+      const component = mountWithTheme(<DataTable<object, string> columns={columns} isLoading={true} data={data} isRowSelected={() => false} onRowSelect={jest.fn} />);
       expect(component.find('[data-test="datatable-loader"]').exists()).toBe(true);
     });
     it("shouldn't display loader", () => {
-      const component = mountWithTheme(<DataTable<object> columns={columns} data={data} isRowSelected={() => false} onRowSelect={jest.fn} />);
+      const component = mountWithTheme(<DataTable<object, string> columns={columns} data={data} isRowSelected={() => false} onRowSelect={jest.fn} />);
       expect(component.find('[data-test="datatable-loader"]').exists()).toBe(false);
     });
   });

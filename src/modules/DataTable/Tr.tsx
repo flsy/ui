@@ -4,7 +4,6 @@ import React, { Children, useContext, useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { Colours } from '../../mainStyles';
 import { DataTableContext } from './context';
-import { ITr } from './interfaces';
 import { STd } from './Td';
 
 export const STr = styled.tr<{ isClickable?: boolean; isSelected?: boolean; type?: 'primary' | 'warning' }>`
@@ -72,7 +71,7 @@ const ExpandableTd = ({ hasRender, isSelected }: { isSelected: boolean; hasRende
   return <SExpandableTd isSelected={isSelected} />;
 };
 
-const Tr: ITr = ({ row, children }) => {
+const Tr = <Row extends unknown>({ row, children }: { children: React.ReactNode; row: Row }) => {
   const rowRef = useRef<HTMLTableRowElement>(null);
   const dataTable = useContext(DataTableContext);
   const isSelected = !!(dataTable?.isRowSelected && dataTable.isRowSelected(row));

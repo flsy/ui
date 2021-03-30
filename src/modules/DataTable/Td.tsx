@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import { Colours } from '../../mainStyles';
 import BoolIcon from '../Icon/BoolIcon';
 import ImageModal from '../ImageModal/ImageModal';
-import { AllTypes } from './interfaces';
 import Tag from '../Tag/Tag';
-import { ITd } from '../MetaTable/interfaces';
 
 export const STd = styled.td`
   padding: 4px 14px;
@@ -13,7 +11,7 @@ export const STd = styled.td`
   height: 2.6em;
 `;
 
-const renderValue = (value: unknown | unknown[], type: AllTypes): React.ReactNode => {
+const renderValue = <Types extends unknown>(value: unknown | unknown[], type: Types): React.ReactNode => {
   if (typeof value === 'boolean') {
     return <BoolIcon value={value} />;
   }
@@ -35,7 +33,7 @@ const renderValue = (value: unknown | unknown[], type: AllTypes): React.ReactNod
   return <>{value}</>;
 };
 
-const Td: ITd<AllTypes, any> = ({ value, type }) => {
+const Td = ({ value, type }) => {
   return <STd>{renderValue(value, type)}</STd>;
 };
 

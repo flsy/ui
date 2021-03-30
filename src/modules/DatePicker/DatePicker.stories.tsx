@@ -58,7 +58,7 @@ const DatePickerStory = () => {
 
 const RangeExample = () => {
   const [value, setValue] = useState<RangePickerValue>();
-  return <RangePicker onChange={setValue} value={value} placeholder="Select range:" withTimePicker={boolean('with time picker', false)} />;
+  return <RangePicker onChange={setValue} value={value} placeholder="Select range:" withTimePicker={boolean('with time picker', false)} name="select-range" />;
 };
 
 storiesOf('Date picker', module)

@@ -1,4 +1,4 @@
-import React, { ReactChild } from 'react';
+import React, { ReactChild, ReactNode } from 'react';
 import styled from 'styled-components';
 
 const Circle = styled.div<{ hasChild: boolean }>`
@@ -20,7 +20,7 @@ const Circle = styled.div<{ hasChild: boolean }>`
 interface IProps {
   className?: string;
   children?: ReactChild;
-  value?: number;
+  value?: ReactNode;
 }
 
 export const Badge = ({ className, children, value }: IProps): JSX.Element => (

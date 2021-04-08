@@ -3,6 +3,7 @@ import { Link as RRDLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { Colours } from '../../mainStyles';
 import { Transient } from '../../types';
+import { Badge } from '../Badge';
 
 const SLogo = styled.div`
   justify-content: center;
@@ -11,32 +12,13 @@ const SLogo = styled.div`
   padding: 1em 0;
 `;
 
-type SItemProps = Transient<{ isActive: boolean; hasIcon: boolean; hasBadge: boolean; isSub: boolean }>;
+type SItemProps = Transient<{ isActive: boolean; isSub: boolean }>;
 const SItem = css<SItemProps>`
-  display: grid;
+  display: flex;
   align-items: center;
-  grid-template-columns: auto;
   padding: 0.5em 1em;
   text-decoration: none;
-
-  ${({ $hasBadge }) =>
-    $hasBadge &&
-    `
-    grid-template-columns: auto 30px;
-  `}
-
-  ${({ $hasIcon }) =>
-    $hasIcon &&
-    `
-    grid-template-columns: 30px auto;
-  `}
-
-  ${({ $hasIcon, $hasBadge }) =>
-    $hasIcon &&
-    $hasBadge &&
-    `
-    grid-template-columns: 30px auto 30px;
-  `}
+  justify-content: space-between;
 
   :hover {
     background: ${Colours.smidgenGrey};
@@ -54,6 +36,10 @@ const SItem = css<SItemProps>`
     `
     padding-left: 2em;
   `}
+`;
+
+const SItemChildren = styled.div`
+  flex-grow: 1;
 `;
 
 const SLink = styled(RRDLink)<SItemProps>`
@@ -97,49 +83,51 @@ const SDivider = styled(STitle)`
   }
 `;
 
-export interface ILinkProps {
+export interface IItemProps {
   children: string;
+  icon?: ReactNode;
+  badge?: ReactNode;
+}
+
+const Item = ({ children, icon, badge }: IItemProps) => (
+  <>
+    {icon && <SIcon>{icon}</SIcon>}
+    <SItemChildren>{children}</SItemChildren>
+    {badge !== undefined && <Badge value={badge} />}
+  </>
+);
+
+export interface ILinkProps extends IItemProps {
   to: string;
   isActive?: boolean;
   isSub?: boolean;
-  icon?: ReactNode;
-  badge?: ReactNode;
 }
 
-const Link = ({ children, to, isActive, icon, badge, isSub }: ILinkProps) => {
-  return (
-    <SLink to={to} $isActive={!!isActive} $hasIcon={!!icon} $hasBadge={badge !== undefined} $isSub={isSub}>
-      {icon && <SIcon>{icon}</SIcon>}
-      <div>{children}</div>
-      {badge !== undefined && <div>{badge}</div>}
-    </SLink>
-  );
-};
+const Link = ({ children, to, isActive, icon, badge, isSub }: ILinkProps) => (
+  <SLink to={to} $isActive={!!isActive} $isSub={isSub}>
+    <Item icon={icon} badge={badge}>
+      {children}
+    </Item>
+  </SLink>
+);
 
-interface IButtonProps {
-  children: string;
+interface IButtonProps extends IItemProps {
   onClick: () => void;
   isActive?: boolean;
   isSub?: boolean;
-  icon?: ReactNode;
-  badge?: ReactNode;
 }
 
-const Button = ({ children, onClick, isActive, icon, badge, isSub }: IButtonProps) => {
-  return (
-    <SButton onClick={onClick} $isActive={!!isActive} $hasIcon={!!icon} $hasBadge={badge !== undefined} $isSub={isSub}>
-      {icon && <SIcon>{icon}</SIcon>}
-      <div>{children}</div>
-      {badge !== undefined && <div>{badge}</div>}
-    </SButton>
-  );
-};
+const Button = ({ children, onClick, isActive, icon, badge, isSub }: IButtonProps) => (
+  <SButton onClick={onClick} $isActive={!!isActive} $isSub={isSub}>
+    <Item icon={icon} badge={badge}>
+      {children}
+    </Item>
+  </SButton>
+);
 
 Button.defaultProps = {
   isActive: false,
   isSub: false,
-  icon: undefined,
-  badge: undefined,
 };
 
 const Title = ({ children }: { children: string }) => <STitle>{children}</STitle>;

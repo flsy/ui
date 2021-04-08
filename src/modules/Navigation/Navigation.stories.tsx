@@ -2,13 +2,14 @@ import { withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import styled from 'styled-components';
 import { action } from '@storybook/addon-actions';
+import { AimOutlined } from '@ant-design/icons';
 import { Navigation } from '../../index';
 
 export const Basic = (): JSX.Element => {
   return (
     <Navigation>
       <Navigation.Title>Buttons</Navigation.Title>
-      <Navigation.Button onClick={action('clicked')} badge={0}>
+      <Navigation.Button onClick={action('clicked')} badge="50" icon={<AimOutlined />}>
         Button 1
       </Navigation.Button>
       <Navigation.Button onClick={action('clicked')}>Button 2</Navigation.Button>

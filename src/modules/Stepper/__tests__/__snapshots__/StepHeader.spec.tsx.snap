@@ -50,7 +50,7 @@ exports[`<StepHeader /> should display active step header 1`] = `
   background-color: rgba(0,0,0,0.25);
 }
 
-.c3 .sc-eCssSg {
+.c3 .sc-eCImvq {
   color: rgba(0,0,0,.85);
   font-weight: 300;
   line-height: 1.5em;
@@ -151,7 +151,7 @@ exports[`<StepHeader /> should display inactive step header 1`] = `
   background-color: rgba(0,0,0,0.25);
 }
 
-.c3 .sc-eCssSg {
+.c3 .sc-eCImvq {
   color: rgba(0,0,0,.85);
   font-weight: 300;
   line-height: 1.5em;

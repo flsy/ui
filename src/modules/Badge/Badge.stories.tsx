@@ -5,7 +5,7 @@ import Badge from './Badge';
 
 export const Basic = (): JSX.Element => (
   <>
-    Notifications <Badge value={10} />
+    Notifications <Badge value={50} />
   </>
 );
 

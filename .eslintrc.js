@@ -7,14 +7,7 @@ module.exports = {
   },
   ignorePatterns: ['build', 'lib', 'node_modules'],
   plugins: ['@typescript-eslint', 'jest'],
-  extends: [
-    'airbnb-typescript',
-    'prettier/react',
-    'plugin:@typescript-eslint/recommended',
-    'prettier/@typescript-eslint',
-    'plugin:prettier/recommended',
-    'plugin:jest/recommended',
-  ],
+  extends: ['airbnb-typescript', 'plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended', 'plugin:jest/recommended', 'prettier'],
   rules: {
     '@typescript-eslint/interface-name-prefix': 0,
     '@typescript-eslint/explicit-function-return-type': 0,

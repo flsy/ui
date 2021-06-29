@@ -30,6 +30,11 @@ const form: MyForm = {
     type: 'csv',
     label: 'Select CSV',
   },
+  upload: {
+    type: 'upload',
+    label: 'Upload file',
+    accept: '.req',
+  },
   password: {
     type: 'password',
     label: 'Password',

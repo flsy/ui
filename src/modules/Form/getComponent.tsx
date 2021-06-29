@@ -53,6 +53,8 @@ export const getComponent = <T extends Field>(parentGetComponent?: Components<T>
       return <ImageUpload key={props.name} {...props} multiple={true} />;
     case 'csv':
       return <FileUpload key={props.name} {...props} accept=".csv" />;
+    case 'upload':
+      return <FileUpload key={props.name} {...props} />;
     case 'datetime-local':
       return <DateTimePicker key={props.name} {...props} />;
     case 'dateRange':

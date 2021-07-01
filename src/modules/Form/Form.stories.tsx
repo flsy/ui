@@ -66,6 +66,8 @@ const form: MyForm = {
   },
 };
 
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export const Basic = () => {
   const [fields, setFields] = React.useState<MyForm>(form);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -77,7 +79,16 @@ export const Basic = () => {
       <label htmlFor="isLoading">isLoading</label>
 
       <Container size="sm">
-        <Form title="Login example" form={fields} onFormChange={setFields} onSubmit={({ formData }) => console.log(formData)} isLoading={boolean('isLoading', false)} />
+        <Form
+          title="Login example"
+          form={fields}
+          onFormChange={setFields}
+          onSubmit={async ({ formData }) => {
+            await delay(2000);
+            console.log(formData);
+          }}
+          isLoading={boolean('isLoading', false)}
+        />
         <Button onClick={() => setFields(form)}>Reset</Button>
       </Container>
     </>

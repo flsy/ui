@@ -9,6 +9,7 @@ interface ISubmitProps {
   type: 'submit';
   label?: string;
   disabled?: boolean;
+  isLoading?: boolean;
   size?: 'xs' | 'sm' | 'md' | 'lg';
 }
 
@@ -27,7 +28,7 @@ const SSubmit = styled.div<{ fullWidth?: boolean }>`
 
 export const Submit = ({ fullWidth, ...props }: ISubmitProps) => (
   <SSubmit fullWidth={fullWidth}>
-    <UIButton {...props} type="submit" primary={true}>
+    <UIButton {...props} type="submit" primary={true} isLoading={props.isLoading}>
       {props.label}
     </UIButton>
   </SSubmit>
@@ -35,6 +36,7 @@ export const Submit = ({ fullWidth, ...props }: ISubmitProps) => (
 
 Submit.defaultProps = {
   fullWidth: false,
+  isLoading: false,
   onClick: undefined,
   name: undefined,
   label: undefined,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MetaForm, { Field, FormProps } from 'react-metaforms';
 import styled from 'styled-components';
 import Loader from '../Loader/Loader';
@@ -21,6 +21,7 @@ interface IProps<F extends Field> {
 }
 
 const Form = <Form extends Field>({ className, title, messageType, message, form, onSubmit, onFormChange, isLoading, components, labels }: IProps<Form>) => {
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   return (
     <div className={className}>
       {title && <h2>{title}</h2>}
@@ -29,10 +30,15 @@ const Form = <Form extends Field>({ className, title, messageType, message, form
         <Loader text={labels?.loading} />
       ) : (
         <MetaForm<Form>
-          onSubmit={onSubmit}
+          onSubmit={async (props) => {
+            setIsSubmitting(true);
+            const res = await onSubmit(props);
+            setIsSubmitting(false);
+            return res;
+          }}
           form={form} // todo: disabled when loading ?
           onFormChange={onFormChange}
-          components={getComponent(components)}
+          components={getComponent(components, isSubmitting)}
         />
       )}
     </div>

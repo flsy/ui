@@ -17,7 +17,7 @@ import DateRangePicker from './components/DateRangePicker';
 import { InputWrapper } from '../inputs/sharedStyles';
 import Message from '../Message/Message';
 
-export const getComponent = <T extends Field>(parentGetComponent?: Components<T>) => (componentProps: ComponentProps<T>) => {
+export const getComponent = <T extends Field>(parentGetComponent?: Components<T>, isSubmitting?: boolean) => (componentProps: ComponentProps<T>) => {
   if (parentGetComponent) {
     const found = parentGetComponent(componentProps);
     if (found) {
@@ -46,7 +46,7 @@ export const getComponent = <T extends Field>(parentGetComponent?: Components<T>
     case 'string-tags':
       return <FormTags key={props.name} {...props} />;
     case 'submit':
-      return <Submit key={props.name} {...props} />;
+      return <Submit key={props.name} {...props} isLoading={isSubmitting} />;
     case 'date':
       return <DatePicker key={props.name} {...props} />;
     case 'image':

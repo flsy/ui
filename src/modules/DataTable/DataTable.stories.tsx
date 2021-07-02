@@ -36,7 +36,7 @@ const columns = {
           },
           type: {
             type: 'hidden',
-            value: 'dateRangeTable',
+            value: 'dateRangePickerOnly',
           },
         },
       },

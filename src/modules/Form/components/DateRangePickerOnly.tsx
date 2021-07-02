@@ -13,7 +13,7 @@ const now = moment();
 const DateRangePickerOnly = ({ withTimePicker, name, value, validate, update, label, validation, dateInputPlaceholder, errorMessage }: IDateRangePickerProps) => {
   const [hoverValue, setHoverValue] = useState([]);
   const formatStr = `DD.MM.YYYY ${withTimePicker ? 'HH:mm' : ''}`;
-  const defaultSelectedValue = value && [moment(value[0] * 1000), moment(value[1] * 1000)];
+  const defaultSelectedValue = value && value.map((v) => moment(v * 1000));
 
   const handleChange = (v: RangePickerValue) => {
     if (isValidRange(v)) {

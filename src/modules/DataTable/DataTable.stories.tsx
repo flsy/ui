@@ -2,6 +2,7 @@ import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { getStringFilter } from 'metatable';
+import { required } from 'metaforms';
 import DataTable from './DataTable';
 
 const columns = {
@@ -18,10 +19,26 @@ const columns = {
   createdAtFormatted: {
     type: 'timestamp',
     label: 'CreatedAt',
-    sortForm: {
-      createdAt: {
-        type: 'sort',
-        value: 'ASC',
+    filterForm: {
+      createdAtFormatted: {
+        type: 'group',
+        fields: {
+          filters: {
+            withTimePicker: true,
+            validation: [required('This is required')],
+            type: 'dateRangePickerOnly',
+            label: 'Vyberte datum',
+            value: [1626180157, 1625580157],
+          },
+          submit: {
+            type: 'submit',
+            label: 'Filtrovat',
+          },
+          type: {
+            type: 'hidden',
+            value: 'dateRangeTable',
+          },
+        },
       },
     },
   },

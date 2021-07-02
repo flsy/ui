@@ -24,7 +24,7 @@ const InputStyled = styled.input`
   ${Inputs}
 `;
 
-const RangeCalendarStyled = styled(RangeCalendar)`
+export const RangeCalendarStyled = styled(RangeCalendar)`
   ${({ theme }) => css`
     .rc-calendar-header > a:hover,
     .rc-calendar-year-select:hover,

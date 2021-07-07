@@ -20,6 +20,12 @@ defaultCalendarValue.add(-1, 'month');
 
 export const isValidRange = (v?: RangePickerValue | [number, number]) => v && v[0] && v[1];
 
+export const formatDatePickerTime = (format?: string, withTimePicker?: boolean): string => {
+  if (format) return format;
+
+  return `DD.MM.YYYY${withTimePicker ? ' HH:mm' : ''}`;
+};
+
 const InputStyled = styled.input`
   ${Inputs}
 `;
@@ -122,12 +128,13 @@ interface IProps {
   onChange: (date: RangePickerValue) => void;
   value?: RangePickerValue;
   onBlur?: () => void;
+  format?: string;
 }
 
-const RangePicker = ({ withTimePicker, placeholder, dateInputPlaceholder, value, onChange, onBlur, name }: IProps) => {
+const RangePicker = ({ withTimePicker, placeholder, dateInputPlaceholder, value, onChange, onBlur, name, format }: IProps) => {
   const [hoverValue, setHoverValue] = useState([]);
-  const formatStr = `DD.MM.YYYY ${withTimePicker ? 'HH:mm' : ''}`;
-  const format = (v) => (v ? v.format(formatStr) : '');
+  const formatStr = formatDatePickerTime(format, withTimePicker);
+  const formatValue = (v) => (v ? v.format(formatStr) : '');
 
   const calendar = (
     <RangeCalendarStyled
@@ -145,7 +152,14 @@ const RangePicker = ({ withTimePicker, placeholder, dateInputPlaceholder, value,
   return (
     <Picker value={value} onChange={onChange} animation="slide-up" calendar={calendar}>
       {({ value: v }) => (
-        <InputStyled onBlur={onBlur} placeholder={placeholder} readOnly={true} name={name} id={name} value={(isValidRange(value) && `${format(v[0])} - ${format(v[1])}`) || ''} />
+        <InputStyled
+          onBlur={onBlur}
+          placeholder={placeholder}
+          readOnly={true}
+          name={name}
+          id={name}
+          value={(isValidRange(value) && `${formatValue(v[0])} - ${formatValue(v[1])}`) || ''}
+        />
       )}
     </Picker>
   );
@@ -157,6 +171,7 @@ RangePicker.defaultProps = {
   placeholder: undefined,
   dateInputPlaceholder: ['from', 'to'],
   onBlur: undefined,
+  format: undefined,
 };
 
 export default RangePicker;

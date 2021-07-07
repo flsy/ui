@@ -24,11 +24,11 @@ const columns = {
         type: 'group',
         fields: {
           filters: {
-            withTimePicker: true,
             validation: [required('This is required')],
-            type: 'dateRangePickerOnly',
+            type: 'dateRangeCalendar',
             label: 'Vyberte datum',
             value: [1626180157, 1625580157],
+            format: 'DD.MM.YYYY',
           },
           submit: {
             type: 'submit',
@@ -36,7 +36,7 @@ const columns = {
           },
           type: {
             type: 'hidden',
-            value: 'dateRangePickerOnly',
+            value: 'dateRangeCalendar',
           },
         },
       },

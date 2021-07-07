@@ -16,7 +16,7 @@ import FileUpload from '../Upload/FileUpload';
 import DateRangePicker from './components/DateRangePicker';
 import { InputWrapper } from '../inputs/sharedStyles';
 import Message from '../Message/Message';
-import DateRangePickerOnly from './components/DateRangePickerOnly';
+import DateRangePickerCalendar from './components/DateRangePickerCalendar';
 
 export const getComponent = <T extends Field>(parentGetComponent?: Components<T>, isSubmitting?: boolean) => (componentProps: ComponentProps<T>) => {
   if (parentGetComponent) {
@@ -60,8 +60,8 @@ export const getComponent = <T extends Field>(parentGetComponent?: Components<T>
       return <DateTimePicker key={props.name} {...props} />;
     case 'dateRange':
       return <DateRangePicker key={props.name} {...props} />;
-    case 'dateRangePickerOnly':
-      return <DateRangePickerOnly key={props.name} {...props} />;
+    case 'dateRangeCalendar':
+      return <DateRangePickerCalendar key={props.name} {...props} />;
     case 'button-group':
       return <ButtonGroup key={props.name}>{groupChildren}</ButtonGroup>;
     case 'multiselect':

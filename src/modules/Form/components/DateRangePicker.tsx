@@ -8,11 +8,12 @@ import { ErrorMessage, InputWrapper, Label } from '../../inputs/sharedStyles';
 export interface IDateRangePickerProps extends FieldProps<[number, number]> {
   withTimePicker?: boolean;
   dateInputPlaceholder?: [string, string];
+  format?: string;
 }
 
-const DateRangePicker = ({ withTimePicker, name, placeholder, value, update, label, validation, dateInputPlaceholder, validate, errorMessage }: IDateRangePickerProps) => {
-  const pickerValue: RangePickerValue = isValidRange(value) ? [moment.unix(value[0]), moment.unix(value[1])] : undefined;
+export const getDateRangePickerValue = (value?: [number, number]): RangePickerValue => (isValidRange(value) ? [moment.unix(value[0]), moment.unix(value[1])] : undefined);
 
+const DateRangePicker = ({ withTimePicker, name, placeholder, value, update, label, validation, dateInputPlaceholder, validate, errorMessage, format }: IDateRangePickerProps) => {
   const handleBlur = () => {
     validate(name);
   };
@@ -31,10 +32,11 @@ const DateRangePicker = ({ withTimePicker, name, placeholder, value, update, lab
         name={name}
         onChange={handleChange}
         onBlur={handleBlur}
-        value={pickerValue}
+        value={getDateRangePickerValue(value)}
         placeholder={placeholder}
         withTimePicker={withTimePicker}
         dateInputPlaceholder={dateInputPlaceholder}
+        format={format}
       />
       {errorMessage ? <ErrorMessage message={errorMessage} name={name} /> : null}
     </InputWrapper>

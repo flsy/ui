@@ -3,7 +3,7 @@ import { isRequired } from 'metaforms';
 import moment from 'moment';
 import cs_CZ from 'rc-calendar/lib/locale/cs_CZ';
 import TimePickerPanel from 'rc-time-picker/lib/Panel';
-import { formatDatePickerTime, isValidRange, RangeCalendarStyled, RangePickerValue } from '../../DatePicker/RangePicker';
+import { defaultDateFormat, isValidRange, RangeCalendarStyled, RangePickerValue } from '../../DatePicker/RangePicker';
 import { ErrorMessage, InputWrapper, Label } from '../../inputs/sharedStyles';
 import { getDateRangePickerValue, IDateRangePickerProps } from './DateRangePicker';
 
@@ -27,7 +27,7 @@ const DateRangePickerCalendar = ({ withTimePicker, name, value, validate, update
       <RangeCalendarStyled
         onChange={handleChange}
         locale={cs_CZ}
-        format={formatDatePickerTime(format, withTimePicker)}
+        format={format || defaultDateFormat(withTimePicker)}
         hoverValue={hoverValue}
         onHoverChange={setHoverValue}
         showWeekNumber={false}

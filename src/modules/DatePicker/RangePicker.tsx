@@ -20,11 +20,7 @@ defaultCalendarValue.add(-1, 'month');
 
 export const isValidRange = (v?: RangePickerValue | [number, number]) => v && v[0] && v[1];
 
-export const formatDatePickerTime = (format?: string, withTimePicker?: boolean): string => {
-  if (format) return format;
-
-  return `DD.MM.YYYY${withTimePicker ? ' HH:mm' : ''}`;
-};
+export const defaultDateFormat = (withTimePicker?: boolean): string => `DD.MM.YYYY${withTimePicker ? ' HH:mm' : ''}`;
 
 const InputStyled = styled.input`
   ${Inputs}
@@ -133,7 +129,7 @@ interface IProps {
 
 const RangePicker = ({ withTimePicker, placeholder, dateInputPlaceholder, value, onChange, onBlur, name, format }: IProps) => {
   const [hoverValue, setHoverValue] = useState([]);
-  const formatStr = formatDatePickerTime(format, withTimePicker);
+  const formatStr = format || defaultDateFormat(withTimePicker);
   const formatValue = (v) => (v ? v.format(formatStr) : '');
 
   const calendar = (

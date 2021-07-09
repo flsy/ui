@@ -77,11 +77,11 @@ const Th = <Types extends unknown>({ columns, columnPath }: { columns: Columns<T
     }
   };
 
-  const reset = () => {
-    const colsWResettedFilter = set(valueOfFilterLens, undefined, columns);
-    const fieldsWOValue = set(filterFormValueLens, undefined, fields);
-    setFields(fieldsWOValue);
-    columnsChanged(colsWResettedFilter);
+  const handleReset = () => {
+    const colsFilter = set(valueOfFilterLens, undefined, columns);
+    const resetFieldsValue = set(filterFormValueLens, undefined, fields);
+    setFields(resetFieldsValue);
+    columnsChanged(colsFilter);
   };
 
   return (
@@ -106,7 +106,7 @@ const Th = <Types extends unknown>({ columns, columnPath }: { columns: Columns<T
 
                   if (component?.type === 'reset') {
                     return (
-                      <Button {...component} size="xs" type="reset" onClick={reset}>
+                      <Button {...component} size="xs" type="reset" onClick={handleReset}>
                         {/* @ts-ignore TODO - fix this in metaforms */}
                         {component.label}
                       </Button>

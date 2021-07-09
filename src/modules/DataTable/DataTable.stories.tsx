@@ -1,7 +1,7 @@
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
-import { getStringFilter, toMetaFilters } from 'metatable';
+import { getStringFilter } from 'metatable';
 import { required } from 'metaforms';
 import DataTable from './DataTable';
 

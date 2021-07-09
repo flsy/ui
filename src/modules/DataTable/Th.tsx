@@ -11,7 +11,7 @@ import Popup from '../Popup/Popup';
 import { DataTableContext } from './context';
 import SortForm from './SortForm';
 import TextFilter from './filters/TextFilter';
-import { ITh } from '../MetaTable/interfaces';
+import Button from '../Button/Button';
 
 export const STh = styled.th`
   padding: 0;
@@ -61,6 +61,9 @@ const Th = <Types extends unknown>({ columns, columnPath }: { columns: Columns<T
   const isFilterable = !!column.filterForm;
   const isFiltered = isFilterable && !!getFilterFormValue(column.filterForm);
 
+  const valueOfFilterLens = lensPath([...columnPath, 'filterForm', ...columnPath, 'fields', 'filters', 'value']);
+  const filterFormValueLens = lensPath([...columnPath, 'fields', 'filters', 'value']);
+
   const handleFilter = (form: object) => {
     if (columnsChanged) {
       columnsChanged(set(lensPath([...columnPath, 'filterForm']), form, columns));
@@ -72,6 +75,13 @@ const Th = <Types extends unknown>({ columns, columnPath }: { columns: Columns<T
     if (columnsChanged) {
       columnsChanged(pipe(unsetAllSortFormValues, set(lensPath([...columnPath, 'sortForm']), form))(columns));
     }
+  };
+
+  const reset = () => {
+    const colsWResettedFilter = set(valueOfFilterLens, undefined, columns);
+    const fieldsWOValue = set(filterFormValueLens, undefined, fields);
+    setFields(fieldsWOValue);
+    columnsChanged(colsWResettedFilter);
   };
 
   return (
@@ -92,6 +102,15 @@ const Th = <Types extends unknown>({ columns, columnPath }: { columns: Columns<T
 
                   if (component?.type === 'submit') {
                     return <Submit {...component} type="submit" size="xs" />;
+                  }
+
+                  if (component?.type === 'reset') {
+                    return (
+                      <Button {...component} size="xs" type="reset" onClick={reset}>
+                        {/* @ts-ignore TODO - fix this in metaforms */}
+                        {component.label}
+                      </Button>
+                    );
                   }
 
                   if (component?.type === 'group') {

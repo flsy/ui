@@ -1,7 +1,7 @@
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
-import { getStringFilter } from 'metatable';
+import { getStringFilter, toMetaFilters } from 'metatable';
 import { required } from 'metaforms';
 import DataTable from './DataTable';
 
@@ -33,6 +33,10 @@ const columns = {
           submit: {
             type: 'submit',
             label: 'Filtrovat',
+          },
+          reset: {
+            type: 'reset',
+            label: 'Reset',
           },
           type: {
             type: 'hidden',
@@ -83,15 +87,24 @@ const columns = {
     },
     filterForm: {
       content: {
-        label: 'Kontent',
-        type: 'text',
-        value: null,
-        placeholder: 'Obsah',
-        errorMessage: null,
-      },
-      submit: {
-        type: 'submit',
-        label: 'Uložit',
+        type: 'group',
+        fields: {
+          filters: {
+            label: 'Kontent',
+            type: 'text',
+            value: null,
+            placeholder: 'Obsah',
+            errorMessage: null,
+          },
+          reset: {
+            type: 'reset',
+            label: 'Reset',
+          },
+          submit: {
+            type: 'submit',
+            label: 'Uložit',
+          },
+        },
       },
     },
   },

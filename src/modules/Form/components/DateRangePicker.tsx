@@ -11,7 +11,7 @@ export interface IDateRangePickerProps extends FieldProps<[number, number]> {
   format?: string;
 }
 
-export const getDateRangePickerValue = (value?: [number, number]): RangePickerValue => (isValidRange(value) ? [moment.unix(value[0]), moment.unix(value[1])] : undefined);
+export const getDateRangePickerValue = (value?: [number, number]): RangePickerValue => (isValidRange(value) ? [moment.unix(value[0]), moment.unix(value[1])] : []);
 
 const DateRangePicker = ({ withTimePicker, name, placeholder, value, update, label, validation, dateInputPlaceholder, validate, errorMessage, format }: IDateRangePickerProps) => {
   const handleBlur = () => {

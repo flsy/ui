@@ -33,7 +33,7 @@ const DateRangePickerCalendar = ({ withTimePicker, name, value, validate, update
         showWeekNumber={false}
         dateInputPlaceholder={dateInputPlaceholder}
         defaultValue={[now, now.clone().add(1, 'months')]}
-        defaultSelectedValue={getDateRangePickerValue(value)}
+        selectedValue={getDateRangePickerValue(value)}
         timePicker={withTimePicker ? <TimePickerPanel showSecond={false} defaultValue={[moment('00:00:00', 'HH:mm:ss'), moment('23:59:59', 'HH:mm:ss')]} /> : undefined}
       />
       {errorMessage ? <ErrorMessage message={errorMessage} name={name} /> : null}

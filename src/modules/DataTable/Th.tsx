@@ -78,10 +78,10 @@ const Th = <Types extends unknown>({ columns, columnPath }: { columns: Columns<T
   };
 
   const handleReset = () => {
-    const colsFilter = set(valueOfFilterLens, undefined, columns);
+    const resetColsFilter = set(valueOfFilterLens, undefined, columns);
     const resetFieldsValue = set(filterFormValueLens, undefined, fields);
     setFields(resetFieldsValue);
-    columnsChanged(colsFilter);
+    columnsChanged(resetColsFilter);
   };
 
   return (

@@ -107,7 +107,6 @@ const Th = <Types extends unknown>({ columns, columnPath }: { columns: Columns<T
                   if (component?.type === 'reset') {
                     return (
                       <Button {...component} size="xs" type="reset" onClick={handleReset}>
-                        {/* @ts-ignore TODO - fix this in metaforms */}
                         {component.label}
                       </Button>
                     );

@@ -114,7 +114,7 @@ export const RangeCalendarStyled = styled(RangeCalendar)`
   `}
 `;
 
-export type RangePickerValue = [Moment, Moment];
+export type RangePickerValue = [Moment, Moment] | [];
 
 interface IProps {
   name: string;

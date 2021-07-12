@@ -2330,6 +2330,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@falsy/metacore@npm:^0.0.6":
+  version: 0.0.6
+  resolution: "@falsy/metacore@npm:0.0.6"
+  checksum: a810bbb3bea78f7bacae04e4dcd9c4ef3e65a3ddfd68237e7459c29e1fc3049a46c47e48c1abdc869ee17f08479c1fa50fce2ff43ce52b462741e56ca50cf513
+  languageName: node
+  linkType: hard
+
 "@falsy/ui@workspace:.":
   version: 0.0.0-use.local
   resolution: "@falsy/ui@workspace:."
@@ -2372,7 +2379,7 @@ __metadata:
     jest: ^26.6.3
     jest-styled-components: ^7.0.3
     metacharts: ^0.0.8
-    metaforms: ^1.0.7
+    metaforms: ^1.0.9
     metatable: ^2.0.2
     moment: ^2.29.1
     prettier: ^2.2.1
@@ -2383,7 +2390,7 @@ __metadata:
     react: ^16.14.0
     react-dom: ^16.14.0
     react-is: ^17.0.1
-    react-metaforms: ^3.0.7
+    react-metaforms: ^3.0.8
     react-router-dom: ^5.2.0
     react-spring: ^8.0.27
     react-toast-notifications: ^2.4.3
@@ -9016,10 +9023,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fputils@npm:^1.1.4":
-  version: 1.1.6
-  resolution: "fputils@npm:1.1.6"
-  checksum: 62fa4d0d75214c9f43950e59df9efcf2cc0364a9cb26491df7159cb4b55d5661e6829cdbc1f0f6a4effe82f154d57b3552794a587f26d0d9619800b49a2594da
+"fputils@npm:^1.2.4":
+  version: 1.2.4
+  resolution: "fputils@npm:1.2.4"
+  checksum: 14da28e1d5ab98062a5dc207b773c906c81f829ca341503337cd0f94f6e46fa49e048f188f82ba986ac3d603b662fa560874fbe767cc7924a089be4285d5c0ae
   languageName: node
   linkType: hard
 
@@ -12034,12 +12041,13 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"metaforms@npm:^1.0.7":
-  version: 1.0.7
-  resolution: "metaforms@npm:1.0.7"
+"metaforms@npm:^1.0.9":
+  version: 1.0.9
+  resolution: "metaforms@npm:1.0.9"
   dependencies:
-    fputils: ^1.1.4
-  checksum: 46274fecac3bf4c12d9a49ff5f010ac3db34287766a9369699dec3d9c1477f1ecc3d5442c8b4876c7f960d73800f6ab7580325f34bbc7948f5ce70385f332b58
+    "@falsy/metacore": ^0.0.6
+    fputils: ^1.2.4
+  checksum: f4cedce638774b6fd4aedbe35ee06934428f36911fdb4d6ecfa7ced2dd95ba52ad4910625635b6e33dfae50c977f709d6f41ae8f124baa3010a6a27c39ce8978
   languageName: node
   linkType: hard
 
@@ -14216,16 +14224,16 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"react-metaforms@npm:^3.0.7":
-  version: 3.0.7
-  resolution: "react-metaforms@npm:3.0.7"
+"react-metaforms@npm:^3.0.8":
+  version: 3.0.8
+  resolution: "react-metaforms@npm:3.0.8"
   dependencies:
-    metaforms: ^1.0.7
+    metaforms: ^1.0.9
     react: ^16.*
   peerDependencies:
     react: "*"
     react-dom: "*"
-  checksum: d5b4cedc04f211cd607b03efde8986fd2ecb9ab0729a08b370c59792a57a76eece517463034e0762afa44f0f81f7484f89e5f78277f49479b033305859326118
+  checksum: 3fc4585fde0ec723b99dfd2ce7fbee7c52e8529e4c66c37344d650346a0a002949e01778a0ef9798925d038231b246eee23b2475df56d90407b8f815b4e58685
   languageName: node
   linkType: hard
 

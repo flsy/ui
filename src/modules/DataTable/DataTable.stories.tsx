@@ -34,6 +34,10 @@ const columns = {
             type: 'submit',
             label: 'Filtrovat',
           },
+          reset: {
+            type: 'reset',
+            label: 'Reset',
+          },
           type: {
             type: 'hidden',
             value: 'dateRangeCalendar',
@@ -83,15 +87,24 @@ const columns = {
     },
     filterForm: {
       content: {
-        label: 'Kontent',
-        type: 'text',
-        value: null,
-        placeholder: 'Obsah',
-        errorMessage: null,
-      },
-      submit: {
-        type: 'submit',
-        label: 'Uložit',
+        type: 'group',
+        fields: {
+          filters: {
+            label: 'Kontent',
+            type: 'text',
+            value: null,
+            placeholder: 'Obsah',
+            errorMessage: null,
+          },
+          reset: {
+            type: 'reset',
+            label: 'Reset',
+          },
+          submit: {
+            type: 'submit',
+            label: 'Uložit',
+          },
+        },
       },
     },
   },

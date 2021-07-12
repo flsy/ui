@@ -2390,7 +2390,7 @@ __metadata:
     react: ^16.14.0
     react-dom: ^16.14.0
     react-is: ^17.0.1
-    react-metaforms: 3.0.8
+    react-metaforms: ^3.0.8
     react-router-dom: ^5.2.0
     react-spring: ^8.0.27
     react-toast-notifications: ^2.4.3
@@ -14224,7 +14224,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"react-metaforms@npm:3.0.8":
+"react-metaforms@npm:^3.0.8":
   version: 3.0.8
   resolution: "react-metaforms@npm:3.0.8"
   dependencies:

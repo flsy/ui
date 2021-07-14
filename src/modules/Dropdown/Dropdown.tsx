@@ -25,9 +25,7 @@ const Dropdown: React.FC<IProps> = ({ children, buttonLabel }) => {
       <Button onClick={() => setOpen(true)} icon={<DownOutlined />}>
         {buttonLabel}
       </Button>
-      <Popup onClose={() => setOpen(false)} isOpen={isOpen}>
-        {children}
-      </Popup>
+      <Popup onClose={() => setOpen(false)} isOpen={isOpen} content={children} />
     </DropdownWrapper>
   );
 };

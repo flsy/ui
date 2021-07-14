@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Column, Columns, getFilterFormValue, unsetAllSortFormValues } from 'metatable';
 import { Field } from 'metaforms';
@@ -84,45 +84,58 @@ const Th = <Types extends unknown>({ columns, columnPath }: { columns: Columns<T
     columnsChanged(resetColsFilter);
   };
 
+  useEffect(() => {
+    if (!isOpen) {
+      setFields(column.filterForm);
+    }
+  }, [isOpen]);
+
   return (
     <STh>
       <SContent isFilterable={isFilterable}>
         <SortForm label={column.label} path={columnPath} sortForm={column.sortForm} onSubmit={handleSort} />
         {isFilterable && (
           <>
-            <Popup isOpen={isOpen} onClose={() => setIsOpen(false)} styles={{ top: '45px', padding: '7px', textAlign: 'left' }}>
-              <Form
-                form={fields}
-                onSubmit={({ form }) => handleFilter(form)}
-                onFormChange={setFields}
-                components={({ component, name, groupChildren, actions }) => {
-                  if (component?.type === 'text') {
-                    return <TextFilter name={name} {...component} {...actions} value={component.value as any} />;
-                  }
+            <Popup
+              isOpen={isOpen}
+              fullWidth={true}
+              onClose={() => setIsOpen(false)}
+              styles={{ top: '45px', padding: '7px', textAlign: 'left' }}
+              content={
+                <Form
+                  form={fields}
+                  onSubmit={({ form }) => handleFilter(form)}
+                  onFormChange={setFields}
+                  components={({ component, name, groupChildren, actions }) => {
+                    if (component?.type === 'text') {
+                      return <TextFilter name={name} {...component} {...actions} value={component.value as any} />;
+                    }
 
-                  if (component?.type === 'submit') {
-                    return <Submit {...component} type="submit" size="xs" />;
-                  }
+                    if (component?.type === 'submit') {
+                      return <Submit {...component} type="submit" size="xs" />;
+                    }
 
-                  if (component?.type === 'reset') {
-                    return (
-                      <Button {...component} size="xs" type="reset" onClick={handleReset}>
-                        {component.label}
-                      </Button>
-                    );
-                  }
+                    if (component?.type === 'reset') {
+                      return (
+                        <Button {...component} size="xs" type="reset" onClick={handleReset}>
+                          {component.label}
+                        </Button>
+                      );
+                    }
 
-                  if (component?.type === 'group') {
-                    return <React.Fragment key={name}>{groupChildren}</React.Fragment>;
-                  }
+                    if (component?.type === 'group') {
+                      return <React.Fragment key={name}>{groupChildren}</React.Fragment>;
+                    }
 
-                  return;
-                }}
-              />
+                    return;
+                  }}
+                />
+              }
+            >
+              <SFilter isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+                <FilterIcon isFilled={isFiltered} isActive={isOpen} />
+              </SFilter>
             </Popup>
-            <SFilter isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
-              <FilterIcon isFilled={isFiltered} isActive={isOpen} />
-            </SFilter>
           </>
         )}
       </SContent>

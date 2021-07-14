@@ -28,9 +28,11 @@ const DatePicker = ({ withTimePicker, updateAndValidate, name, value, ...props }
   return (
     <Wrapper>
       <Input {...props} name={name} update={() => {}} updateAndValidate={() => {}} value={value} type="text" onFocus={() => showDatePicker(true)} />
-      <Popup isOpen={isShown} onClose={() => showDatePicker(false)}>
-        <DatePickerComponent value={value ? new Date(value) : undefined} onChange={onChange} withTimePicker={withTimePicker} />
-      </Popup>
+      <Popup
+        isOpen={isShown}
+        onClose={() => showDatePicker(false)}
+        content={<DatePickerComponent value={value ? new Date(value) : undefined} onChange={onChange} withTimePicker={withTimePicker} />}
+      />
     </Wrapper>
   );
 };

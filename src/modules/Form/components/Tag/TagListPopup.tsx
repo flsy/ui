@@ -52,22 +52,28 @@ const TagListPopup = ({ labels, options, values, onChange, onCreateClick, name }
         {labels.editButton}
       </Tag>
 
-      <Popup isOpen={isListOpen} onClose={() => setIsListOpen(false)}>
-        <CheckboxList labels={labels} options={options} values={values} onChange={onChange} name={name} />
-        {onCreateClick && (
-          <ButtonWrapper>
-            <Button
-              size="xs"
-              onClick={() => {
-                setIsListOpen(false);
-                onCreateClick();
-              }}
-            >
-              {labels.addButton}
-            </Button>
-          </ButtonWrapper>
-        )}
-      </Popup>
+      <Popup
+        isOpen={isListOpen}
+        onClose={() => setIsListOpen(false)}
+        content={
+          <>
+            <CheckboxList labels={labels} options={options} values={values} onChange={onChange} name={name} />
+            {onCreateClick && (
+              <ButtonWrapper>
+                <Button
+                  size="xs"
+                  onClick={() => {
+                    setIsListOpen(false);
+                    onCreateClick();
+                  }}
+                >
+                  {labels.addButton}
+                </Button>
+              </ButtonWrapper>
+            )}
+          </>
+        }
+      />
     </div>
   );
 };

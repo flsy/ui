@@ -9,21 +9,23 @@ export interface IPopupProps {
   styles?: React.CSSProperties;
   onClose: () => void;
   content: ReactNode;
+  fullWidth?: boolean;
 }
 
-interface IWrapper {
-  isRelative: boolean;
+interface IPopupContentProps {
   styles: any;
+  fullWidth?: IPopupProps['fullWidth'];
+  isRelative: IPopupProps['isRelative'];
 }
 
-export const PopupContent = styled.div<IWrapper>`
+export const PopupContent = styled.div<IPopupContentProps>`
   position: absolute;
   background-color: ${Colours.background};
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   border-radius: ${borderRadius};
-  min-width: 100%;
 
+  ${({ fullWidth }) => fullWidth && `min-width: 100%;`}
   ${({ styles }) => styles && styles}
 
   ${({ isRelative }) =>
@@ -39,13 +41,13 @@ export const PopupWrapper = styled.div`
   display: contents;
 `;
 
-const Popup: React.FC<IPopupProps> = ({ isOpen, children, onClose, isRelative, styles, content }) => {
+const Popup: React.FC<IPopupProps> = ({ isOpen, children, onClose, isRelative, styles, content, fullWidth }) => {
   const { ref } = useClickOutside(onClose);
 
   return (
     <PopupWrapper ref={ref}>
       {isOpen && (
-        <PopupContent isRelative={isRelative || false} styles={styles}>
+        <PopupContent fullWidth={fullWidth} isRelative={isRelative} styles={styles}>
           {content}
         </PopupContent>
       )}

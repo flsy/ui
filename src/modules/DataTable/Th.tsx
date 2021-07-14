@@ -98,6 +98,7 @@ const Th = <Types extends unknown>({ columns, columnPath }: { columns: Columns<T
           <>
             <Popup
               isOpen={isOpen}
+              fullWidth={true}
               onClose={() => setIsOpen(false)}
               styles={{ top: '45px', padding: '7px', textAlign: 'left' }}
               content={

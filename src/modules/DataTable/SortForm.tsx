@@ -1,9 +1,9 @@
 import React from 'react';
 import { Field } from 'react-metaforms';
 import styled from 'styled-components';
-import DownIcon from '../Icon/DownIcon';
-import UpIcon from '../Icon/UpIcon';
-import Flex from '../Layout/Flex';
+import UpOutlined from '@ant-design/icons/UpOutlined';
+import DownOutlined from '@ant-design/icons/DownOutlined';
+import Color from 'color';
 import DefaultForm from '../Form/Form';
 import { Colours } from '../../mainStyles';
 
@@ -23,9 +23,28 @@ const Form = styled(DefaultForm)`
   }
 `;
 
-const Icons = styled(Flex)`
+const Icons = styled.div`
+  display: flex;
+  flex-direction: column;
   margin-left: 6px;
   font-size: 9px;
+  width: 30px;
+  height: 100%;
+`;
+
+const Icon = styled.div<{ isActive: boolean }>`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ${({ isActive, theme }) =>
+    isActive &&
+    `
+    color: ${Color(theme.colors.main.primary).isDark() ? theme.colors.text : '#fff'};
+    background: ${theme.colors.main.primary};
+  `}
 `;
 
 const Label = styled.span`
@@ -43,7 +62,7 @@ const Sort = styled.div<{ isSortable?: boolean }>`
   ${({ isSortable }) =>
     isSortable &&
     `
-    padding: 0 4px 0 12px;
+    padding: 0 0 0 12px;
 
     &:hover {
       cursor: pointer;
@@ -72,8 +91,12 @@ const SortForm = ({ path, sortForm, label, onSubmit }: IProps) => {
             <Sort key={name} isSortable={!!sortForm} onClick={() => actions.update(name, component.value === 'DESC' ? 'ASC' : 'DESC')}>
               <Label data-test-id={`datatable-head-column-label-${String(path.join('-'))}`}>{label}</Label>
               <Icons key={`sort-${path.join('-')}`}>
-                <UpIcon isActive={component.value === 'ASC'} />
-                <DownIcon isActive={component.value === 'DESC'} />
+                <Icon isActive={component.value === 'ASC'}>
+                  <UpOutlined />
+                </Icon>
+                <Icon isActive={component.value === 'DESC'}>
+                  <DownOutlined />
+                </Icon>
               </Icons>
             </Sort>
           );

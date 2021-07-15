@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import Picker from 'rc-calendar/lib/Picker';
 import RangeCalendar from 'rc-calendar/lib/RangeCalendar';
 import TimePickerPanel from 'rc-time-picker/lib/Panel';
-import 'rc-calendar/assets/index.css';
-import 'rc-time-picker/assets/index.css';
 import cs_CZ from 'rc-calendar/lib/locale/cs_CZ';
 
 import moment, { Moment } from 'moment';

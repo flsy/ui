@@ -1,3 +1,11 @@
+# 0.8.0
+- removed css imports from RangePicker, now it needs to be imported in the applicatio nwhich uses falsy ui
+
+`
+import 'rc-calendar/assets/index.css';
+import 'rc-time-picker/assets/index.css';
+`
+
 # 0.6.6
 - Themed datepicker
 - Fixed datepicker and datetimepicker bugs

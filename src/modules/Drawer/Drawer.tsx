@@ -69,7 +69,7 @@ const Drawer: React.FC<IDrawerProps> = ({ destroyOnClose, children, isOpen, onCl
       {transitions.map(({ item, key, props: overlayProps }) => item && <SOverlay key={key} onClick={() => onClose()} style={overlayProps} />)}
       <SDrawer style={props} width={width}>
         <SHeader>
-          <Button onClick={onClose} icon={<CloseOutlined />} hasBorder={false} size="sm" />
+          <Button onClick={onClose} icon={<CloseOutlined style={{ fontSize: '140%' }} />} hasBorder={false} size="sm" />
         </SHeader>
         <>{render}</>
       </SDrawer>

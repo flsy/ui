@@ -25,6 +25,8 @@ const InputStyled = styled.input`
 `;
 
 export const RangeCalendarStyled = styled(RangeCalendar)`
+  font-family: inherit !important;
+
   ${({ theme }) => css`
     .rc-calendar-header > a:hover,
     .rc-calendar-year-select:hover,

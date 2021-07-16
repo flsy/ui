@@ -3,28 +3,33 @@ import { isRequired } from 'metaforms';
 import moment from 'moment';
 import cs_CZ from 'rc-calendar/lib/locale/cs_CZ';
 import TimePickerPanel from 'rc-time-picker/lib/Panel';
+import styled from 'styled-components';
 import { defaultDateFormat, isValidRange, RangeCalendarStyled, RangePickerValue } from '../../DatePicker/RangePicker';
 import { ErrorMessage, InputWrapper, Label } from '../../inputs/sharedStyles';
 import { getDateRangePickerValue, IDateRangePickerProps } from './DateRangePicker';
 
-const DateRangePickerCalendar = ({ withTimePicker, name, value, validate, update, label, validation, dateInputPlaceholder, errorMessage, format }: IDateRangePickerProps) => {
-  const [hoverValue, setHoverValue] = useState([]);
+const RangeCalendarStandalone = styled(RangeCalendarStyled)`
+  box-shadow: none;
+`;
 
-  moment.locale('cs-CZ');
+moment.locale('cs-CZ');
+
+const DateRangePickerCalendar = ({ withTimePicker, name, value, updateAndValidate, label, validation, dateInputPlaceholder, errorMessage, format }: IDateRangePickerProps) => {
+  const [hoverValue, setHoverValue] = useState([]);
   const now = moment();
 
   const handleChange = (pickerValue: RangePickerValue) => {
     if (isValidRange(pickerValue)) {
-      validate(name);
-      return update(name, [moment(pickerValue[0]).unix(), moment(pickerValue[1]).unix()]);
+      return updateAndValidate(name, [moment(pickerValue[0]).unix(), moment(pickerValue[1]).unix()]);
     }
-    update(name, undefined);
   };
 
   return (
     <InputWrapper>
       {label && <Label fieldId={name} label={label} isRequired={isRequired(validation)} />}
-      <RangeCalendarStyled
+      <RangeCalendarStandalone
+        on={true}
+        showOk={false}
         onChange={handleChange}
         locale={cs_CZ}
         format={format || defaultDateFormat(withTimePicker)}

@@ -45,6 +45,10 @@ const form: MyForm = {
       },
     ],
   },
+  filters: {
+    type: 'dateRangeCalendar',
+    withTimePicker: true,
+  },
   'select-example': {
     type: 'select',
     label: 'Okno?',
@@ -78,9 +82,9 @@ export const Basic = () => {
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label htmlFor="isLoading">isLoading</label>
 
-      <Container size="sm">
+      <Container size="lg">
         <Form
-          title="Login example"
+          title="Some example"
           form={fields}
           onFormChange={setFields}
           onSubmit={async ({ formData }) => {

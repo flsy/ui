@@ -67,6 +67,29 @@ const columns = {
     name: {
       type: 'string',
       label: 'Groups',
+      filterForm: {
+        modifiedAt: {
+          type: 'group',
+          fields: {
+            filters: {
+              type: 'dateRangeCalendar',
+              withTimePicker: true,
+            },
+            submit: {
+              type: 'submit',
+              label: 'Filtrovat',
+            },
+            reset: {
+              type: 'reset',
+              label: 'Reset',
+            },
+            type: {
+              type: 'hidden',
+              value: 'number',
+            },
+          },
+        },
+      },
     },
   },
   // attachments: {

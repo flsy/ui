@@ -8,6 +8,7 @@ import Tag from '../Tag/Tag';
 export const STd = styled.td`
   padding: 4px 8px;
   border-bottom: 1px solid ${Colours.smidgenGrey};
+  height: 2.3em;
 `;
 
 const TagGroup = styled.div`

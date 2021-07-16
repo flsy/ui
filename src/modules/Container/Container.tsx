@@ -81,7 +81,7 @@ const Container: React.FC<IContainerProps> = ({ className, children, actions, is
         {actions && <SActions horizontal={true}>{actions}</SActions>}
       </Flex>
     )}
-    <div>
+    <>
       {isSticky && (
         <StickyWrapper>
           <Flex horizontal={true}>
@@ -91,7 +91,7 @@ const Container: React.FC<IContainerProps> = ({ className, children, actions, is
         </StickyWrapper>
       )}
       {children}
-    </div>
+    </>
   </div>
 );
 

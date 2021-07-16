@@ -2,6 +2,7 @@ import DownOutlined from '@ant-design/icons/DownOutlined';
 import UpOutlined from '@ant-design/icons/UpOutlined';
 import React, { Children, useContext, useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
+import Color from 'color';
 import { Colours } from '../../mainStyles';
 import { DataTableContext } from './context';
 import { STd } from './Td';
@@ -26,6 +27,7 @@ export const STr = styled.tr<{ isClickable?: boolean; isSelected?: boolean; type
     css`
       ${STd} {
         background-color: ${theme.colors.main.lighter};
+        color: ${Color(theme.colors.main.lighter).isDark() ? '#fff' : '#000'};
       }
     `}
 

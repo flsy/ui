@@ -69,10 +69,10 @@ const columns = {
       label: 'Groups',
     },
   },
-  attachments: {
-    type: 'image',
-    label: 'Image',
-  },
+  // attachments: {
+  //   type: 'image',
+  //   label: 'Image',
+  // },
   isPublished: {
     type: 'boolean',
     label: 'Is published',
